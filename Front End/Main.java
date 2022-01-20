@@ -1,4 +1,6 @@
 import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -20,6 +22,9 @@ public class Main extends Application {
         layout.getChildren().add(button);
 
         Scene TestScene = new Scene(layout, 200, 300);
+        Parent root = FXMLLoader.load(getClass().getResource("/Customer_menu.fxml"));
+        Scene scene = new Scene(root, 1200, 900);
+        button.setOnAction(e -> primaryStage.setScene(scene));
         primaryStage.setScene(TestScene);
         primaryStage.show();
     }
