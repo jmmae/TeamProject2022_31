@@ -1,13 +1,13 @@
 import java.io.IOException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class Customer_menu {
@@ -16,21 +16,50 @@ public class Customer_menu {
       "Table 5", "Table 6", "Table 7", "Table 8", "Table 9", "Table 10");
 
   @FXML
-  private Button calculate;
+  private Button Menu;
 
   @FXML
-  private TextField getExpression;
+  private Button callWaiter;
+
+  @FXML
+  private Button makeOrder;
+
+  @FXML
+  private Button prevPage;
 
   @FXML
   private ComboBox tableNumber;
 
   @FXML
-  public void onClick() throws IOException {
+  private Button viewOrder;
+
+  @FXML
+  void callWaiter(ActionEvent event) {
+
+  }
+
+  @FXML
+  void makingOrder(ActionEvent event) {
+
+  }
+
+  @FXML
+  void previousPage(ActionEvent event) {
+
+  }
+
+  @FXML
+  public void viewMenu() throws IOException {
     Stage primaryStage = new Stage();
     Parent root = FXMLLoader.load(getClass().getResource("Customer_menu.fxml"));
     Scene scene = new Scene(root, 1200, 900);
     primaryStage.setScene(scene);
     primaryStage.show();
+  }
+
+  @FXML
+  void viewOrder(ActionEvent event) {
+
   }
 
   @FXML

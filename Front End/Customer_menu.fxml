@@ -8,12 +8,16 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1200.0" stylesheets="@Customer_menu.css" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Customer_menu">
    <children>
-      <Button fx:id="Menu" layoutX="576.0" layoutY="303.0" mnemonicParsing="false" onAction="#onClick" text="Menu" />
-      <Text fontSmoothingType="LCD" layoutX="477.0" layoutY="144.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Restaurants">
+      <Button fx:id="Menu" layoutX="575.0" layoutY="347.0" mnemonicParsing="false" onAction="#viewMenu" text="Menu" />
+      <Text fontSmoothingType="LCD" layoutX="522.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Oaxaca">
          <font>
             <Font size="48.0" />
          </font>
       </Text>
-      <ComboBox fx:id="tableNumber" layoutX="541.0" layoutY="203.0" promptText="Table Number" />
+      <ComboBox fx:id="tableNumber" layoutX="540.0" layoutY="202.0" promptText="Table Number" />
+      <Button fx:id="prevPage" layoutX="213.0" layoutY="112.0" mnemonicParsing="false" onAction="#previousPage" text="Previous page" />
+      <Button fx:id="callWaiter" layoutX="448.0" layoutY="270.0" mnemonicParsing="false" onAction="#waiter" text="Call Waiter" />
+      <Button fx:id="makeOrder" layoutX="559.0" layoutY="270.0" mnemonicParsing="false" onAction="#makingOrder" text="Make Order" />
+      <Button fx:id="viewOrder" layoutX="676.0" layoutY="270.0" mnemonicParsing="false" onAction="#viewOrder" text="View order" />
    </children>
 </Pane>
