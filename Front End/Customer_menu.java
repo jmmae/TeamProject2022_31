@@ -55,7 +55,7 @@ public class Customer_menu {
   @FXML
   public void viewMenu() throws IOException {
     Stage primaryStage = new Stage();
-    Parent root = FXMLLoader.load(getClass().getResource("/Customer_menu.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/Food_Menu.fxml"));
     Scene scene = new Scene(root, 1200, 900);
     primaryStage.setScene(scene);
     primaryStage.show();
