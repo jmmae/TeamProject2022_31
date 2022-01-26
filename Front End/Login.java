@@ -30,6 +30,7 @@ public class Login {
 
     public int hash(){
         //needs implementaion
+        return 0;
     }
 
 

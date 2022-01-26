@@ -34,7 +34,7 @@ public class Customer_menu {
   private Button viewOrder;
 
   @FXML
-  void callWaiter(ActionEvent event) {
+  void waiter(ActionEvent event) {
 
   }
 
@@ -44,14 +44,18 @@ public class Customer_menu {
   }
 
   @FXML
-  void previousPage(ActionEvent event) {
-
+  void previousPage() throws IOException {
+    Stage primaryStage = new Stage();
+    Parent root = FXMLLoader.load(getClass().getResource("/Main_Menu.fxml"));
+    Scene scene = new Scene(root, 1200, 900);
+    primaryStage.setScene(scene);
+    primaryStage.show();
   }
 
   @FXML
   public void viewMenu() throws IOException {
     Stage primaryStage = new Stage();
-    Parent root = FXMLLoader.load(getClass().getResource("Customer_menu.fxml"));
+    Parent root = FXMLLoader.load(getClass().getResource("/Customer_menu.fxml"));
     Scene scene = new Scene(root, 1200, 900);
     primaryStage.setScene(scene);
     primaryStage.show();

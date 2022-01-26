@@ -15,7 +15,9 @@ public class DatabaseConnection {
      */
     public ResultSet query(String query){
         //needs implementaion
+        ResultSet rs = query(query);
+        return rs;
     }
-
+     
 
 }

@@ -8,24 +8,14 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    Button button;
     public static void main(String[] args) {
         launch(args);
     }
 
     public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("Test Window");
-        button = new Button();
-        button.setText("Test Button");
-
-        StackPane layout = new StackPane();
-        layout.getChildren().add(button);
-
-        Scene TestScene = new Scene(layout, 200, 300);
-        Parent root = FXMLLoader.load(getClass().getResource("/Customer_menu.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/Main_Menu.fxml"));
         Scene scene = new Scene(root, 1200, 900);
-        button.setOnAction(e -> primaryStage.setScene(scene));
-        primaryStage.setScene(TestScene);
+        primaryStage.setScene(scene);
         primaryStage.show();
     }
 }
