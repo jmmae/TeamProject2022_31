@@ -32,7 +32,7 @@ public class Food_Menu {
     private TableColumn<Food, String> description;
 
     @FXML
-    private TableColumn<Food, String> price;
+    private TableColumn<Food, Integer> price;
 
     @FXML
     void Show_Menu(ActionEvent event) {
@@ -50,9 +50,9 @@ public class Food_Menu {
 
     public ObservableList<Food> getFood() {
         ObservableList<Food> food = FXCollections.observableArrayList();
-        food.add(new Food("Cheese", "Some cheese", "15"));
-        food.add(new Food("Cheese", "Some cheese", "15"));
-        food.add(new Food("Cheese", "Some cheese", "15"));
+        food.add(new Food("Cheese", "Some cheese", 15));
+        food.add(new Food("Cheese", "Some cheese", 15));
+        food.add(new Food("Cheese", "Some cheese", 15));
         return food;
     }
 
@@ -61,7 +61,7 @@ public class Food_Menu {
 
     item.setCellValueFactory(new PropertyValueFactory<Food, String>("item"));
     description.setCellValueFactory(new PropertyValueFactory<Food, String>("description"));
-    price.setCellValueFactory(new PropertyValueFactory<Food, String>("price"));
+    price.setCellValueFactory(new PropertyValueFactory<Food, Integer>("price"));
   }
 
 }

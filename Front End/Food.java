@@ -3,9 +3,9 @@ public class Food{
 
   private String item;
   private String description;
-  private String price;
+  private int price;
 
-  public Food(String item, String desc, String price){
+  public Food(String item, String desc, int price){
     this.item = item;
     this.description = desc;
     this.price = price;
@@ -19,7 +19,7 @@ public String getDescription(){
   return description;
 }
 
-public String getPrice(){
+public int getPrice(){
   return price;
 }
 
