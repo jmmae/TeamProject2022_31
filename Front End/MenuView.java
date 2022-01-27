@@ -57,7 +57,14 @@ public class MenuView {
 		}
 	}
 
-	//Insert into table method
+	public static void instertIntoTable(Connection connection, String table, String values) {
+		try{
+			Statement st = connection.createStatement();
+			st.executeUpdate("INSERT INTO " + table + " VALUES (" + values + ");");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 
 	//Execute Query method
