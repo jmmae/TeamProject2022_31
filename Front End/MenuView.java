@@ -71,15 +71,13 @@ public class MenuView {
 		Connection connection = null;
 		try {
 			String protocol = "jdbc:postgresql://";
-			String dbName = "/CS2855/";
+			String dbName = "/CS2810/";
 			String fullURL = protocol + database + dbName + user;
 			connection = DriverManager.getConnection(fullURL, user, password);
 		} catch (SQLException e) {
 			String errorMsg = e.getMessage();
 			if (errorMsg.contains("authentication failed")) {
-				System.out.println("ERROR: \tDatabase password is incorrect. Have you changed the password string above?");
-				System.out.println("\n\tMake sure you are NOT using your university password.\n"
-						+ "\tYou need to use the password that was emailed to you!");
+				System.out.println("ERROR: \tDatabase password is incorrect");
 			} else {
 				System.out.println("Connection failed! Check output console.");
 				e.printStackTrace();
