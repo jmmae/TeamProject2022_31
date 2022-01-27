@@ -17,7 +17,7 @@ public class MenuView {
 		
 		//Have not got our own database so use tunnelling or no machine to test on teaching server
 		//String database = "teachdb.cs.rhul.ac.uk"; // for nomachine
-        //String database = "localhost"; //for tunnelling (reference database lab)
+    String database = "localhost"; //for tunnelling (reference database lab)
 		
 		Connection connection = connectToDatabase(user, password, database);
 		if (connection != null) {
