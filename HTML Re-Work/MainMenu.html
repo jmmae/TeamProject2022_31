@@ -3,6 +3,18 @@
     <style>
         body {
           font-family: Arial, Helvetica, sans-serif;
+          margin: 0;
+        }
+
+        .header {
+            padding: 10px;
+            text-align: center;
+            background: #cde8c5;
+            color: white;
+        }
+
+        .header h1 {
+            font-size: 60px;
         }
     </style>
 
@@ -10,10 +22,15 @@
         <title>Oaxaca</title>
     </head>
 
-    <h1>Main Menu</h1>
+    <div class="header"> 
+        <h1>Oaxaca</h1>
+        <p>Serving the UK for the past 10 years.</p>
+        <br>
+    </div>
 
     <body>
         <form>
+            <br>
             <label for="TableNumber">Table Number: </label>
             <select name="TableNumber" id="TableNumber">
                 <option value="1">Table 1</option>
@@ -27,7 +44,7 @@
                 <option value="9">Table 9</option>
                 <option value="10">Table 10</option>
             </select>
-            <input type="submit" value="sumbit">
+            <input type="submit" value="Sumbit">
         </form>
         <br>
         <button onclick="location.href='CustomerMenu.html'">View Menu</button>
