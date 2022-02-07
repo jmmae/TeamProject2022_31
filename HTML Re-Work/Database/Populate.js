@@ -31,39 +31,81 @@ var con = mysql.createConnection({
   database: "oaxaca"
 });
 
-con.connect(function(err) {
-    if (err) throw err;
-    console.log("Connected!");
-
-    // // Drop Database
-    // con.query("DROP DATABASE IF EXISTS oaxaca", function (err, result){
-    //   if(err) throw err;
-    //   console.log("Database dropped");
-    // });
-
-    // Create Database if it doesn't exist
-    con.query("CREATE DATABASE IF NOT EXISTS oaxaca", function (err, result) {
-      if (err) throw err;
-      console.log("Database present");
+// Connect to server
+function connectToServer(con) {
+    con.connect(function(err) {
+        if (err) throw err;
+        console.log("Connected!");
     });
+}
 
-    // Drop Table if existed previously
+// Drop Database
+function dropDB(con) {
+    con.query("DROP DATABASE IF EXISTS oaxaca", function (err, result){
+    if(err) throw err;
+    console.log("Database dropped");
+    });
+}
+
+// Create Database if it doesn't exist
+function createDB(con) {
+    con.query("CREATE DATABASE IF NOT EXISTS oaxaca", function (err, result) {
+        if (err) throw err;
+        console.log("Database present");
+        });
+}
+
+// Drop Table if existed previously
+function dropTable(con) {
     con.query("DROP TABLE IF EXISTS menu", function(err, result) {
         if (err) throw err;
         console.log("Table not present");
     });
+}
 
-    // Create Table if doesn't exist
+// Create Table if doesn't exist
+function createTable(con) {
     con.query("CREATE TABLE IF NOT EXISTS menu (foodtest VARCHAR(100), pricetest FLOAT)", function(err, result) {
         if (err) throw err;
         console.log("Table present");
     });
+}
 
-    // Inserts into Table from File
-
-    // End Connection
-    con.end(function(err) {
-        if (err) throw err;
+// Inserts into Table from File
+function fileToTable(con) {
+    const txt = fs.createReadStream(readFileLocation);
+    const rl = readline.createInterface({
+        input: txt
     });
-  });
+    rl.on("line", (out) => {
+        const outList = out.split(",")
+        con.query("INSERT INTO menu (foodtest, pricetest) VALUES (" + "'" + outList[0] + "', '" + outList[1] + "'" + ")", function(err, result) {
+            if (err) throw err;
+            console.log("Filled one row from file");
+        });
+        con.query("SELECT * FROM menu", function(err, result, fields) {
+            if (err) throw err;
+            console.log(result);
+        });
+    })
+    
+}
+
+// function selectToConsole(con) {
+//     con.query("SELECT * FROM menu", function(err, result, fields) {
+//         if (err) throw err;
+//         console.log(result);
+//     });
+// }
+
+connectToServer(con);
+createDB(con);
+dropTable(con);
+createTable(con);
+fileToTable(con);
+
+// // End Connection
+// con.end(function(err) {
+//     if (err) throw err;
+// });
 
