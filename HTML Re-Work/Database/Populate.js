@@ -83,14 +83,11 @@ function fileToTable(con) {
             if (err) throw err;
             console.log("Filled one row from file");
         });
-        con.query("SELECT * FROM menu", function(err, result, fields) {
-            if (err) throw err;
-            console.log(result);
-        });
     })
     
 }
 
+// // Outputs contents of table to console
 // function selectToConsole(con) {
 //     con.query("SELECT * FROM menu", function(err, result, fields) {
 //         if (err) throw err;
