@@ -12,29 +12,45 @@ var con = mysql.createConnection({
 
 const express = require('express')
 const app = express()
-const port = 3000
+const port = 3000 //the port this server is watching
 var cors = require('cors')
+var bodyParser = require('body-parser')
+var jsonParser = bodyParser.json()//jsonParser is used to be able to read the incoming data when encoded in json format
+var urlencodedParser = bodyParser.urlencoded({ extended: false })//urlencodedParser is used to be able to read the incoming data when encoded in url format
 
 app.use(cors())
 
+//get is used when no data needs to be sent
+//'/' is the path that is beeing checked
+//req is not used here
+//res is what is returned
 app.get('/', (req, res) => {
   res.send('Hello World!')
   console.log("request recieved");
+})
+
+//post is used when the client is sending data
+//req.body.[paramiter name] is how you get the data
+//res is what is returned
+//urlencodedParser is used to be able to read the incoming data when encoded in url format
+app.post('/postexample', urlencodedParser, function (req, res) {
+  console.log("request recieved");
+  res.send(req.body.param1 + req.body.param2)
 })
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
-function query(sql){
-    return con.connect(function(err) {
-        if (err) throw err;
-        //console.log("Connected!");
-        return con.query(sql, function (err, result){
-            if(err) throw err;
-            //console.log("Done");
-            return result;
-        });
-        
+function query(sql) {
+  return con.connect(function (err) {
+    if (err) throw err;
+    //console.log("Connected!");
+    return con.query(sql, function (err, result) {
+      if (err) throw err;
+      //console.log("Done");
+      return result;
     });
+
+  });
 }
