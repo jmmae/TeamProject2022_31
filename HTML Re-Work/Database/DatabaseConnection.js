@@ -38,19 +38,27 @@ app.post('/postexample', urlencodedParser, function (req, res) {
   res.send(req.body.param1 + req.body.param2)
 })
 
+app.get('/menu', function (req, res) {
+  console.log("menu request recieved");
+
+  selectquery("SELECT * FROM menu;", res)
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
-function query(sql) {
-  return con.connect(function (err) {
-    if (err) throw err;
-    //console.log("Connected!");
-    return con.query(sql, function (err, result) {
-      if (err) throw err;
-      //console.log("Done");
-      return result;
-    });
+function selectquery(sql, res, columns) {
 
+  con.query(sql, function (err, result, fields) {
+    if (err) throw err;
+    
+    console.log(result[0].foodtest);
+    res.send(result)
   });
-}
+
+};
+  
+
+
+
