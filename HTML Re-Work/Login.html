@@ -20,10 +20,12 @@
   }
 
   .login{
-    width: 8%;
+    background-color: #cde8c5;
+    width: 9%;
 	  margin: 0 auto;
     padding: 20px;
     display:block;
+    box-shadow: 2px 2px 15px #000000;
   }
 
   .text{
@@ -33,23 +35,21 @@
 
   .button{
     width: 8%;
-	  margin: 0 auto;
-    padding: 20px;
-    display:block;
   }
 
   h2{
-    width: 8%;
-	  margin: 0 auto;
-    padding: 20px;
-    display:block;
+    text-align: center;
   }
+
 </style>
 
   <title>Login</title>
 </head>
 
 <div class="header"> 
+  <div class="button">
+    <button onclick="location.href='MainMenu.html'">Go Back</button>
+  </div>
   <h1>Oaxaca</h1>
   <p>Serving the UK for the past 10 years.</p>
   <br>
@@ -57,7 +57,7 @@
 
 
 <body>
-  <h2><b>Login</b></h2>
+  <h2 id="loginHeading"><b>Login</b></h2>
   <div class="login">
     <form name="login" onsubmit="checkData()">
     Username:
@@ -72,8 +72,5 @@
 
 
   </div>
-  <div class="button">
-  <button onclick="location.href='MainMenu.html'">Go Back</button>
-</div>
 </body>
 </html>
