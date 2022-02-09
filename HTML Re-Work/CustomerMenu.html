@@ -71,6 +71,7 @@
         //data is a JSON object array   https://www.w3schools.com/js/js_json_objects.asp
         //to access the info  data[i].name-of-field-in-database
         //eg below gereates an alert with the info about the first item in the menu
+        document.getElementById("menu").innerHTML = "";
         for (let i = 0; i < data.length; i++){
           document.getElementById("menu").innerHTML += ("Food: " + data[i].foodtest + "<br>Price: " + data[i].pricetest + "<br>");
         }
