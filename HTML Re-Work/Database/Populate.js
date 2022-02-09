@@ -2,7 +2,7 @@ var mysql = require('mysql');
 fs = require('fs');
 const readline = require('readline');
 
-const readFileLocation = "../HTML Re-Work/Database/DatabaseFile.txt";
+const readFileLocation = "../Database/DatabaseFile.txt";
 
 
 // // Test: Read File Line By Line
