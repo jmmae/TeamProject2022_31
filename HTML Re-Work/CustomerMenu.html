@@ -4,13 +4,13 @@
 <link href="StyleSheet.css" rel="stylesheet">
 
 <head>
-    <title>Menu</title>
+    <title>Oaxaca</title>
 </head>
 
-<div id="headerImg"> </div>
-
 <div class="header"> 
-    <p>View and Select Items from our Menu.</p>
+    <h1>Oaxaca</h1>
+    <p>Serving the UK for the past 10 years.</p>
+    <br>
 </div>
 
 <head>
@@ -90,8 +90,18 @@
                 //eg below gereates an alert with the info about the first item in the menu
                 document.getElementById("menu").innerHTML = "";
                 for (let i = 0; i < data.length; i++){
-                    document.getElementById("menu").innerHTML += ("Food: " + data[i].foodtest + "<br>Price: " + data[i].pricetest + "<br>");
+                    document.getElementById("menu").innerHTML += ("Food: " + data[i].foodtest + "<br>Price: " + data[i].pricetest + "<br>");	
+						<tr>
+							<td>data[i].foodtest</td>
+							<td>data[i].pricetest</td>
+						</tr>					
                 }
+				<table>
+						<tr>
+							<th>#Food#</th>
+							<th>#Price#</th>
+							<th>Select</th>
+						</tr>					
             });
         });
     });
