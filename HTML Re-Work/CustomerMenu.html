@@ -3,13 +3,13 @@
 
 <style>
     body {
-      font-family: Arial, Helvetica, sans-serif;
+        font-family: Arial, Helvetica, sans-serif;
     }
 </style>
 
 <head>
-<title>Menu</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Menu</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
 </head>
 
@@ -25,30 +25,41 @@
 <p>List of dishes currently availble on our Menu.</p>
 
 <table>
-  <tr>
-    <th>#Dish#</th>
-    <th>#Category#</th>
-    <th>#Diet#</th>
-    <th>#Price#</th>
-  </tr>
-  <tr>
-    <td>Chicken Burger</td>
-    <td>Burger</td>
-    <td>M</td>
-    <td>8.99</td>
-  </tr>
-  <tr>
-    <td>Veggie Burger</td>
-    <td>Burger</td>
-    <td>V</td>
-    <td>11.99</td>
-  </tr>
-  <tr>
-    <td>Fruit Salad</td>
-    <td>Salad</td>
-    <td>VG</td>
-    <td>4.50</td>
-  </tr>
+    <tr>
+        <th>#image#</th>
+        <th>#Dish#</th>
+        <th>#Category#</th>
+        <th>#Diet#</th>
+        <th>#Price#</th>
+        <th>Select</th>
+    </tr>
+    <form action="" method="post">
+
+    </form>
+    <tr>
+        <th><img src="images/Crispy-Chicken-Burger-10.jpeg" height="120" width="120"/></th>
+        <td>Chicken Burger</td>
+        <td>Burger</td>
+        <td>M</td>
+        <td>8.99</td>
+        <td><input type="checkbox" name="favorite1" value="ChickenBurger" /> </td>
+    </tr>
+    <tr>
+        <th></th>
+        <td>Veggie Burger</td>
+        <td>Burger</td>
+        <td>V</td>
+        <td>11.99</td>
+        <td><input type="checkbox" name="favorite2" value="VeggieBurger" /> </td>
+    </tr>
+    <tr>
+        <th></th>
+        <td>Fruit Salad</td>
+        <td>Salad</td>
+        <td>VG</td>
+        <td>4.50</td>
+        <td><input type="checkbox" name="favorite3" value="Salad" /> </td>
+    </tr>
 </table>
 <br>
 
@@ -59,25 +70,25 @@
 
 
 <script>
-  //https://www.w3schools.com/jquery/jquery_get_started.asp
+    //https://www.w3schools.com/jquery/jquery_get_started.asp
 
-  //this makes sure the document is loaded before any code is run
-  jQuery(document).ready(function () {
+    //this makes sure the document is loaded before any code is run
+    jQuery(document).ready(function () {
 
-    jQuery("#getButton").click(function () {
-      //"http://localhost:3000/menu" is the path/document to be found    data is the data returned from the server and status is the success or fail of this attempt
-      //  /menu address is call to return all items in the menu
-      jQuery.get("http://localhost:3000/menu", function (data, status) {
-        //data is a JSON object array   https://www.w3schools.com/js/js_json_objects.asp
-        //to access the info  data[i].name-of-field-in-database
-        //eg below gereates an alert with the info about the first item in the menu
-        document.getElementById("menu").innerHTML = "";
-        for (let i = 0; i < data.length; i++){
-          document.getElementById("menu").innerHTML += ("Food: " + data[i].foodtest + "<br>Price: " + data[i].pricetest + "<br>");
-        }
-      });
+        jQuery("#getButton").click(function () {
+            //"http://localhost:3000/menu" is the path/document to be found    data is the data returned from the server and status is the success or fail of this attempt
+            //  /menu address is call to return all items in the menu
+            jQuery.get("http://localhost:3000/menu", function (data, status) {
+                //data is a JSON object array   https://www.w3schools.com/js/js_json_objects.asp
+                //to access the info  data[i].name-of-field-in-database
+                //eg below gereates an alert with the info about the first item in the menu
+                document.getElementById("menu").innerHTML = "";
+                for (let i = 0; i < data.length; i++){
+                    document.getElementById("menu").innerHTML += ("Food: " + data[i].foodtest + "<br>Price: " + data[i].pricetest + "<br>");
+                }
+            });
+        });
     });
-  });
 </script>
 
 <p id="menu"></p>
