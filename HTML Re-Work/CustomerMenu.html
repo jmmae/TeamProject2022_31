@@ -30,7 +30,7 @@
 
 <p>List of dishes currently availble on our Menu.</p>
 
-<table>
+<!-- <table>
     <tr>
         <th>#image#</th>
         <th>#Dish#</th>
@@ -67,7 +67,7 @@
         <td><input type="checkbox" name="favorite3" value="Salad" /> </td>
     </tr>
 </table>
-<br>
+<br> -->
 
 <button onclick="location.href='MainMenu.html'">Go Back</button>
 
@@ -91,10 +91,11 @@
                   var table = "<table>";
                     table += "<th>Food</th>";
                     table += "<th>Price</th>";
+                    table += "<th>Select</th>";
                   document.getElementById("menu").innerHTML = "";
                   for (let i = 0; i < data.length; i++){
                     //   document.getElementById("menu").innerHTML 
-                      table += ("<tr><td>" + data[i].foodtest + "</td><td>" + data[i].pricetest + "</td></tr>");
+                      table += ("<tr><td>" + data[i].foodtest + "</td><td>£" + data[i].pricetest + "</td> <td><input type='checkbox' name='favorite3' value=' " + data[i].foodtest + "' /> </td></tr>");
                   }
                       table += "<table>";
                         document.getElementById("menu").innerHTML = table;
