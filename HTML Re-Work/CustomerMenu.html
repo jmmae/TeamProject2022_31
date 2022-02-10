@@ -76,36 +76,33 @@
 
 
 <script>
-    //https://www.w3schools.com/jquery/jquery_get_started.asp
+      //https://www.w3schools.com/jquery/jquery_get_started.asp
 
-    //this makes sure the document is loaded before any code is run
-    jQuery(document).ready(function () {
+      //this makes sure the document is loaded before any code is run
+      jQuery(document).ready(function () {
 
-        jQuery("#getButton").click(function () {
-            //"http://localhost:3000/menu" is the path/document to be found    data is the data returned from the server and status is the success or fail of this attempt
-            //  /menu address is call to return all items in the menu
-            jQuery.get("http://localhost:3000/menu", function (data, status) {
-                //data is a JSON object array   https://www.w3schools.com/js/js_json_objects.asp
-                //to access the info  data[i].name-of-field-in-database
-                //eg below gereates an alert with the info about the first item in the menu
-                document.getElementById("menu").innerHTML = "";
-                for (let i = 0; i < data.length; i++){
-                    document.getElementById("menu").innerHTML += ("Food: " + data[i].foodtest + "<br>Price: " + data[i].pricetest + "<br>");	
-						<tr>
-							<td>data[i].foodtest</td>
-							<td>data[i].pricetest</td>
-						</tr>					
-                }
-				<table>
-						<tr>
-							<th>#Food#</th>
-							<th>#Price#</th>
-							<th>Select</th>
-						</tr>					
-            });
-        });
-    });
-</script>
+          jQuery("#getButton").click(function () {
+              //"http://localhost:3000/menu" is the path/document to be found    data is the data returned from the server and status is the success or fail of this attempt
+              //  /menu address is call to return all items in the menu
+              jQuery.get("http://localhost:3000/menu", function (data, status) {
+                  //data is a JSON object array   https://www.w3schools.com/js/js_json_objects.asp
+                  //to access the info  data[i].name-of-field-in-database
+                  //eg below gereates an alert with the info about the first item in the menu
+                  var table = "<table>";
+                    table += "<th>Food</th>";
+                    table += "<th>Price</th>";
+                  document.getElementById("menu").innerHTML = "";
+                  for (let i = 0; i < data.length; i++){
+                    //   document.getElementById("menu").innerHTML 
+                      table += ("<tr><td>" + data[i].foodtest + "</td><td>" + data[i].pricetest + "</td></tr>");
+                  }
+                      table += "<table>";
+                        $('body').append(table);
+                  
+              });
+          });
+      });
+    </script>
 
 <p id="menu"></p>
 </body>
