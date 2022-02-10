@@ -1,0 +1,43 @@
+<head>
+  <!-- src="https://ajax.go......" is required to run the jquery code-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script>
+    //https://www.w3schools.com/jquery/jquery_get_started.asp
+
+    //this makes sure the document is loaded before any code is run
+    jQuery(document).ready(function () {
+
+      jQuery("#getButton").click(function () {
+        //"http://localhost:3000/" is the path/document to be found    data is the data returned from the server and status is the success or fail of this attempt 
+        jQuery.get("http://localhost:3000/", function (data, status) {
+          alert("Data: " + data + "\nStatus: " + status);
+        });
+      });
+    });
+  </script>
+
+  <!-- this is an example of a post AJAX request where data is sent-->
+  <script>
+    //this makes sure the document is loaded before any code is run
+    jQuery(document).ready(function () {
+
+      jQuery("#postButton").click(function () {
+        //this is the path we are sending data to
+        jQuery.post("http://localhost:3000/postexample",
+          {
+            //these are the peramiters to sent to teh server
+            param1: "p1",
+            param2: "p2"
+          },
+          //this is what to do with the response
+          function (data, status) {
+            alert("Data: " + data + "\nStatus: " + status);
+          });
+      });
+    });
+  </script>
+</head>>
+
+<button id="getButton" type="button">Get</button>
+<button id="postButton" type="button">Post</button>
+<!--copied from https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started-->
