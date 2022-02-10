@@ -2,75 +2,29 @@
 <html>
 <head>
   <script src="Database/Validation.js"></script>
-  <style>
-  body {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0;
-  }
-
-  .header {
-      padding: 10px;
-      text-align: center;
-      background: #cde8c5;
-      color: white;
-  }
-
-  .header h1 {
-      font-size: 60px;
-  }
-
-  .login{
-    background-color: #cde8c5;
-    width: 9%;
-	  margin: 0 auto;
-    padding: 20px;
-    display:block;
-    box-shadow: 2px 2px 15px #000000;
-  }
-
-  .text{
-    padding: 5px;
-    display:inline;
-  }
-
-  .button{
-    width: 8%;
-  }
-
-  h2{
-    text-align: center;
-  }
-
-</style>
-
+  <link href="StyleSheet.css" rel="stylesheet">
   <title>Login</title>
 </head>
 
-<div class="header"> 
-  <div class="button">
-    <button onclick="location.href='MainMenu.html'">Go Back</button>
-  </div>
-  <h1>Oaxaca</h1>
-  <p>Serving the UK for the past 10 years.</p>
-  <br>
-</div>
+  <div id="headerImg"> </div>
 
+  <div class="header"> 
+    <p>Serving the UK for the past 10 years.</p>
+  </div>
 
 <body>
   <h2 id="loginHeading"><b>Login</b></h2>
   <div class="login">
     <form name="login" onsubmit="checkData()">
     Username:
-    <div class="text">
     <input type="text" id="username" name="username" placeholder="Username"><br><br>
     Password:
     <input type="password" id="password" name="password" placeholder="Password"><br><br>
     <button type="submit" name="submit" id="submit">Login</button>
   </div>
 </form>
-    <br>
+  <br>
+  <button onclick="location.href='MainMenu.html'">Go Back</button>
 
-
-  </div>
 </body>
 </html>
