@@ -44,6 +44,11 @@ app.get('/menu', function (req, res) {
   selectquery("SELECT * FROM menu;", res)
 })
 
+app.get('/menu/available', function (req, res) {
+  console.log("Available menu request recieved");
+  selectquery("SELECT * FROM menu WHERE available IS TRUE ;", res)
+})
+
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
