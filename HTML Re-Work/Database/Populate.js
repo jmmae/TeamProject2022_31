@@ -65,7 +65,7 @@ function dropTable(con) {
 
 // Create Table if doesn't exist
 function createTable(con) {
-    con.query("CREATE TABLE IF NOT EXISTS menu (foodtest VARCHAR(100), pricetest FLOAT)", function(err, result) {
+    con.query("CREATE TABLE IF NOT EXISTS menu (foodtest VARCHAR(100), pricetest FLOAT, Available VARCHAR(5))", function(err, result) {
         if (err) throw err;
         console.log("Table present");
     });
@@ -79,7 +79,7 @@ function fileToTable(con) {
     });
     rl.on("line", (out) => {
         const outList = out.split(",")
-        con.query("INSERT INTO menu (foodtest, pricetest) VALUES (" + "'" + outList[0] + "', '" + outList[1] + "'" + ")", function(err, result) {
+        con.query("INSERT INTO menu (foodtest, pricetest, Available) VALUES (" + "'" + outList[0] + "', '" + outList[1] + "', '" + outList[2] + "')", function(err, result) {
             if (err) throw err;
             console.log("Filled one row from file");
         });
