@@ -21,10 +21,14 @@
         //this makes sure the document is loaded before any code is run
   
         jQuery("#deleteButton").click(function () {
-        
-            if (document.getElementById('Soft Shell Taco').checked){
-                document.getElementById('Soft Shell Taco1').remove();
-            }
+            jQuery.get("http://localhost:3000/menu", function (data, status) {
+
+                for (let i = 0; i < data.length; i++){
+                    if (document.getElementById(data[i].foodtest).checked){
+                        document.getElementById(data[i].foodtest + "1").remove();
+                    }
+                }
+            });
         });
       </script>
 
