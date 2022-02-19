@@ -1,3 +1,5 @@
+const { header } = require("express/lib/request");
+
 function checkData(){
   if (document.login.username.value=="")
 	{
@@ -12,6 +14,7 @@ function checkData(){
 		return false;
 	}
   else{
+		location.replace("Staff.html");
     return true;
   }
 }
