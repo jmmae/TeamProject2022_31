@@ -18,6 +18,9 @@ var bodyParser = require('body-parser')
 var jsonParser = bodyParser.json()//jsonParser is used to be able to read the incoming data when encoded in json format
 var urlencodedParser = bodyParser.urlencoded({ extended: false })//urlencodedParser is used to be able to read the incoming data when encoded in url format
 
+var waiterRequests = new Array();
+
+
 app.use(cors())
 
 //get is used when no data needs to be sent
@@ -46,7 +49,36 @@ app.get('/menu', function (req, res) {
 
 app.get('/menu/available', function (req, res) {
   console.log("Available menu request recieved");
-  selectquery("SELECT * FROM menu WHERE available IS TRUE ;", res)
+  selectquery("SELECT * FROM menu WHERE Available IS TRUE ;", res)
+})
+
+
+app.post('/order/requestWaiter/add', urlencodedParser, function (req, res) {
+  console.log("Waiter add request recieved");
+  if (waiterRequests.includes(req.body.table) == false){
+    waiterRequests.push(req.body.table);
+    
+  } 
+  res.send("Waiter add request recived")
+})
+
+app.post('/order/requestWaiter/remove', urlencodedParser, function (req, res) {
+  if (!waiterRequests.includes(req.body.table)){
+    //waiterRequests.splice(waiterRequests.indexOf(req.body.table,1))
+    
+  } else {
+    
+    waiterRequests.splice(waiterRequests.indexOf(req.body.table),1)
+  }
+  console.log("Waiter remove request recieved");
+  //console.log(waiterRequests);
+  res.send("Waiter remove request recived")
+})
+
+app.get('/waiter/waiterRequests', function (req, res) {
+  //console.log("request recieved");
+  //console.log(waiterRequests);
+  res.send(waiterRequests);
 })
 
 app.listen(port, () => {

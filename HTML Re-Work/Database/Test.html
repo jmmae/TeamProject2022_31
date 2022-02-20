@@ -36,8 +36,54 @@
       });
     });
   </script>
+
+  <script>
+    //this makes sure the document is loaded before any code is run
+    jQuery(document).ready(function () {
+
+      jQuery("#testButton").click(function () {
+        //this is the path we are sending data to
+        jQuery.post("http://localhost:3000/order/requestWaiter/add",
+          { table: "test table 1" },
+
+          function (data, status) {
+            alert("Data: " + data + "\nStatus: " + status);
+            jQuery.post("http://localhost:3000/order/requestWaiter/add",
+              { table: "test table 2" },
+
+              function (data, status) {
+                alert("Data: " + data + "\nStatus: " + status);
+                jQuery.get("http://localhost:3000/waiter/waiterRequests",
+
+                  function (data, status) {
+                    alert("Data: " + data + "\nStatus: " + status);
+                    jQuery.post("http://localhost:3000/order/requestWaiter/remove",
+                      { table: "test table 1" },
+
+                      function (data, status) {
+                        alert("Data: " + data + "\nStatus: " + status);
+                        jQuery.post("http://localhost:3000/order/requestWaiter/remove",
+                          { table: "test table 2" },
+
+                          function (data, status) {
+                            alert("Data: " + data + "\nStatus: " + status);
+                            jQuery.get("http://localhost:3000/waiter/waiterRequests",
+
+                              function (data, status) {
+                                alert("Data: " + data + "\nStatus: " + status);
+                              });
+                          });
+                      });
+                  });
+              });
+
+          });
+      });
+    });
+  </script>
 </head>>
 
 <button id="getButton" type="button">Get</button>
 <button id="postButton" type="button">Post</button>
-<!--copied from https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started-->
+<button id="testButton" type="button">test</button>
+<!-- copied from https://developer.mozilla.org/en-US/docs/Web/Guide/AJAX/Getting_Started-->
