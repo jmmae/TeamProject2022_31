@@ -36,9 +36,9 @@ app.get('/', (req, res) => {
 //req.body.[paramiter name] is how you get the data
 //res is what is returned
 //urlencodedParser is used to be able to read the incoming data when encoded in url format
-app.post('/postexample', urlencodedParser, function (req, res) {
+app.post('/menu', urlencodedParser, function (req, res) {
   console.log("request recieved");
-  res.send(req.body.param1 + req.body.param2)
+  selectquery("DELETE FROM menu where foodtest='Soft Shell Taco';", res)
 })
 
 app.get('/menu', function (req, res) {
@@ -62,18 +62,18 @@ app.post('/order/requestWaiter/add', urlencodedParser, function (req, res) {
   res.send("Waiter add request recived")
 })
 
-app.post('/order/requestWaiter/remove', urlencodedParser, function (req, res) {
-  if (!waiterRequests.includes(req.body.table)){
-    //waiterRequests.splice(waiterRequests.indexOf(req.body.table,1))
+// app.post('/order/requestWaiter/remove', urlencodedParser, function (req, res) {
+//   if (!waiterRequests.includes(req.body.table)){
+//     //waiterRequests.splice(waiterRequests.indexOf(req.body.table,1))
     
-  } else {
+//   } else {
     
-    waiterRequests.splice(waiterRequests.indexOf(req.body.table),1)
-  }
-  console.log("Waiter remove request recieved");
-  //console.log(waiterRequests);
-  res.send("Waiter remove request recived")
-})
+//     waiterRequests.splice(waiterRequests.indexOf(req.body.table),1)
+//   }
+//   console.log("Waiter remove request recieved");
+//   //console.log(waiterRequests);
+//   res.send("Waiter remove request recived")
+// })
 
 app.get('/waiter/waiterRequests', function (req, res) {
   //console.log("request recieved");
@@ -92,6 +92,15 @@ function selectquery(sql, res, columns) {
     
     console.log(result[0].foodtest);
     res.send(result)
+  });
+
+};
+
+function deletequery(sql, res, columns) {
+
+  con.query(sql, function (err, result, fields) {
+    
+    console.log(result[0].foodtest);
   });
 
 };

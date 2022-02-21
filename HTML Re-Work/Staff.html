@@ -15,7 +15,7 @@
 
     <button id="getButton" type="button">Get</button>
     <button id="deleteButton" type="button">Delete</button>
-
+    
     <script type="text/javascript">
   
         //this makes sure the document is loaded before any code is run
@@ -25,6 +25,7 @@
 
                 for (let i = 0; i < data.length; i++){
                     if (document.getElementById(data[i].foodtest).checked){
+                        jQuery.post("http://localhost:3000/menu", ("DELETE FROM menu WHERE menu.foodtest =" + data[i].foodtest));
                         document.getElementById(data[i].foodtest + "1").remove();
                     }
                 }
