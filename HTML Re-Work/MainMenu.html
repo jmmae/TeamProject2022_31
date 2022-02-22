@@ -3,39 +3,26 @@
 
 <link href="StyleSheet.css" rel="stylesheet">
 
-<style>
-    .navbar {
-        overflow: hidden;
-        background-color: snow;
-        float: center;
-        color: black;
-        text-align: center;
-        padding: 10px 10px;
-        text-decoration: none;
-    }
-
-    .navbar a:hover {
-        padding: 10px 10px;
-        background-color: darkgray;
-        color: black;
-    }
-</style>
-
 <head>
     <title>Oaxaca</title>
 </head>
 
 <body>
-<div id="headerImg"> </div>
+
+<a href="MainMenu.html">
+    <img src="resources/header.png" />
+</a>
+
+<!--<div id="headerImg"> <a href="MainMenu.html"></a> </div> -->
 
 <div class="header"> 
     <p>Serving the UK for the past 10 years.</p>
 </div>
 
 <div class="navbar">
-    <a href="CustomerMenu.html">Menu</a>
+    <a href="CustomerMenu.html">Make Order</a>
     <a href="Waiter.html">Call Waiter</a>
-    <a href="ViewOrder.html">Basket</a>
+    <a href="ViewOrder.html">Review Basket</a>
 </div>
 
 <div class="body">
@@ -59,13 +46,6 @@
             <input type="submit" value="Sumbit">
         </form>
         <br><br>
-        <table class="buttons">
-            <td><button type="button" onclick="location.href='CustomerMenu.html'">View Menu</button>
-            <td><button type="button" onclick="location.href='MakeOrder.html'">Make Order</button>
-            <td><button type="button" onclick="location.href='Waiter.html'">Call Waiter</button>
-            <td><button type="button" onclick="location.href='ViewOrder.html'">View Order</button>
-            <td><button type="button" onclick="location.href='Login.html'">Staff Login</button>
-        </table>
 
         <h2>Menu:</h2>
         <table>
@@ -82,6 +62,11 @@
                 <td>£10.99</td>
             </tr>
         </table>
+
+        <div class="button">
+            <button onclick="location.href='Staff.html'">Staff Login</button>
+        </div>
+
     </div>
 </div>
 </body>
