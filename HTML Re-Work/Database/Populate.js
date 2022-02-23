@@ -67,13 +67,6 @@ function fileToTable(con) {
     
 }
 
-// // Outputs contents of table to console
-// function selectToConsole(con) {
-//     con.query("SELECT * FROM menu", function(err, result, fields) {
-//         if (err) throw err;
-//         console.log(result);
-//     });
-// }
 
 connectToServer(con);
 createDB(con);
@@ -81,8 +74,4 @@ dropTable(con);
 createTable(con);
 fileToTable(con);
 
-// // End Connection
-// con.end(function(err) {
-//     if (err) throw err;
-// });
 
