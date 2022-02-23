@@ -4,26 +4,6 @@ const readline = require('readline');
 
 const readFileLocation = "../HTML Re-Work/Database/DatabaseFile.txt";
 
-
-// // Test: Read File Line By Line
-// const text = fs.createReadStream(readFileLocation);
-
-// const rl = readline.createInterface({
-//     input: text
-// });
-
-// rl.on("line", (out) => {
-//     console.log("Line from file: " + out);
-// })
-
-// // Test: Read File All at once
-// fs.readFile('../Database/DatabaseFile.txt', 'utf8', function (err,data) {
-//     if (err) {
-//       return console.log(err);
-//     }
-//     console.log(data);
-//   });
-
 var con = mysql.createConnection({
   host: "localhost",
   user: "root",
