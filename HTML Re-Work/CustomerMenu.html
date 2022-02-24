@@ -30,6 +30,30 @@
     <a href="Waiter.html">Call Waiter</a>
     <a href="ViewOrder.html">Review Basket</a>
 </div>
+    
+
+<div class="body">
+    <div class="align">
+        <form>
+            <br>
+            <label for="TableNumber">Select Table Number: </label>
+            <select name="TableNumber" id="TableNumber">
+                <option value="null">Select</option>
+                <option value="1">Table 1</option>
+                <option value="2">Table 2</option>
+                <option value="3">Table 3</option>
+                <option value="4">Table 4</option>
+                <option value="5">Table 5</option>
+                <option value="6">Table 6</option>
+                <option value="7">Table 7</option>
+                <option value="8">Table 8</option>
+                <option value="9">Table 9</option>
+                <option value="10">Table 10</option>
+            </select>
+            <input type="submit" value="Sumbit">
+        </form>
+    </div>
+</div>
 
 <h1>Menu</h1>
 
@@ -101,10 +125,8 @@
                     table += "<th>Select</th>";
                   document.getElementById("menu").innerHTML = "";
                   for (let i = 0; i < data.length; i++){
-                      if (data[i].Available == " No"){
-
-                      }else{
-                      table += ("<tr><td>" + data[i].foodtest + "</td><td>£" + data[i].pricetest + "</td><td>" + data[i].Available + "</td> <td><input type='checkbox' name='favorite3' value=' " + data[i].foodtest + "' /> </td></tr>");
+                      if (data[i].Available != " No"){
+                        table += ("<tr><td>" + data[i].foodtest + "</td><td>£" + data[i].pricetest + "</td><td>" + data[i].Available + "</td> <td><input type='checkbox' name='favorite3' value=' " + data[i].foodtest + "' /> </td></tr>");
                       }
                   }
                       table += "<table>";
