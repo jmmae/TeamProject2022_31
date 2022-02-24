@@ -78,7 +78,7 @@ function deleteItem(con, food){
 }
 
 // function fileToStaffTable(con) {
-//     const txt = fs.createReadStream(readFileLocation);
+//     const txt = fs.createReadStream(readStaffFileLocation);
 //     const rl = readline.createInterface({
 //         input: txt
 //     });
