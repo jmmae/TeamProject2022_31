@@ -67,6 +67,13 @@ function fileToTable(con) {
     
 }
 
+function deleteItem(con, food){
+    con.query("DELETE FROM menu WHERE foodtest='" + food + "'", function(err, result){
+        if (err) throw err;
+        console.log(food + " Deleted from the database");
+    });
+}
+
 
 connectToServer(con);
 createDB(con);

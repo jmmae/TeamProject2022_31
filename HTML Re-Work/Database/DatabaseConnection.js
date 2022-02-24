@@ -20,8 +20,8 @@ var urlencodedParser = bodyParser.urlencoded({ extended: false })//urlencodedPar
 
 var waiterRequests = new Array();
 
-
-app.use(cors())
+app.use(cors());
+app.use(express.json({limit: '1mb'}));
 
 //get is used when no data needs to be sent
 //'/' is the path that is beeing checked
@@ -37,9 +37,12 @@ app.get('/', (req, res) => {
 //res is what is returned
 //urlencodedParser is used to be able to read the incoming data when encoded in url format
 app.post('/menu', urlencodedParser, function (req, res) {
-  console.log("request recieved");
-  selectquery("DELETE FROM menu where foodtest='Soft Shell Taco';", res)
-})
+  // console.log(req.bodyParser);
+  let text = JSON.stringify(req.body);
+  let food = text.substring(2, text.length - 5);
+  console.log(text.substring(2, text.length - 5));
+  deletequery("DELETE FROM menu where foodtest='" + food + "'");
+});
 
 app.get('/menu', function (req, res) {
   console.log("menu request recieved");
@@ -100,7 +103,7 @@ function deletequery(sql, res, columns) {
 
   con.query(sql, function (err, result, fields) {
     
-    console.log(result[0].foodtest);
+    // console.log(result[1].foodtest);
   });
 
 };
