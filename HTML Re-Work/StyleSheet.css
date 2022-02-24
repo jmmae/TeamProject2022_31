@@ -50,7 +50,7 @@ div#headerImg {
 
 .navbar a:link, a:visited{
     overflow: hidden;
-    background-color: snow;
+    background-color: orange;
     padding: 10px 1.6px;
     float: left;
     color: black;
