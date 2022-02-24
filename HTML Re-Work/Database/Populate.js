@@ -3,6 +3,8 @@ fs = require('fs');
 const readline = require('readline');
 
 const readFileLocation = "../HTML Re-Work/Database/DatabaseFile.txt";
+const readStaffFileLocation = "../HTML Re-Work/Database/StaffTable.txt";
+
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -67,12 +69,27 @@ function fileToTable(con) {
     
 }
 
+
 function deleteItem(con, food){
     con.query("DELETE FROM menu WHERE foodtest='" + food + "'", function(err, result){
         if (err) throw err;
         console.log(food + " Deleted from the database");
     });
 }
+
+// function fileToStaffTable(con) {
+//     const txt = fs.createReadStream(readFileLocation);
+//     const rl = readline.createInterface({
+//         input: txt
+//     });
+//     rl.on("line", (out) => {
+//         const outList = out.split(",")
+//         con.query("INSERT INTO menu (staffID, username, password) VALUES (" + "'" + outList[0] + "', '" + outList[1] + "', '" + outList[2] + "')", function(err, result) {
+//             if (err) throw err;
+//             console.log("Filled one row from file");
+//         });
+//     })
+// }
 
 
 connectToServer(con);
