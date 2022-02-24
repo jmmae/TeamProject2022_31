@@ -89,7 +89,7 @@ app.post('/order/unconfirmed', urlencodedParser, function (req, res) {
   //  res.send("Waiter add request recived")
 })
 
-app.get('/order/getDishes', urlencodedParser, function (req, res) {
+app.get('/order/getDishes', function (req, res) {
   console.log("Waiter add request recieved");
   res.push(dishRequests);
 
