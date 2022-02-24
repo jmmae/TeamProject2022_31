@@ -48,18 +48,21 @@ div#headerImg {
     width: 100%;
 }
 
-.navbar {
+.navbar a:link, a:visited{
     overflow: hidden;
     background-color: snow;
-    float: center;
+    padding: 10px 1.6px;
+    float: left;
     color: black;
     text-align: center;
-    padding: 10px 10px;
-    text-decoration: none;
+    text-decoration:none;
+    margin:0 auto;
+    width:33%;
 }
 
-.navbar a:hover {
-    padding: 10px 10px;
-    background-color: darkgray;
+.navbar a:hover{
+    padding: 10px 1.6px;
+    background-color: rgb(147, 204, 247);
     color: black;
+    text-decoration:none;
 }
