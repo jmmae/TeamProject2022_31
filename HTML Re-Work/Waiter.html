@@ -1,31 +1,52 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="StyleSheet.css" rel="stylesheet">
-        <title>Staff</title>
-    </head>
 
-    
-    <a href="MainMenu.html">
-        <img src="resources/header.png" />
-    </a>
-    
-    <!--<div id="headerImg"> <a href="MainMenu.html"></a> </div> -->
+<head>
+    <link href="StyleSheet.css" rel="stylesheet">
+    <title>Staff</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
 
-    <div class="header"> 
-        <p>Oaxaca</p>
+
+<a href="MainMenu.html">
+    <img src="resources/header.png" />
+</a>
+
+<!--<div id="headerImg"> <a href="MainMenu.html"></a> </div> -->
+
+<div class="header">
+    <p>Oaxaca</p>
+</div>
+
+<div class="navbar">
+    <a href="CustomerMenu.html">Make Order</a>
+    <a href="Waiter.html">Call Waiter</a>
+    <a href="ViewOrder.html">Review Basket</a>
+</div>
+
+<div class="align">
+    <div class="button">
+        <p>A waiter has been alerted!</p>
+        <button onclick="location.href='MainMenu.html'">Go Back</button>
     </div>
+</div>
 
-    <div class="navbar">
-        <a href="CustomerMenu.html">Make Order</a>
-        <a href="Waiter.html">Call Waiter</a>
-        <a href="ViewOrder.html">Review Basket</a>
-    </div>
+<p id="p1">Hello World!</p>
 
-    <div class="align">
-        <div class="button">
-            <p>A waiter has been alerted!</p>
-            <button onclick="location.href='MainMenu.html'">Go Back</button>
-        </div>
-    </div>
+<button id="getButton" type="button">Get Orders</button>
+
+<script>
+    jQuery("#getButton").click(function () {
+        jQuery.get("http://localhost:3000/order/getDishes",
+
+            function (data, status) {
+                alert("Data: " + data + "\nStatus: " + status);
+                for (let i = 0; i < data.length; i++) {
+                    document.getElementById("p1").innerHTML = data;
+                    alert(dishRequests[i]);
+                }
+            });
+    });
+</script>
+
 </html>

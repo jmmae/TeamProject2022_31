@@ -17,7 +17,7 @@ var cors = require('cors')
 var bodyParser = require('body-parser');
 const { TIME, TIME2 } = require('mysql/lib/protocol/constants/types');
 var jsonParser = bodyParser.json()//jsonParser is used to be able to read the incoming data when encoded in json format
-var urlencodedParser = bodyParser.urlencoded({ extended: false })//urlencodedParser is used to be able to read the incoming data when encoded in url format
+var urlencodedParser = bodyParser.urlencoded({ extended: true })//urlencodedParser is used to be able to read the incoming data when encoded in url format
 
 var waiterRequests = new Array();
 var dishRequests = new Array();
@@ -72,7 +72,12 @@ app.post('/order/requestWaiter/add', urlencodedParser, function (req, res) {
 app.post('/order/unconfirmed', urlencodedParser, function (req, res) {
   console.log("Waiter add request recieved");
   dishRequests.push(req.body.table);
-  for (var i = 0; req.body.dishes[i] < req.body.dishes.length; i++) {
+  console.log(dishRequests);
+  var array = req.body[1];
+  console.log(array);
+  console.log(req.body.dishes[0]);
+  for (var i = 0; i < req.body.dishes.length; i++) {
+    console.log(req.body.dishes[i]);
     dishRequests.push(req.body.dishes[i]);
   }
   //query(/*delete all entries related to req.body.*/)
@@ -91,7 +96,8 @@ app.post('/order/unconfirmed', urlencodedParser, function (req, res) {
 
 app.get('/order/getDishes', function (req, res) {
   console.log("Waiter add request recieved");
-  res.push(dishRequests);
+  console.log(dishRequests);
+  res.send(dishRequests);
 
   //query(/*delete all entries related to req.body.*/)
   //  query("INSERT INTO order (/* fields */) VALUES ("+nextOrderID+","+TIME+ "," +req.body.table+"False)")
