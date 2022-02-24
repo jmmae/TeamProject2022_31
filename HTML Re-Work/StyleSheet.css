@@ -1,6 +1,7 @@
 body {
     font-family: Georgia, serif;
-    background: lightcyan;
+    background: #D7CAAD;
+    color: rgb(55, 55, 55);
     margin: 0;
 }
 
@@ -18,12 +19,19 @@ div#headerImg {
 .header {
     padding: 1px;
     text-align: center;
-    background: darkolivegreen;
+    background: #572725;
     color: white;
 }
 
 .align {
     width: 40%;
+    margin: 0 auto;
+    padding: 20px;
+    text-align: center;
+}
+
+.frontpage{
+    width: 80%;
     margin: 0 auto;
     padding: 20px;
     text-align: center;
