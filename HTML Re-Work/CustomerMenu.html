@@ -125,10 +125,8 @@
                     table += "<th>Select</th>";
                   document.getElementById("menu").innerHTML = "";
                   for (let i = 0; i < data.length; i++){
-                      if (data[i].Available == " No"){
-
-                      }else{
-                      table += ("<tr><td>" + data[i].foodtest + "</td><td>£" + data[i].pricetest + "</td><td>" + data[i].Available + "</td> <td><input type='checkbox' name='favorite3' value=' " + data[i].foodtest + "' /> </td></tr>");
+                      if (data[i].Available != " No"){
+                        table += ("<tr><td>" + data[i].foodtest + "</td><td>£" + data[i].pricetest + "</td><td>" + data[i].Available + "</td> <td><input type='checkbox' name='favorite3' value=' " + data[i].foodtest + "' /> </td></tr>");
                       }
                   }
                       table += "<table>";

@@ -37,10 +37,10 @@ app.get('/', (req, res) => {
 //res is what is returned
 //urlencodedParser is used to be able to read the incoming data when encoded in url format
 app.post('/menu', urlencodedParser, function (req, res) {
-  // console.log(req.bodyParser);
+  console.log(req.body);
   let text = JSON.stringify(req.body);
   let food = text.substring(2, text.length - 5);
-  console.log(text.substring(2, text.length - 5));
+  // console.log(text.substring(2, text.length - 5));
   deletequery("DELETE FROM menu where foodtest='" + food + "'");
 });
 

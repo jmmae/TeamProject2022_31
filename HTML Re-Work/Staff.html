@@ -14,8 +14,7 @@
     </div>
 
     <button id="getButton" type="button">Get</button>
-    <button id="deleteButton" type="button">Confirm item to delete</button>
-    <button id="deleteButtons" type="button" onclick="deleteFood()">Delete</button>
+    <button id="deleteButton" type="button">Delete</button> 
     
     <script type="text/javascript">
         {var menuFood}
@@ -56,15 +55,11 @@
 
                         document.getElementById(data[i].foodtest + "1").remove();
                     }
-                } 
+                }
+                jQuery.post("http://localhost:3000/menu", menuFood);
             });
         });
 
-
-
-        function deleteFood(){
-            jQuery.post("http://localhost:3000/menu", menuFood);
-        }
 
       </script>
 
@@ -72,7 +67,7 @@
 <p id="menu"></p>
     <div class="align">
         <div class="button">
-            <button onclick="location.href='Login.html'">Go Back</button>
+            <button onclick="location.href='MainMenu.html'">Go Back</button>
         </div>
     </div>
 </html>
