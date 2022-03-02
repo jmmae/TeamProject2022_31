@@ -53,6 +53,14 @@ function createTable(con) {
     });
 }
 
+function createTable(con) {
+    con.query("CREATE TABLE IF NOT EXISTS order (OrderID int, TimeEntered time, TableNumber int, Confirmed boolean, primary key (OrderID))",  function(err, result){
+        if(err) throw err;
+        console.log("Table not present ");
+
+    });
+}
+
 // Inserts into Table from File
 function fileToTable(con) {
     const txt = fs.createReadStream(readFileLocation);
