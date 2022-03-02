@@ -61,6 +61,13 @@ function createTable(con) {
     });
 }
 
+function createTable(con) {
+    con.query("CREATE TABLE IF NOT EXISTS OrderedDish (OrderedDishID number, DishID number, Comments varchar(150), PRIMARY KEY (OrderedDishID), FOREIGN KEY(OrderID) REFERENCES order(OrderID))", function(err, result){
+        if(err) throw err;
+        console.log("Table not present");
+    });
+}
+
 // Inserts into Table from File
 function fileToTable(con) {
     const txt = fs.createReadStream(readFileLocation);
