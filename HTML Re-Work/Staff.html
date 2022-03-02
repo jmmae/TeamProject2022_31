@@ -66,6 +66,12 @@
             });
         });
 
+        jQuery("#addFood").click(function(){
+            var addedFood = document.getElementById("foodtest").value + " ," + document.getElementById("pricetest").value + ", " + document.getElementById("Available").value ; 
+            console.log(addedFood)
+            jQuery.post("http://localhost:3000/menu/added", addedFood);
+        });
+
 
       </script>
 

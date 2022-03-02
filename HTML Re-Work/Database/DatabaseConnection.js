@@ -48,6 +48,22 @@ app.post('/menu', urlencodedParser, function (req, res) {
   deletequery("DELETE FROM menu where foodtest='" + food + "'");
 });
 
+app.post('/menu/added', urlencodedParser, function (req, res) {
+  console.log(req.body);
+  res.send(req.body);
+  let text = JSON.stringify(req.body);
+  let item = text.substring(2, text.length - 5);
+  food = item.split(",");
+  console.log(food[0]);
+  insertquery("INSERT INTO menu (foodtest, pricetest, Available) VALUES ('" + food[0] + "','" + food[1] + "','" + food[2] + "');");
+});
+
+app.get('/menu/added', function (req, res) {
+  console.log("added items request recieved");
+
+  selectquery("SELECT * FROM menu;", res)
+})
+
 app.get('/menu', function (req, res) {
   console.log("menu request recieved");
 
@@ -152,6 +168,15 @@ function deletequery(sql, res, columns) {
   con.query(sql, function (err, result, fields) {
 
     // console.log(result[1].foodtest);
+  });
+
+};
+
+function insertquery(sql, res, columns) {
+
+  con.query(sql, function (err, result, fields) {
+    if (err) throw err;
+
   });
 
 };
