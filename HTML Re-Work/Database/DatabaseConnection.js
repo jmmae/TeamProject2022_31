@@ -48,6 +48,24 @@ app.post('/menu', urlencodedParser, function (req, res) {
   deletequery("DELETE FROM menu where foodtest='" + food + "'");
 });
 
+app.post('/menu/outofstock', urlencodedParser, function (req, res) {
+  console.log(req.body);
+  let text = JSON.stringify(req.body);
+  let food = text.substring(2, text.length - 5);
+  console.log(text.substring(2, text.length - 5));
+  updateinquery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
+  // deletequery("DELETE FROM menu where foodtest='" + food + "'");
+});
+
+app.post('/menu/instock', urlencodedParser, function (req, res) {
+  console.log(req.body);
+  let text = JSON.stringify(req.body);
+  let food = text.substring(2, text.length - 5);
+  console.log(text.substring(2, text.length - 5));
+  updateinquery("UPDATE menu SET Available = 'Yes' WHERE foodtest='" + food + "'");
+  // deletequery("DELETE FROM menu where foodtest='" + food + "'");
+});
+
 app.post('/menu/added', urlencodedParser, function (req, res) {
   console.log(req.body);
   res.send(req.body);
@@ -60,6 +78,18 @@ app.post('/menu/added', urlencodedParser, function (req, res) {
 
 app.get('/menu/added', function (req, res) {
   console.log("added items request recieved");
+
+  selectquery("SELECT * FROM menu;", res)
+})
+
+app.get('/menu/instock', function (req, res) {
+  console.log("Instock items request recieved");
+
+  selectquery("SELECT * FROM menu;", res)
+})
+
+app.get('/menu/outofstock', function (req, res) {
+  console.log("Out of stock items request recieved");
 
   selectquery("SELECT * FROM menu;", res)
 })
@@ -180,6 +210,26 @@ function insertquery(sql, res, columns) {
   });
 
 };
+
+function updateoutquery(sql, res, columns) {
+
+  con.query(sql, function (err, result, fields) {
+    if (err) throw err;
+
+  });
+
+};
+
+function updateinquery(sql, res, columns) {
+
+  con.query(sql, function (err, result, fields) {
+    if (err) throw err;
+
+  });
+
+};
+
+
 
 
 
