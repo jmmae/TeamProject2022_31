@@ -54,7 +54,6 @@ app.post('/menu/outofstock', urlencodedParser, function (req, res) {
   let food = text.substring(2, text.length - 5);
   console.log(text.substring(2, text.length - 5));
   updateinquery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
-  // deletequery("DELETE FROM menu where foodtest='" + food + "'");
 });
 
 app.post('/menu/instock', urlencodedParser, function (req, res) {
@@ -63,7 +62,6 @@ app.post('/menu/instock', urlencodedParser, function (req, res) {
   let food = text.substring(2, text.length - 5);
   console.log(text.substring(2, text.length - 5));
   updateinquery("UPDATE menu SET Available = 'Yes' WHERE foodtest='" + food + "'");
-  // deletequery("DELETE FROM menu where foodtest='" + food + "'");
 });
 
 app.post('/menu/added', urlencodedParser, function (req, res) {
