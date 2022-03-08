@@ -53,16 +53,16 @@ function createTable(con) {
     });
 }
 
-function createTable(con) {
-    con.query("CREATE TABLE IF NOT EXISTS order (OrderID int, TimeEntered time, TableNumber int, Confirmed boolean, primary key (OrderID))",  function(err, result){
+function createOrdersTable(con) {
+    con.query("CREATE TABLE IF NOT EXISTS orders (OrderID int NOT NULL, TimeEntered time, TableNumber int, Confirmed VARCHAR(3), PRIMARY KEY (OrderID))",  function(err, result){
         if(err) throw err;
         console.log("Table not present ");
 
     });
 }
 
-function createTable(con) {
-    con.query("CREATE TABLE IF NOT EXISTS OrderedDish (OrderedDishID number, DishID number, Comments varchar(150), PRIMARY KEY (OrderedDishID), FOREIGN KEY(OrderID) REFERENCES order(OrderID))", function(err, result){
+function createOrderedDishTable(con) {
+    con.query("CREATE TABLE IF NOT EXISTS OrderedDish (OrderedDishID int, DishID int, Comments varchar(150), PRIMARY KEY (OrderedDishID), FOREIGN KEY(OrderID) REFERENCES order(OrderID))", function(err, result){
         if(err) throw err;
         console.log("Table not present");
     });
@@ -111,6 +111,7 @@ connectToServer(con);
 createDB(con);
 dropTable(con);
 createTable(con);
+createOrdersTable(con);
 fileToTable(con);
 
 
