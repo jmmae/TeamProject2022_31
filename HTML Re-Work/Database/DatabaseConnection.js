@@ -80,17 +80,6 @@ app.get('/menu/added', function (req, res) {
   selectquery("SELECT * FROM menu;", res)
 })
 
-app.get('/menu/instock', function (req, res) {
-  console.log("Instock items request recieved");
-
-  selectquery("SELECT * FROM menu;", res)
-})
-
-app.get('/menu/outofstock', function (req, res) {
-  console.log("Out of stock items request recieved");
-
-  selectquery("SELECT * FROM menu;", res)
-})
 
 app.get('/menu', function (req, res) {
   console.log("menu request recieved");
@@ -136,6 +125,14 @@ app.post('/order/unconfirmed', urlencodedParser, function (req, res) {
 
   //  }
   //  res.send("Waiter add request recived")
+})
+
+app.post('/order/getDishes', function (req, res){
+  console.log(req.body);
+  let text = JSON.stringify(req.body);
+  let food = text.substring(2, text.length - 5);
+  console.log(text.substring(2, text.length - 5));
+  // updateinquery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
 })
 
 app.get('/order/getDishes', function (req, res) {
