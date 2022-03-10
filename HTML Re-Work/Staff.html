@@ -4,7 +4,7 @@
         table,
         th,
         td {
-            border: 1px solid black;
+            border: 1px solid rgb(255, 255, 255);
         }
     </style>
     <head>
@@ -22,17 +22,30 @@
         <p>Staff Access.</p>
     </div>
 
-    <button id="getButton" type="button">Get</button>
-    <button id="deleteButton" type="button">Delete</button> <br />
-    <button id="outOfStockButton" type="button">Set Not Available</button> <br />
-    <button id="inStockButton" type="button">Set Available</button> <br />
+    <div class="staff">
+        <button id="getButton" type="button">Get Menu</button>
 
+        <p>
+        Item Name: <br />
+        <input type="text" id="foodtest" placeholder="ItemName"> <br /> 
+        </p>
+        <p>
+        Price: <br />
+        <input type="text" id="pricetest" placeholder="Price"> <br />
+        </p>
+        <p>
+        Available: <br />
+        <input type="text" id="Available" placeholder="Available"> <br />
+        </p>
+        <input type="submit" id="addFood" onclick="addFood">
 
-    <input type="text" id="foodtest" placeholder="ItemName"> <br /> 
-    <input type="text" id="pricetest" placeholder="Price"> <br />
-    <input type="text" id="Available" placeholder="Available"> <br />
-    <input type="submit" id="addFood" onclick="addFood">
-    
+        <p>
+        <button id="deleteButton" type="button">Delete</button> <br />
+        <button id="outOfStockButton" type="button">Set Not Available</button> <br />
+        <button id="inStockButton" type="button">Set Available</button> <br />
+        </p>
+    </div>
+
     <script type="text/javascript">
         {var menuFood}
         //https://www.w3schools.com/jquery/jquery_get_started.asp
@@ -112,9 +125,10 @@
 
       </script>
 
-
+<div class="menu">
 <p id="menu"></p>
-    <div class="align">
+</div>
+<div class="align">
         <div class="button">
             <button onclick="location.href='MainMenu.html'">Go Back</button>
         </div>

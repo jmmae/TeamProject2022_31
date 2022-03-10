@@ -1,86 +1,117 @@
 body {
-    font-family: Georgia, serif;
-    background: #f1ede3;
-    color: rgb(55, 55, 55);
-    margin: 0;
+  font-family: Georgia, serif;
+  background: #f1ede3;
+  color: rgb(55, 55, 55);
+  margin: 0;
 }
 
 div#headerImg {
-    width:100%;
-    height:auto;
-    background:url(resources/header.png);
-    text-align:center;
+  width: 100%;
+  height: auto;
+  background: url(resources/header.png);
+  text-align: center;
+}
+
+table,
+th,
+td {
+  border: 1px solid rgb(0, 0, 0);
 }
 
 img {
-    width: 100%;
-    height: auto;
+  width: 100%;
+  height: auto;
 }
 
 .header h1 {
-    font-size: 60px;
+  font-size: 60px;
 }
 
 .header {
-    padding: 1px;
-    text-align: center;
-    background: rgb(14, 167, 95);
-    color: white;
+  padding: 1px;
+  text-align: center;
+  background: rgb(14, 167, 95);
+  color: white;
 }
-
 
 .align {
-    width: 40%;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
+  width: 40%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
 }
 
-.frontpage{
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    text-align: center;
+.frontpage {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.menu {
+  margin: 0 auto;
+  width: 25%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+table {
+  margin: 0 auto;
+  color: #000000;
 }
 
 .buttons {
-    width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
-    background-color: #565854;
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: collapse;
+  background-color: #565854;
 }
 
 .buttons button {
-    width: 100%;
+  width: 100%;
 }
 
-.navbar a:link, a:visited{
-    overflow: hidden;
-    background-color: #ca312b;
-    padding: 10px 0px;
-    float: left;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    text-decoration:none;
-    margin:0 auto;
-    width: 33.33%;
+.staff {
+  margin: 0 auto;
+  width: 25%;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  text-align: center;
+  border-collapse: collapse;
+  background-color: #ffffff;
 }
 
-.navbar a:hover{
-    padding: 10px 0px;
-    background-color: #f1ede3;
-    color: black;
-    text-decoration:none;
+.navbar a:link,
+a:visited {
+  overflow: hidden;
+  background-color: #ca312b;
+  padding: 10px 0px;
+  float: left;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  text-decoration: none;
+  margin: 0 auto;
+  width: 33.33%;
 }
 
-.footer{
-    overflow: hidden;
-    background-color: lightslategray;
-    padding: 10px 0px;
-    float: left;
-    color: rgb(255, 255, 255);
-    text-align: center;
-    text-decoration:none;
-    margin:0 auto;
-    width: 100%;
+.navbar a:hover {
+  padding: 10px 0px;
+  background-color: #f1ede3;
+  color: black;
+  text-decoration: none;
+}
+
+.footer {
+  overflow: hidden;
+  background-color: lightslategray;
+  padding: 10px 0px;
+  float: left;
+  color: rgb(255, 255, 255);
+  text-align: center;
+  text-decoration: none;
+  margin: 0 auto;
+  width: 100%;
 }
