@@ -30,6 +30,25 @@
         <button onclick="location.href='MainMenu.html'">Go Back</button>
     </div>
 </div>
+    <!-- 
+$(document).ready(function () {
+
+    function load() {
+        $.ajax({ //create an ajax request to load_page.php
+            type: "GET",
+            url: "http://localhost:3000/order/waiter/waiterRequests",
+            dataType: "html", //expect html to be returned                
+            success: function (response) {
+                $("#responsecontainer").html(response);
+                setTimeout(load, 1000)
+            }
+        });
+    }
+
+    load(); 
+});
+    
+    -->
 
 <p id="p1">Show Order</p>
 
