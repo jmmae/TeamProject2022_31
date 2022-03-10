@@ -22,7 +22,63 @@
     <a href="Waiter.html">Call Waiter</a>
     <a href="ViewOrder.html">Review Basket</a>
 </div>
+/*
+    AJAX call function to send a notification to the waiter that a table has requested him, still working on the connection itself to the server.
+    so code is still not fully complete, thus added it as a comment.
+    
+    <meta name="viewport" content="width=device-width" />
+	<script type="text/javascript" 
+            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
+    </script>
+	<script type="text/javascript">
+        $(document).ready(function () {
+			
+		 $('#ajaxBtn').click(function(){
+			
+			$.post('/jquery/submitData',   // url
+			   { myData: 'This is my data.' }, // data to be submit
+			   function(data, status, jqXHR) {// success callback
+						$('p').append('status: ' + status + ', data: ' + data);
+				}).done(function() { alert('Request done!'); })
+				  .fail(function(jqxhr, settings, ex) { alert('failed, ' + ex); });
 
+
+			});
+    });
+    </script>
+
+	<h1> jQuery post() method demo 
+	</h1>
+	<input type="button" id="ajaxBtn" value="Send POST request" />
+	<p>
+	</p>
+</body>
+</html>
+<td><button type="button" id="Waiter_Button" onclick="location.href='Waiter.html'">Call Waiter</button>
+
+    <script>
+        let jQuery = $(document).ready(function() {
+            $("Waiter_Button").click(function (e) {
+                e.preventDefault();
+                $.ajax({
+                    type: "POST",
+                    url: "waiter.html",
+                    data: {
+                        id: $(this).val(), // < note use of 'this' here
+                        access_token: $("#access_token").val()
+                    },
+                    success: function (result) {
+                        alert('Waiter has been notified');
+                    },
+                    error: function (result) {
+                        alert('error, please try again');
+                    }
+                });
+            });
+        });
+    </script>
+    
+    */
 <br>
     
 <body>
