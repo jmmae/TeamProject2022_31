@@ -63,6 +63,7 @@ table {
   color: #000000;
 }
 
+/*
 .buttons {
   width: 100%;
   table-layout: fixed;
@@ -72,7 +73,21 @@ table {
 
 .buttons button {
   width: 100%;
-}
+} */
+
+button {
+    font-size: 0.9em;
+    background-color: #EBF5FF;
+    color: #1dd159;
+    border: 2px solid black;
+    box-shadow: 3px 3px 3px #a1d8a1;
+  }
+
+  button:hover, button:focus, button:active {
+    color: #EBF5FF;
+    background-color: #1dd159;
+    cursor: pointer; 
+  }
 
 .staff {
   margin: 0 auto;
