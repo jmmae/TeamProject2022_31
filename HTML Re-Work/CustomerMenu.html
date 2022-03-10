@@ -57,6 +57,8 @@
         </div>
     </div>
 
+
+
     <h1>Menu</h1>
 
     <p>List of dishes currently available on our Menu.</p>
@@ -101,6 +103,26 @@
 
     <button onclick="location.href='MainMenu.html'">Go Back</button>
 
+    <button id="callWaiter" type="button">Call Waiter</button>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#callWaiter').click(function(){
+
+                $.post('http://localhost:3000/order/requestWaiter/add',   // url
+                    { table: 'This is my data.' }, // data to be submit
+                    function(data, status, jqXHR) {// success callback
+                        $('p').append('status: ' + status + ', data: ' + data);
+                    }).done(function() { alert('A waiter is coming straight away!'); })
+                    .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
+
+
+            });
+        });
+    </script>
 
     <button id="getButton" type="button">Get</button>
 
