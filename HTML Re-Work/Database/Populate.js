@@ -47,7 +47,7 @@ function dropTable(con) {
 
 // Create Table if doesn't exist
 function createTable(con) {
-    con.query("CREATE TABLE IF NOT EXISTS menu (foodtest VARCHAR(100), pricetest FLOAT, Available VARCHAR(5))", function(err, result) {
+    con.query("CREATE TABLE IF NOT EXISTS menu (DishID int NOT NULL, DishName VARCHAR(50), GroupTags VARCHAR(200), Description VARCHAR(200), Calories int, DietaryReq VARCHAR(200), Allergies VARCHAR(200), Price FLOAT, Available VARCHAR(5), PRIMARY KEY(DishID))", function(err, result) {
         if (err) throw err;
         console.log("Table present");
     });
@@ -76,7 +76,7 @@ function fileToTable(con) {
     });
     rl.on("line", (out) => {
         const outList = out.split(",")
-        con.query("INSERT INTO menu (foodtest, pricetest, Available) VALUES (" + "'" + outList[0] + "', '" + outList[1] + "', '" + outList[2] + "')", function(err, result) {
+        con.query("INSERT INTO menu (DishID, DishName, GroupTags, Description, Calories, DietaryReq, Allergies, Price, Available) VALUES (" + "'" + outList[0] + "', '" + outList[1] + "', '" + outList[2] + "', '" + outList[3] + "', '" + outList[4] + "', '" + outList[5] + "', '" + outList[6] + "', '" + outList[7] + "', '" + outList[8] + "')", function(err, result) {
             if (err) throw err;
             console.log("Filled one row from file");
         });
