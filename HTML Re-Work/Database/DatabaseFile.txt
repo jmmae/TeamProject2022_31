@@ -1,6 +1,6 @@
-Soft Shell Taco, 2.50, Yes
-Hard Shell Taco, 2.49, Yes
-Burrito, 5.55, Yes
-Tres Leches, 3.37, Yes
-Enchilada, 7.45, Yes
-Chimichanga, 6.54, No
+1, Soft Shell Taco, taco|tortilla|meat|lunch|dinner, A soft shell taco with beef lettuce and tomatoes, 500, not vegan|not vegitarian|not pescitarian|not gluten-free, gluten, 2.50, Yes
+2, Hard Shell Taco, taco|tortilla|meat|lunch|dinner, A hard shell taco with beef lettuce and tomatoes, 500, not vegan|not vegitarian|not pescitarian|not gluten-free, gluten, 2.49, Yes
+3, Burrito, burrito|tortilla|meat|rice|beans|lunch|dinner, A burrito with either beef or chicken, 1000, not vegan|not vegitarian|not pescitarian|not gluten-free, gluten, 5.55, Yes
+4, Tres Leches, cake|dessert, a cinnamon cake dessert soaked in cream, 750, not vegan|vegitarian|pescitarian|not gluten-free, milk|gluten, 3.37, Yes
+5, Enchilada, enchilada|tortilla|meat|beans|lunch|dinner, an enchilada filled with beef with a sauce, 800, not vegan|not vegitarian|not pescitarian|not gluten-free, gluten, 7.45, Yes
+6, Chimichanga, chimichanga|meat|tortilla, a tortilla filled with beef and deef fried, 1200, not vegan|not vegitarian|not pescitarian|not gluten-free, gluten|nuts, 6.54, No
