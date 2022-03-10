@@ -5,6 +5,12 @@
 
 <head>
     <title>Oaxaca</title>
+    <script>
+        function showAlert() {
+          var prompt = "Table Number: ";
+          alert (prompt);
+        }
+        </script>
 </head>
 
 <a href="MainMenu.html">
@@ -22,6 +28,7 @@
     <a href="Waiter.html">Call Waiter</a>
     <a href="ViewOrder.html">Review Basket</a>
 </div>
+</html>
 <!--
     AJAX call function to send a notification to the waiter that a table has requested him, still working on the connection itself to the server.
     so code is still not fully complete, thus added it as a comment.
@@ -54,8 +61,8 @@
 	</p>
 </body>
 </html>
-<td><button type="button" id="Waiter_Button" onclick="location.href='Waiter.html'">Call Waiter</button>
-
+<td>--><!--<button type="button" id="Waiter_Button" onclick="location.href='Waiter.html'">Call Waiter</button>-->
+<!--
     <script>
         let jQuery = $(document).ready(function() {
             $("Waiter_Button").click(function (e) {
@@ -79,9 +86,11 @@
     </script>
     
 -->
+
 <br>
     
 <body>
+<body onload="showAlert()">
 <div class="body">
     <div class="frontpage">
         <h2>Menu:</h2>
@@ -119,11 +128,11 @@
         <br><br>
     </div>
 </div>
-</body>
 
 <div class="footer">
     <a href="Staff.html">Staff Login</a>
 </div>
+</body>
 
 </html>
 
