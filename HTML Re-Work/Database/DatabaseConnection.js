@@ -113,18 +113,19 @@ app.post('/order/unconfirmed', urlencodedParser, function (req, res) {
     console.log(req.body.dishes[i]);
     dishRequests.push(req.body.dishes[i]);
   }
-  //query(/*delete all entries related to req.body.*/)
-  //  query("INSERT INTO order (/* fields */) VALUES ("+nextOrderID+","+TIME+ "," +req.body.table+"False)")
-  //  for (var i = 0; req.body.dishes[i] < req.body.dishes.length; i++) {
-  //    var entries = req.body.dishes[i].split("+")
-  //    query("INSERT INTO OrderedDish VALUES (" + entries[0] + "," + entries[1] + ",False)")
-  //  }
+  
+//   query(/*delete all entries related to req.body.*/)
+//   query("INSERT INTO order (OrderedDishID,OrderID, DishID, Comments) VALUES ("+nextOrderID+","+TIME+ "," +req.body.table+"False)")
+//     for (var i = 0; req.body.dishes[i] < req.body.dishes.length; i++) {
+//       var entries = req.body.dishes[i].split("+")
+//       query("INSERT INTO OrderedDish (OrderID, DishID, Comments, Delivered) VALUES ("+nextOrderID+"," + entries[0] + "," + entries[1] + ",0)")
+//     }
 
-  //  if (waiterRequests.includes(req.body.table) == false) {
-  //    waiterRequests.push(req.body.table);
+//     if (waiterRequests.includes(req.body.table) == false) {
+//       waiterRequests.push(req.body.table);
 
-  //  }
-  //  res.send("Waiter add request recived")
+//     }
+//   res.send("Waiter add request recived")
 })
 
 app.post('/order/getDishes', function (req, res){
@@ -139,19 +140,15 @@ app.get('/order/getDishes', function (req, res) {
   console.log("Waiter add request recieved");
   console.log(dishRequests);
   res.send(dishRequests);
+  // add a selectquery which returns the orders table and the associated dishes which have not been confirmed delivered.
+})
 
-  //query(/*delete all entries related to req.body.*/)
-  //  query("INSERT INTO order (/* fields */) VALUES ("+nextOrderID+","+TIME+ "," +req.body.table+"False)")
-  //  for (var i = 0; req.body.dishes[i] < req.body.dishes.length; i++) {
-  //    var entries = req.body.dishes[i].split("+")
-  //    query("INSERT INTO OrderedDish VALUES (" + entries[0] + "," + entries[1] + ",False)")
-  //  }
+app.get('/kitchen/getDishes', function (req, res) {
+   selectquery("SELECT DishID, OrderID FROM orderDish WHERE Delivered == 0;", res)
+})
 
-  //  if (waiterRequests.includes(req.body.table) == false) {
-  //    waiterRequests.push(req.body.table);
-
-  //  }
-  //  res.send("Waiter add request recived")
+app.get('/waiter/getDishes', function (req, res) {
+   selectquery("SELECT DishID, OrderID FROM orderDish WHERE Delivered == 1;", res)
 })
 
 app.post('/order/requestWaiter/remove', urlencodedParser, function (req, res) {
