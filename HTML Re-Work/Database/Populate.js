@@ -62,7 +62,7 @@ function createOrdersTable(con) {
 }
 
 function createOrderedDishTable(con) {
-    con.query("CREATE TABLE IF NOT EXISTS OrderedDish (OrderedDishID int, DishID int, Comments varchar(150), PRIMARY KEY (OrderedDishID), FOREIGN KEY(OrderID) REFERENCES order(OrderID))", function(err, result){
+    con.query("CREATE TABLE IF NOT EXISTS OrderedDish (OrderedDishID int, OrderID int, DishID int, Comments varchar(150), PRIMARY KEY (OrderedDishID), FOREIGN KEY(OrderID) REFERENCES order(OrderID))", function(err, result){
         if(err) throw err;
         console.log("Table not present");
     });
