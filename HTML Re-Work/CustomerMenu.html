@@ -89,9 +89,9 @@
 
             $('#callWaiter').click(function(){
 
-                $.post('http://localhost:3000/order/requestWaiter/add',   // url
-                    {table: "TableNumber" }, // data to be submit
-                    function(data, status, jqXHR) {// success callback
+                $.post('http://localhost:3000/order/requestWaiter/add',
+                    {table: "TableNumber" },
+                    function(data, status, jqXHR) {
                         $('p').append('status: ' + status + ', data: ' + data);
                     }).done(function() { alert('A waiter is coming straight away!'); })
                     .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
