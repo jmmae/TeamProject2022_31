@@ -5,7 +5,9 @@
         <title>Staff</title>
     </head>
 
-    
+
+
+        
     <a href="MainMenu.html">
         <img src="resources/header.png" />
     </a>
@@ -23,9 +25,30 @@
     </div>
 
     <br><br>
+    <div class="popup">
+        <div class="payment">
+            <form action="">
+                <input type="text" placeholder="Card Number">
+                <input type="text" placeholder="Expiry date">
+                <input type="text" placeholder="CVV">
+                <a href="#" class="button">Submit</a>
+                <div class="close" >+</div>
+            </form>
+        </div>
+    </div>
     <div class="align">
+        <button id="payment" >Pay</button> 
         <div class="button">
             <button onclick="location.href='MainMenu.html'">Go Back</button>
         </div>
     </div>
+    <script>
+        document.querySelector('.close').addEventListener('click', function(){
+            document.querySelector('.popup').style.display = 'none';
+        });
+
+        document.getElementById('payment').addEventListener('click', function(){
+            document.querySelector('.popup').style.display = 'flex';
+        });
+    </script>
 </html>
