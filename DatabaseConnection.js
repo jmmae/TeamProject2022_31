@@ -8,16 +8,21 @@ var con = mysql.createConnection({
   password: "teamproject",
   database: "oaxaca"
 });
-
+//Bellow is the database connection when using the jawsdatabase on heroku
+//var con = mysql.createConnection(process.env.JAWSDB_URL);
 
 const express = require('express')
 const app = express()
-const port = 3000 //the port this server is watching
+let port = process.env.PORT;
+if (port == null || port == "") {
+  port = 3000;
+} //the port this server is watching
 var cors = require('cors')
 var bodyParser = require('body-parser');
 const { TIME, TIME2 } = require('mysql/lib/protocol/constants/types');
 var jsonParser = bodyParser.json()//jsonParser is used to be able to read the incoming data when encoded in json format
 var urlencodedParser = bodyParser.urlencoded({ extended: true })//urlencodedParser is used to be able to read the incoming data when encoded in url format
+const path = "../HTML Re-Work"
 
 var waiterRequests = new Array();
 var dishRequests = new Array();
@@ -26,16 +31,20 @@ var nextOrderID = 0
 
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
+app.use(express.static('HTML Re-Work'))
+app.use(express.static('HTML Re-Work/resources'))
 
 //get is used when no data needs to be sent
 //'/' is the path that is beeing checked
 //req is not used here
 //res is what is returned
 app.get('/', (req, res) => {
-  res.send('Hello World!')
-  console.log("request recieved");
+  res.sendFile(__dirname + "/HTML Re-Work/MainMenu.html")
 })
 
+app.get('/CustomerMenu', function (req, res) {
+  res.sendFile(__dirname + "/HTML Re-Work/CustomerMenu.html")
+})
 //post is used when the client is sending data
 //req.body.[paramiter name] is how you get the data
 //res is what is returned
