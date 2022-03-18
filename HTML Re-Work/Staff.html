@@ -9,6 +9,7 @@
     </style>
     <head>
         <link href="StyleSheet.css" rel="stylesheet">
+        <script src="Database/Validation.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Staff</title>
     </head>
@@ -23,21 +24,25 @@
     </div>
 
     <div class="staff">
-        <button id="getButton" type="button">Get Menu</button>
+        <form name="addItem" onsubmit="checkData()">
+            <button id="getButton" type="button">Get Menu</button>
 
-        <p>
-        Item Name: <br />
-        <input type="text" id="foodtest" placeholder="ItemName"> <br /> 
-        </p>
-        <p>
-        Price: <br />
-        <input type="text" id="pricetest" placeholder="Price"> <br />
-        </p>
-        <p>
-        Available: <br />
-        <input type="text" id="Available" placeholder="Available"> <br />
-        </p>
-        <input type="submit" id="addFood" onclick="addFood">
+            <p>
+            Item Name: <br />
+            <input type="text" id="foodtest" placeholder="ItemName"> <br /> 
+            </p>
+            <p>
+            Price: <br />
+            <input type="text" id="pricetest" placeholder="Price"> <br />
+            </p>
+            <p>
+            Available: <br />
+            <input type="text" id="Available" placeholder="Available"> <br />
+            </p>
+            <button type="submit" id="addFood">Add Food</button>
+            <!-- <input type="submit" id="addFood" onclick="addFood"> -->
+            </div>
+        </form>
 
         <p>
         <button id="deleteButton" type="button">Delete</button> <br />
