@@ -24,7 +24,7 @@
     </div>
 
     <div class="staff">
-        <form name="addItem" onsubmit="checkData()">
+        <form name="addItem">
             <button id="getButton" type="button">Get Menu</button>
 
             <p>
@@ -41,7 +41,6 @@
             </p>
             <button type="submit" id="addFood">Add Food</button>
             <!-- <input type="submit" id="addFood" onclick="addFood"> -->
-            </div>
         </form>
 
         <p>
@@ -124,7 +123,9 @@
         jQuery("#addFood").click(function(){
             var addedFood = document.getElementById("foodtest").value + " ," + document.getElementById("pricetest").value + ", " + document.getElementById("Available").value ; 
             console.log(addedFood)
-            jQuery.post("http://localhost:3000/menu/added", addedFood);
+            if (checkData() != false){
+                jQuery.post("http://localhost:3000/menu/addedDishes", addedFood);
+            }
         });
 
 

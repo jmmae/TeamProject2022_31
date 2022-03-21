@@ -83,7 +83,7 @@ app.post('/menu/instock', urlencodedParser, function (req, res) {
 //updates menu, creates new record in menu database, with name of food, price and availability
 //takes 'req.body' as a parameter, containing the food, price and availability
 //returns the food being added to the database, as a string to the console
-app.post('/menu/added', urlencodedParser, function (req, res) {
+app.post('/menu/addedDishes', urlencodedParser, function (req, res) {
   console.log(req.body);
   res.send(req.body);
   let text = JSON.stringify(req.body);
@@ -95,7 +95,7 @@ app.post('/menu/added', urlencodedParser, function (req, res) {
 
 //gets full menu from database
 //returns string to console
-app.get('/menu/added', function (req, res) {
+app.get('/menu/addedDishes', function (req, res) {
   console.log("added items request recieved");
   selectquery("SELECT * FROM menu;", res)
 })

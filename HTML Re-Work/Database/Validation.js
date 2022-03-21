@@ -19,7 +19,6 @@ function checkData(){
 		return false;
 	}
   else{
-		location.replace("ViewOrder.html");
     return true;
   }
 }
