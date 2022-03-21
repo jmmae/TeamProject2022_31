@@ -45,6 +45,7 @@ app.get('/', (req, res) => {
 app.get('/CustomerMenu', function (req, res) {
   res.sendFile(__dirname + "/HTML Re-Work/CustomerMenu.html")
 })
+
 //post is used when the client is sending data
 //req.body.[paramiter name] is how you get the data
 //res is what is returned
@@ -57,6 +58,9 @@ app.post('/menu', urlencodedParser, function (req, res) {
   deletequery("DELETE FROM menu where foodtest='" + food + "'");
 });
 
+//updates menu, changes 'Available' field in SQL database to 'No' for input food
+//takes 'req.body' as a parameter, containing the food
+//returns the food being marked unavailable, as a string to the console
 app.post('/menu/outofstock', urlencodedParser, function (req, res) {
   console.log(req.body);
   let text = JSON.stringify(req.body);
@@ -65,6 +69,9 @@ app.post('/menu/outofstock', urlencodedParser, function (req, res) {
   updateinquery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
 });
 
+//updates menu, changes 'Available' field in SQL database to 'Yes' for input food
+//takes 'req.body' as a parameter, containing the food
+//returns the food being marked available, as a string to the console
 app.post('/menu/instock', urlencodedParser, function (req, res) {
   console.log(req.body);
   let text = JSON.stringify(req.body);
@@ -73,6 +80,9 @@ app.post('/menu/instock', urlencodedParser, function (req, res) {
   updateinquery("UPDATE menu SET Available = 'Yes' WHERE foodtest='" + food + "'");
 });
 
+//updates menu, creates new record in menu database, with name of food, price and availability
+//takes 'req.body' as a parameter, containing the food, price and availability
+//returns the food being added to the database, as a string to the console
 app.post('/menu/added', urlencodedParser, function (req, res) {
   console.log(req.body);
   res.send(req.body);
@@ -83,34 +93,39 @@ app.post('/menu/added', urlencodedParser, function (req, res) {
   insertquery("INSERT INTO menu (foodtest, pricetest, Available) VALUES ('" + food[0] + "','" + food[1] + "','" + food[2] + "');");
 });
 
+//gets full menu from database
+//returns string to console
 app.get('/menu/added', function (req, res) {
   console.log("added items request recieved");
-
   selectquery("SELECT * FROM menu;", res)
 })
 
-
+//gets full menu from database
+//returns string to console
 app.get('/menu', function (req, res) {
   console.log("menu request recieved");
-
   selectquery("SELECT * FROM menu;", res)
 })
 
+//gets menu from database, where the food is available
+//returns string to console
 app.get('/menu/available', function (req, res) {
   console.log("Available menu request recieved");
   selectquery("SELECT * FROM menu WHERE available IS TRUE ;", res)
 })
 
-
+//sends new item order to waiter
+//returns string to console
 app.post('/order/requestWaiter/add', urlencodedParser, function (req, res) {
   console.log("Waiter add request recieved");
   if (waiterRequests.includes(req.body.table) == false) {
     waiterRequests.push(req.body.table);
-
   }
   res.send("Waiter add request recived")
 })
 
+//goes through all dish requests and outputs them to waiter
+//returns string to console
 app.post('/order/unconfirmed', urlencodedParser, function (req, res) {
   console.log("Waiter add request recieved");
   dishRequests.push(req.body.table);
@@ -137,6 +152,9 @@ app.post('/order/unconfirmed', urlencodedParser, function (req, res) {
 //   res.send("Waiter add request recived")
 })
 
+//gives list available to order
+//takes 'req.body' as a parameter, containing the food
+//returns food item as a string to the console
 app.post('/order/getDishes', function (req, res){
   console.log(req.body);
   let text = JSON.stringify(req.body);
@@ -145,6 +163,8 @@ app.post('/order/getDishes', function (req, res){
   // updateinquery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
 })
 
+//sends order to waiter
+//returns 'dishRequests', output to console
 app.get('/order/getDishes', function (req, res) {
   console.log("Waiter add request recieved");
   console.log(dishRequests);
