@@ -55,7 +55,7 @@ app.post('/menu', urlencodedParser, function (req, res) {
   let text = JSON.stringify(req.body);
   let food = text.substring(2, text.length - 5);
   // console.log(text.substring(2, text.length - 5));
-  deletequery("DELETE FROM menu where foodtest='" + food + "'");
+  sqlQuery("DELETE FROM menu where foodtest='" + food + "'");
 });
 
 //updates menu, changes 'Available' field in SQL database to 'No' for input food
@@ -66,7 +66,7 @@ app.post('/menu/outofstock', urlencodedParser, function (req, res) {
   let text = JSON.stringify(req.body);
   let food = text.substring(2, text.length - 5);
   console.log(text.substring(2, text.length - 5));
-  updateinquery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
+  sqlQuery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
 });
 
 //updates menu, changes 'Available' field in SQL database to 'Yes' for input food
@@ -77,7 +77,7 @@ app.post('/menu/instock', urlencodedParser, function (req, res) {
   let text = JSON.stringify(req.body);
   let food = text.substring(2, text.length - 5);
   console.log(text.substring(2, text.length - 5));
-  updateinquery("UPDATE menu SET Available = 'Yes' WHERE foodtest='" + food + "'");
+  sqlQuery("UPDATE menu SET Available = 'Yes' WHERE foodtest='" + food + "'");
 });
 
 //updates menu, creates new record in menu database, with name of food, price and availability
@@ -90,7 +90,7 @@ app.post('/menu/addedDishes', urlencodedParser, function (req, res) {
   let item = text.substring(2, text.length - 5);
   food = item.split(",");
   console.log(food[0]);
-  insertquery("INSERT INTO menu (foodtest, pricetest, Available) VALUES ('" + food[0] + "','" + food[1] + "','" + food[2] + "');");
+  sqlQuery("INSERT INTO menu (foodtest, pricetest, Available) VALUES ('" + food[0] + "','" + food[1] + "','" + food[2] + "');");
 });
 
 //gets full menu from database
@@ -160,7 +160,7 @@ app.post('/order/getDishes', function (req, res){
   let text = JSON.stringify(req.body);
   let food = text.substring(2, text.length - 5);
   console.log(text.substring(2, text.length - 5));
-  // updateinquery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
+  // sqlQuery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
 })
 
 //sends order to waiter
@@ -203,6 +203,7 @@ app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
 })
 
+// function which runs the sql query and returns the data from the table
 function selectquery(sql, res, columns) {
 
   con.query(sql, function (err, result, fields) {
@@ -214,41 +215,17 @@ function selectquery(sql, res, columns) {
 
 };
 
-function deletequery(sql, res, columns) {
-
-  con.query(sql, function (err, result, fields) {
-
-    // console.log(result[1].foodtest);
-  });
-
-};
-
-function insertquery(sql, res, columns) {
+// function which runs the sql queries which is given as the sql parameter
+function sqlQuery(sql, res, columns) {
 
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
-
   });
 
 };
 
-function updateoutquery(sql, res, columns) {
 
-  con.query(sql, function (err, result, fields) {
-    if (err) throw err;
 
-  });
-
-};
-
-function updateinquery(sql, res, columns) {
-
-  con.query(sql, function (err, result, fields) {
-    if (err) throw err;
-
-  });
-
-};
 
 
 
