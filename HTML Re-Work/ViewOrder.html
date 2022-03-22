@@ -21,7 +21,35 @@
         <a href="ViewOrder.html">Basket</a>
     </div>
 
-    <br><br>
+    <br>
+    <div class="align">
+        <p id="p1">Show Order</p>
+        
+        <button id="getButton" type="button">Get Orders</button>
+        
+        <script>
+            jQuery("#getButton").click(function () {
+                jQuery.get("http://localhost:3000/order/getDishes",
+        
+                    function (data, status) {
+                        alert("Data: " + data + "\nStatus: " + status);
+                        for (let i = 0; i < data.length; i++) {
+                            document.getElementById("p1").innerHTML = data;
+                            alert(dishRequests[i]);
+                            jQuery.post("http://localhost:3000/order/getDishes", data);
+                        }
+                    });
+            });
+        </script>
+    </div>
+
+    <div class="align">
+        <button id="payment" >Pay</button> 
+        <div class="button">
+            <button onclick="location.href='MainMenu.html'">Go Back</button>
+        </div>
+    </div>
+
     <div class="popup">
         <div class="payment">
             <form name="pay" action="">
@@ -34,12 +62,7 @@
             </form>
         </div>
     </div>
-    <div class="align">
-        <button id="payment" >Pay</button> 
-        <div class="button">
-            <button onclick="location.href='MainMenu.html'">Go Back</button>
-        </div>
-    </div>
+    
     <script type = "text/javascript">
         document.querySelector('.close').addEventListener('click', function(){
             document.querySelector('.popup').style.display = 'none';
@@ -57,4 +80,5 @@
             }
         }
     </script>
+
 </html>

@@ -50,26 +50,5 @@ $(document).ready(function () {
 });
     
     -->
-    
-<div class="align">
-<p id="p1">Show Order</p>
-
-<button id="getButton" type="button">Get Orders</button>
-
-<script>
-    jQuery("#getButton").click(function () {
-        jQuery.get("http://localhost:3000/order/getDishes",
-
-            function (data, status) {
-                alert("Data: " + data + "\nStatus: " + status);
-                for (let i = 0; i < data.length; i++) {
-                    document.getElementById("p1").innerHTML = data;
-                    alert(dishRequests[i]);
-                    jQuery.post("http://localhost:3000/order/getDishes", data);
-                }
-            });
-    });
-</script>
-</div>
 
 </html>
