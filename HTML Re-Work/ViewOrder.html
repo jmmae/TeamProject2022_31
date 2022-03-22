@@ -2,7 +2,7 @@
 <html>
     <head>
         <link href="StyleSheet.css" rel="stylesheet">
-        <title>Staff</title>
+        <title>Basket</title>
     </head>
 
     <a href="MainMenu.html">
@@ -26,10 +26,10 @@
         <div class="payment">
             <form name="pay" action="">
                 <img src="resources/card.png" />
-                <input type="text" placeholder="Card Number">
-                <input type="text" id="shortInfo" placeholder="Expiry date">
-                <input type="text" id="shortInfo" placeholder="CVV">
-                <a href="#" class="submit">Submit</a>
+                <input type="text" id="shortInfo" placeholder="Card Number:">
+                <input type="text" id="shortInfo" placeholder="Expiry date:">
+                <input type="text" id="shortInfo" placeholder="CVV:">
+                <input type="submit" value="Sumbit" id = "submit" onclick="checkInfo()">
                 <div class="close" >+</div>
             </form>
         </div>
@@ -40,7 +40,7 @@
             <button onclick="location.href='MainMenu.html'">Go Back</button>
         </div>
     </div>
-    <script>
+    <script type = "text/javascript">
         document.querySelector('.close').addEventListener('click', function(){
             document.querySelector('.popup').style.display = 'none';
         });
@@ -48,5 +48,13 @@
         document.getElementById('payment').addEventListener('click', function(){
             document.querySelector('.popup').style.display = 'flex';
         });
+
+        function checkInfo() {
+            if (document.getElementById('shortInfo').value == "")  {
+                alert("Please re-enter details.") //Find a way to not submit the form if details aren't completed!
+            } else {
+                alert("Thanks for the payment. Hope you had a nice meal!")
+            }
+        }
     </script>
 </html>
