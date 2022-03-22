@@ -1,20 +1,144 @@
 <!DOCTYPE html>
 <html>
+
+    <link href="StyleSheet.css" rel="stylesheet">
+
     <head>
-        <link href="StyleSheet.css" rel="stylesheet">
+        <script src="Database/Validation.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Staff</title>
     </head>
 
     
-    <div id="headerImg"> </div>
+<a href="MainMenu.html">
+    <img src="resources/header4.png" />
+</a>
 
     <div class="header"> 
         <p>Staff Access.</p>
     </div>
 
-    <div class="align">
+    <div class="staff">
+        <!-- Form for adding menu items to the database -->
+        <form name="addItem">
+            <button id="getButton" type="button">Get Menu</button>
+
+            <p>
+            Item Name: <br />
+            <input type="text" id="foodtest" placeholder="ItemName"> <br /> 
+            </p>
+            <p>
+            Price: <br />
+            <input type="text" id="pricetest" placeholder="Price"> <br />
+            </p>
+            <p>
+            Available: <br />
+            <input type="text" id="Available" placeholder="Available"> <br />
+            </p>
+            <button type="submit" id="addFood">Add Food</button>
+            <!-- <input type="submit" id="addFood" onclick="addFood"> -->
+        </form>
+
+        <p>
+        <button id="deleteButton" type="button">Delete</button> <br />
+        <button id="outOfStockButton" type="button">Set Not Available</button> <br />
+        <button id="inStockButton" type="button">Set Available</button> <br />
+        </p>
+    </div>
+
+    <script type="text/javascript">
+        {var menuFood}
+        //https://www.w3schools.com/jquery/jquery_get_started.asp
+  
+        //this makes sure the document is loaded before any code is run
+        jQuery(document).ready(function () {
+        
+        // Gets the full menu from the database and shows it on the webpage
+        jQuery("#getButton").click(function () {
+            //"http://localhost:3000/menu" is the path/document to be found    data is the data returned from the server and status is the success or fail of this attempt
+            //  /menu address is call to return all items in the menu
+            jQuery.get("http://localhost:3000/menu", function (data, status) {
+                menuFood = data;
+                //data is a JSON object array   https://www.w3schools.com/js/js_json_objects.asp
+                //to access the info  data[i].name-of-field-in-database
+                //eg below gereates an alert with the info about the first item in the menu
+                var table = "<table>";
+                    table += "<th>Food</th>";
+                    table += "<th>Price</th>";
+                    table += "<th>Available</th>";
+                    table += "<th>Select</th>";
+                document.getElementById("menu").innerHTML = "";
+                for (let i = 0; i < data.length; i++){
+                    table += ("<tr id ='" + data[i].foodtest +"1'><td>" + data[i].foodtest + "</td><td>£" + data[i].pricetest + "</td><td>" + data[i].Available + "</td> <td><input type='checkbox' name='favorite3' id='" + data[i].foodtest + "' /> </td></tr>");
+                }
+                    table += "<table>";
+                        document.getElementById("menu").innerHTML = table;
+                
+            });
+        });
+        });
+        
+        // Deletes the menu item that is chosen through the checkboxes shown on the menu
+        jQuery("#deleteButton").click(function () {
+            jQuery.get("http://localhost:3000/menu", function (data, status) {
+                for (let i = 0; i < data.length; i++){
+                    if (document.getElementById(data[i].foodtest).checked){
+                        menuFood = data[i].foodtest;
+
+                        document.getElementById(data[i].foodtest + "1").remove();
+                    }
+                }
+                jQuery.post("http://localhost:3000/menu", menuFood);
+            });
+        });
+
+        // Sets the menu items as out of stock by checking if the menu items checkbox has been checked
+        jQuery("#outOfStockButton").click(function () {
+            jQuery.get("http://localhost:3000/menu", function (data, status) {
+                for (let i = 0; i < data.length; i++){
+                    if (document.getElementById(data[i].foodtest).checked){
+                        menuFood = data[i].foodtest;
+
+                        document.getElementById(data[i].foodtest + "1").remove();
+                    }
+                }
+                jQuery.post("http://localhost:3000/menu/outofstock", menuFood);
+            });
+        });
+
+        // Sets the menu items to be put as in stock, setting Available to Yes
+        jQuery("#inStockButton").click(function () {
+            jQuery.get("http://localhost:3000/menu", function (data, status) {
+                for (let i = 0; i < data.length; i++){
+                    if (document.getElementById(data[i].foodtest).checked){
+                        menuFood = data[i].foodtest;
+
+                        document.getElementById(data[i].foodtest + "1").remove();
+                    }
+                }
+                jQuery.post("http://localhost:3000/menu/instock", menuFood);
+            });
+        });
+
+        // Takes the data from the three input boxes for a new menu item and stores it in a variable
+        // Then it posts it to the URL which it then runs what is in the post and adds the menu item to the database
+        jQuery("#addFood").click(function(){
+            var addedFood = document.getElementById("foodtest").value + " ," + document.getElementById("pricetest").value + ", " + document.getElementById("Available").value ; 
+            console.log(addedFood)
+            if (checkData() != false){
+                jQuery.post("http://localhost:3000/menu/addedDishes", addedFood);
+            }
+        });
+
+
+      </script>
+
+<div class="menu">
+<p id="menu"></p>
+</div>
+<div class="align">
         <div class="button">
-            <button onclick="location.href='Login.html'">Go Back</button>
+            <button onclick="location.href='MainMenu.html'">Go Back</button>
         </div>
     </div>
 </html>

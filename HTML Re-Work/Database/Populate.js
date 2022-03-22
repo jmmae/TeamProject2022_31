@@ -2,27 +2,9 @@ var mysql = require('mysql');
 fs = require('fs');
 const readline = require('readline');
 
-const readFileLocation = "../Database/DatabaseFile.txt";
+const readFileLocation = "../HTML Re-Work/Database/DatabaseFile.txt";
+const readStaffFileLocation = "../HTML Re-Work/Database/StaffTable.txt";
 
-
-// // Test: Read File Line By Line
-// const text = fs.createReadStream(readFileLocation);
-
-// const rl = readline.createInterface({
-//     input: text
-// });
-
-// rl.on("line", (out) => {
-//     console.log("Line from file: " + out);
-// })
-
-// // Test: Read File All at once
-// fs.readFile('../Database/DatabaseFile.txt', 'utf8', function (err,data) {
-//     if (err) {
-//       return console.log(err);
-//     }
-//     console.log(data);
-//   });
 
 var con = mysql.createConnection({
   host: "localhost",
@@ -65,9 +47,24 @@ function dropTable(con) {
 
 // Create Table if doesn't exist
 function createTable(con) {
-    con.query("CREATE TABLE IF NOT EXISTS menu (foodtest VARCHAR(100), pricetest FLOAT)", function(err, result) {
+    con.query("CREATE TABLE IF NOT EXISTS menu (DishID int NOT NULL, DishName VARCHAR(50), GroupTags VARCHAR(200), Description VARCHAR(200), Calories int, DietaryReq VARCHAR(200), Allergies VARCHAR(200), Price FLOAT, Available VARCHAR(5), PRIMARY KEY(DishID))", function(err, result) {
         if (err) throw err;
         console.log("Table present");
+    });
+}
+
+function createOrdersTable(con) {
+    con.query("CREATE TABLE IF NOT EXISTS orders (OrderID int NOT NULL, TimeEntered time, TableNumber int, Confirmed VARCHAR(3), PRIMARY KEY (OrderID))",  function(err, result){
+        if(err) throw err;
+        console.log("Table not present ");
+
+    });
+}
+
+function createOrderedDishTable(con) {
+    con.query("CREATE TABLE IF NOT EXISTS OrderedDish (OrderedDishID int, OrderID int, DishID int, Comments varchar(150), Delivered int, PRIMARY KEY (OrderedDishID), FOREIGN KEY(OrderID) REFERENCES order(OrderID))", function(err, result){
+        if(err) throw err;
+        console.log("Table not present");
     });
 }
 
@@ -79,7 +76,7 @@ function fileToTable(con) {
     });
     rl.on("line", (out) => {
         const outList = out.split(",")
-        con.query("INSERT INTO menu (foodtest, pricetest) VALUES (" + "'" + outList[0] + "', '" + outList[1] + "'" + ")", function(err, result) {
+        con.query("INSERT INTO menu (DishID, DishName, GroupTags, Description, Calories, DietaryReq, Allergies, Price, Available) VALUES (" + "'" + outList[0] + "', '" + outList[1] + "', '" + outList[2] + "', '" + outList[3] + "', '" + outList[4] + "', '" + outList[5] + "', '" + outList[6] + "', '" + outList[7] + "', '" + outList[8] + "')", function(err, result) {
             if (err) throw err;
             console.log("Filled one row from file");
         });
@@ -87,22 +84,34 @@ function fileToTable(con) {
     
 }
 
-// // Outputs contents of table to console
-// function selectToConsole(con) {
-//     con.query("SELECT * FROM menu", function(err, result, fields) {
-//         if (err) throw err;
-//         console.log(result);
+
+function deleteItem(con, food){
+    con.query("DELETE FROM menu WHERE foodtest='" + food + "'", function(err, result){
+        if (err) throw err;
+        console.log(food + " Deleted from the database");
+    });
+}
+
+// function fileToStaffTable(con) {
+//     const txt = fs.createReadStream(readStaffFileLocation);
+//     const rl = readline.createInterface({
+//         input: txt
 //     });
+//     rl.on("line", (out) => {
+//         const outList = out.split(",")
+//         con.query("INSERT INTO menu (staffID, username, password) VALUES (" + "'" + outList[0] + "', '" + outList[1] + "', '" + outList[2] + "')", function(err, result) {
+//             if (err) throw err;
+//             console.log("Filled one row from file");
+//         });
+//     })
 // }
+
 
 connectToServer(con);
 createDB(con);
 dropTable(con);
 createTable(con);
+createOrdersTable(con);
 fileToTable(con);
 
-// // End Connection
-// con.end(function(err) {
-//     if (err) throw err;
-// });
 
