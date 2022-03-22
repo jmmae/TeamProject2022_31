@@ -8,14 +8,14 @@ body {
 div#headerImg {
   width: 100%;
   height: auto;
-  background: url(resources/header.png);
+  background: url(resources/header3.png);
   text-align: center;
 }
 
 table,
 th,
 td {
-  border: 1px solid rgb(0, 0, 0);
+  border: 1px groove rgb(0, 0, 0);
 }
 
 img {
@@ -32,6 +32,8 @@ img {
   text-align: center;
   background: rgb(14, 167, 95);
   color: white;
+  margin: 0;
+  overflow: hidden;
 }
 
 .align {
@@ -48,6 +50,10 @@ img {
   text-align: center;
 }
 
+.frontpage td {
+  font-size: 1.5vw;
+}
+
 .menu {
   margin: 0 auto;
   width: 25%;
@@ -62,18 +68,6 @@ table {
   margin: 0 auto;
   color: #000000;
 }
-
-/*
-.buttons {
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: collapse;
-  background-color: #565854;
-}
-
-.buttons button {
-  width: 100%;
-} */
 
 .popup{
   background-color: rgba(0, 0, 0, 0.8);
@@ -99,7 +93,7 @@ table {
 input{
   margin: 10px auto;
   display: block;
-  width: 50%;
+  width: 31%;
   padding: 8px;
   border: 1px solid gray;
 }
@@ -122,10 +116,11 @@ input{
   margin-bottom: 10px;
   
 }
+
 button {
     font-size: 0.9em;
     background-color: #EBF5FF;
-    color: #1dd159;
+    color: #1da149;
     border: 2px solid black;
     box-shadow: 3px 3px 3px #a1d8a1;
     margin-bottom: 10px;
@@ -133,7 +128,7 @@ button {
 
   button:hover, button:focus, button:active {
     color: #EBF5FF;
-    background-color: #1dd159;
+    background-color: #13963f;
     cursor: pointer; 
   }
 
