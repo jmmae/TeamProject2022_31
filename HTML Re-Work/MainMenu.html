@@ -101,40 +101,45 @@
         </form>
     </div>
 </div>
-    
+  
 <body>
-<!--<body onload="showAlert()">-->
+<script type="text/javascript">
+    function change(id, item){
+        var image = document.getElementById(id);
+        image.src = item;
+    }
+</script>
 <div class="body">
     <div class="frontpage">
         <h1>Chef's Recommendations</h1>
         <table>
             <tr>
-                <td><img src="resources/burrito.jpg" alt="burrito" width="375" height="250"></td>
+                <td><img src="resources/burrito.jpg" alt="burrito" id="burrito" width="375" height="250"></td>
                 <td><h3>Burrtios</h3>
-                    burrito option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>burrito option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>burrito option: £11.99<br>Ingredient, Ingredient, Ingredient</td>
+                    <a onclick="change('burrito','resources/burrito.jpg')">burrito option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('burrito','resources/chimi.jpg')">burrito option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('burrito','resources/taco.jfif')">burrito option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
             </tr>
             <tr>
                 <td><h3>Chimichangas</h3>
-                    Chimichanga option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Chimichanga option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Chimichanga option: £11.99<br>Ingredient, Ingredient, Ingredient</td>
-                <td><img src="resources/chimi.jpg" alt="chimi" width="375" height="250"></td>
+                    <a onclick="change('chimi','resources/chimi.jpg')">Chimichanga option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('chimi','resources/burrito.jpg')">Chimichanga option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('chimi','resources/burrito.jpg')">Chimichanga option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
+                <td><img src="resources/chimi.jpg" alt="chimi" id="chimi" width="375" height="250"></td>
             </tr>
             <tr>
-                <td><img src="resources/taco.jfif" alt="taco" width="375" height="250"></td>
+                <td><img src="resources/taco.jfif" alt="taco" id="taco" width="375" height="250"></td>
                 <td><h3>Tacos</h3>
-                    Taco option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Taco option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Taco option: £11.99<br>Ingredient, Ingredient, Ingredient</td>
+                    <a onclick="change('taco','resources/taco.jfif')">Taco option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('taco','resources/burrito.jpg')">Taco option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('taco','resources/burrito.jpg')">Taco option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
             </tr>
             <tr>
                 <td><h3>Enchiladas</h3>
-                    Enchilada option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Enchilada option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Enchilada option: £11.99<br>Ingredient, Ingredient, Ingredient</td>
-                <td><img src="resources/enchiladas.jpg" alt="enchiladas" width="375" height="250"></td>
+                    <a onclick="change('enchiladas','resources/enchiladas.jpg')">Enchilada option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('enchiladas','resources/burrito.jpg')">Enchilada option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('enchiladas','resources/burrito.jpg')">Enchilada option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
+                <td><img src="resources/enchiladas.jpg" alt="enchiladas" id="enchiladas" width="375" height="250"></td>
             </tr>
         </table>
     </div>
@@ -146,4 +151,3 @@
 </body>
 
 </html>
-
