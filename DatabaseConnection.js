@@ -172,14 +172,18 @@ app.get('/order/getDishes', function (req, res) {
   // add a selectquery which returns the orders table and the associated dishes which have not been confirmed delivered.
 })
 
+//tells kitchen which dishes need to be prepared
 app.get('/kitchen/getDishes', function (req, res) {
    selectquery("SELECT DishID, OrderID FROM orderDish WHERE Delivered == 0;", res)
 })
 
+//tells waiter which dishes are ready to be taken
 app.get('/waiter/getDishes', function (req, res) {
    selectquery("SELECT DishID, OrderID FROM orderDish WHERE Delivered == 1;", res)
 })
 
+//removes request for waiter
+//returns string to console
 app.post('/order/requestWaiter/remove', urlencodedParser, function (req, res) {
   if (!waiterRequests.includes(req.body.table)) {
     //waiterRequests.splice(waiterRequests.indexOf(req.body.table,1))
@@ -193,6 +197,7 @@ app.post('/order/requestWaiter/remove', urlencodedParser, function (req, res) {
   res.send("Waiter remove request recived")
 })
 
+//sends a request for a waiter
 app.get('/waiter/waiterRequests', function (req, res) {
   //console.log("request recieved");
   //console.log(waiterRequests);
