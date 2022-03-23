@@ -28,6 +28,7 @@ var waiterRequests = new Array();
 var dishRequests = new Array();
 
 var nextOrderID = 0
+var OrderedDishID = 0
 
 app.use(cors());
 app.use(express.json({ limit: '1mb' }));
@@ -112,52 +113,66 @@ app.post('/order/requestWaiter/add', urlencodedParser, function (req, res) {
 })
 
 app.post('/order/unconfirmed', urlencodedParser, function (req, res) {
-  console.log("Waiter add request recieved");
-  dishRequests.push(req.body.table);
-  console.log(dishRequests);
-  var array = req.body[1];
-  console.log(array);
-  console.log(req.body.dishes[0]);
-  for (var i = 0; i < req.body.dishes.length; i++) {
-    console.log(req.body.dishes[i]);
-    dishRequests.push(req.body.dishes[i]);
-  }
-  
-//   query(/*delete all entries related to req.body.*/)
-//   query("INSERT INTO order (OrderedDishID,OrderID, DishID, Comments) VALUES ("+nextOrderID+","+TIME+ "," +req.body.table+"False)")
-//     for (var i = 0; req.body.dishes[i] < req.body.dishes.length; i++) {
-//       var entries = req.body.dishes[i].split("+")
-//       query("INSERT INTO OrderedDish (OrderID, DishID, Comments, Delivered) VALUES ("+nextOrderID+"," + entries[0] + "," + entries[1] + ",0)")
-//     }
+  // console.log("Waiter add request recieved");
+  // dishRequests.push(req.body.table);
+  // console.log(dishRequests);
+  // var array = req.body[1];
+  // console.log(array);
+  // console.log(req.body.dishes[0]);
+  // for (var i = 0; i < req.body.dishes.length; i++) {
+  //   console.log(req.body.dishes[i]);
+  //   dishRequests.push(req.body.dishes[i]);
+  // }
 
-//     if (waiterRequests.includes(req.body.table) == false) {
-//       waiterRequests.push(req.body.table);
+  //   query(/*delete all entries related to req.body.*/)
 
-//     }
-//   res.send("Waiter add request recived")
+  con.query("SELECT MAX(OrderID) AS OID FROM orders", function (err, result, fields) {
+    if (err) throw err;
+    nextOrderID = result[0].OID;
+    nextOrderID = nextOrderID + 1;
+
+    updateinquery("INSERT INTO orders (OrderID,TimeEntered, TableNumber, Confirmed) VALUES (" + nextOrderID + ", '12:00:00'," + req.body.table + ", 'No' );")
+    con.query("SELECT MAX(OrderedDishID) AS ODID FROM OrderedDish", function (err, result, fields) {
+      if (err) throw err;
+      OrderedDishID = result[0].ODID;
+      for (var i = 0; i < req.body.dishes.length; i++) {
+        
+        OrderedDishID = OrderedDishID + 1;
+        var entries = req.body.dishes[i].split("+")
+        console.log(OrderedDishID);
+        updateinquery("INSERT INTO OrderedDish (OrderedDishID, OrderID, DishID, Comments, Delivered) VALUES (" + OrderedDishID + "," + nextOrderID + "," + entries[0] + ",'" + entries[1] + "',0);")
+      }
+    });
+  });
+  res.send("Order recived")
 })
 
-app.post('/order/getDishes', function (req, res){
-  console.log(req.body);
-  let text = JSON.stringify(req.body);
-  let food = text.substring(2, text.length - 5);
-  console.log(text.substring(2, text.length - 5));
-  // updateinquery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
-})
+
+// app.post('/order/getDishes', function (req, res){
+//   console.log(req.body);
+//   let text = JSON.stringify(req.body);
+//   let food = text.substring(2, text.length - 5);
+//   console.log(text.substring(2, text.length - 5));
+//   // updateinquery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
+// })
 
 app.get('/order/getDishes', function (req, res) {
-  console.log("Waiter add request recieved");
-  console.log(dishRequests);
-  res.send(dishRequests);
+  // console.log("Waiter add request recieved");
+  // console.log(dishRequests);
+  // res.send(dishRequests);
   // add a selectquery which returns the orders table and the associated dishes which have not been confirmed delivered.
+  //selectquery("SELECT * FROM OrderedDish INNER JOIN orders ON OrderedDish.OrderID = orders.OrderID INNER JOIN menu ON OrderedDish.DishID = menu.dishID;", res)
+  selectquery("SELECT * FROM OrderedDish INNER JOIN orders ON OrderedDish.OrderID = orders.OrderID INNER JOIN menu ON OrderedDish.DishID = menu.dishID;", res)
 })
+
 
 app.get('/kitchen/getDishes', function (req, res) {
-   selectquery("SELECT DishID, OrderID FROM orderDish WHERE Delivered == 0;", res)
+  selectquery("SELECT DishID, OrderID FROM orderDish WHERE Delivered == 0;", res)
 })
 
+
 app.get('/waiter/getDishes', function (req, res) {
-   selectquery("SELECT DishID, OrderID FROM orderDish WHERE Delivered == 1;", res)
+  selectquery("SELECT DishID, OrderID FROM orderDish WHERE Delivered == 1;", res)
 })
 
 app.post('/order/requestWaiter/remove', urlencodedParser, function (req, res) {
@@ -188,7 +203,7 @@ function selectquery(sql, res, columns) {
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
 
-    console.log(result[0].foodtest);
+    console.log(result);
     res.send(result)
   });
 

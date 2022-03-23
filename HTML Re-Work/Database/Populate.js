@@ -2,8 +2,8 @@ var mysql = require('mysql');
 fs = require('fs');
 const readline = require('readline');
 
-const readFileLocation = "../HTML Re-Work/Database/DatabaseFile.txt";
-const readStaffFileLocation = "../HTML Re-Work/Database/StaffTable.txt";
+const readFileLocation = "../Database/DatabaseFile.txt";
+const readStaffFileLocation = "../Database/StaffTable.txt";
 
 
 var con = mysql.createConnection({
@@ -62,7 +62,7 @@ function createOrdersTable(con) {
 }
 
 function createOrderedDishTable(con) {
-    con.query("CREATE TABLE IF NOT EXISTS OrderedDish (OrderedDishID int, OrderID int, DishID int, Comments varchar(150), Delivered int, PRIMARY KEY (OrderedDishID), FOREIGN KEY(OrderID) REFERENCES order(OrderID))", function(err, result){
+    con.query("CREATE TABLE IF NOT EXISTS OrderedDish (OrderedDishID int, OrderID int, DishID int, Comments varchar(150), Delivered int, PRIMARY KEY (OrderedDishID), FOREIGN KEY(OrderID) REFERENCES orders(OrderID),  FOREIGN KEY(DishID) REFERENCES menu(DishID))", function(err, result){
         if(err) throw err;
         console.log("Table not present");
     });
@@ -112,6 +112,7 @@ createDB(con);
 dropTable(con);
 createTable(con);
 createOrdersTable(con);
+createOrderedDishTable(con);
 fileToTable(con);
 
 
