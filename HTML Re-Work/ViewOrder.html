@@ -2,48 +2,88 @@
 <html>
     <head>
         <link href="StyleSheet.css" rel="stylesheet">
-        <title>Staff</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <title>Basket</title>
     </head>
 
-
-
-        
     <a href="MainMenu.html">
-        <img src="resources/header.png" />
+        <img src="resources/header4.png" />
     </a>
     
     <!--<div id="headerImg"> <a href="MainMenu.html"></a> </div> -->
 
     <div class="header"> 
-        <p>Oaxaca</p>
+        <p>Serving the UK for the past 10 years.</p>
     </div>
+    <button id="callWaiter" type="button">Call Waiter</button>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
 
+            $('#callWaiter').click(function(){
+
+                $.post('http://localhost:3000/order/requestWaiter/add',
+                    {table: "TableNumber" },
+                    function(data, status, jqXHR) {
+                        $('p').append('status: ' + status + ', data: ' + data);
+                    }).done(function() { alert('A waiter is coming straight away!'); })
+                    .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
+
+
+            });
+        });
+    </script>
     <div class="navbar">
-        <a href="CustomerMenu.html">Make Order</a>
+        <a href="CustomerMenu.html">Menu</a>
         <a href="Waiter.html">Call Waiter</a>
-        <a href="ViewOrder.html">Review Basket</a>
+        <a href="ViewOrder.html">Basket</a>
     </div>
 
-    <br><br>
-    <div class="popup">
-        <div class="payment">
-            <form name="pay" action="">
-                <img src="resources/card.png" />
-                <input type="text" placeholder="Card Number">
-                <input type="text" id="shortInfo" placeholder="Expiry date">
-                <input type="text" id="shortInfo" placeholder="CVV">
-                <a href="#" class="submit">Submit</a>
-                <div class="close" >+</div>
-            </form>
-        </div>
+    <br>
+    <div class="align">
+        <p id="p1">Show Order</p>
+        
+        <button id="getButton" type="button">Get Orders</button>
+        
+        <script>
+            jQuery("#getButton").click(function () {
+                jQuery.get("http://localhost:3000/order/getDishes",
+        
+                    function (data, status) {
+                        alert("Data: " + data + "\nStatus: " + status);
+                        for (let i = 0; i < data.length; i++) {
+                            document.getElementById("p1").innerHTML = data;
+                            alert(dishRequests[i]);
+                            jQuery.post("http://localhost:3000/order/getDishes", data);
+                        }
+                    });
+            });
+        </script>
     </div>
+
     <div class="align">
         <button id="payment" >Pay</button> 
         <div class="button">
             <button onclick="location.href='MainMenu.html'">Go Back</button>
         </div>
     </div>
-    <script>
+
+    <div class="popup">
+        <div class="payment">
+            <form name="pay" action="">
+                <img src="resources/card.png" />
+                <input type="text" id="shortInfo" placeholder="Card Number:">
+                <input type="text" id="shortInfo" placeholder="Expiry date:">
+                <input type="text" id="shortInfo" placeholder="CVV:">
+                <input type="submit" value="Sumbit" id = "submit" onclick="checkInfo()">
+                <div class="close" >+</div>
+            </form>
+        </div>
+    </div>
+    
+    <script type = "text/javascript">
         document.querySelector('.close').addEventListener('click', function(){
             document.querySelector('.popup').style.display = 'none';
         });
@@ -51,5 +91,14 @@
         document.getElementById('payment').addEventListener('click', function(){
             document.querySelector('.popup').style.display = 'flex';
         });
+
+        function checkInfo() {
+            if (document.getElementById('shortInfo').value == "")  {
+                alert("Please re-enter details.") //Find a way to not submit the form if details aren't completed!
+            } else {
+                alert("Thanks for the payment. Hope you had a nice meal!")
+            }
+        }
     </script>
+
 </html>

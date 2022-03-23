@@ -2,15 +2,35 @@
 <html>
     <head>
         <link href="StyleSheet.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Order</title>
     </head>
-    
+
     <div id="headerImg"> </div>
 
     <div class="header"> 
         <p>Confirm and Review your Order.</p>
     </div>
+    <button id="callWaiter" type="button">Call Waiter</button>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
 
+            $('#callWaiter').click(function(){
+
+                $.post('http://localhost:3000/order/requestWaiter/add',
+                    {table: "TableNumber" },
+                    function(data, status, jqXHR) {
+                        $('p').append('status: ' + status + ', data: ' + data);
+                    }).done(function() { alert('A waiter is coming straight away!'); })
+                    .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
+
+
+            });
+        });
+    </script>
     <body>
         <div class="align">
             <h2>Menu:</h2>

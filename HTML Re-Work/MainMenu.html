@@ -2,30 +2,49 @@
 <html>
 
 <link href="StyleSheet.css" rel="stylesheet">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <head>
     <title>Oaxaca</title>
 </head>
 
 <a href="MainMenu.html">
-    <img src="resources/header.png" />
+    <img src="resources/header4.png" />
 </a>
 
-<!--<div id="headerImg"> <a href="MainMenu.html"></a> </div> -->
+<div id="headerImg"> <a href="MainMenu.html"></a> </div> 
 
 <div class="header"> 
     <p>Serving the UK for the past 10 years.</p>
 </div>
+<button id="callWaiter" type="button">Call Waiter</button>
+<meta name="viewport" content="width=device-width" />
+<script type="text/javascript">
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
 
+        $('#callWaiter').click(function(){
+
+            $.post('http://localhost:3000/order/requestWaiter/add',
+                {table: "TableNumber" },
+                function(data, status, jqXHR) {
+                    $('p').append('status: ' + status + ', data: ' + data);
+                }).done(function() { alert('A waiter is coming straight away!'); })
+                .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
+
+
+        });
+    });
+</script>
 <div class="navbar">
-    <a href="CustomerMenu.html">Make Order</a>
+    <a href="CustomerMenu.html">Menu</a>
     <a href="Waiter.html">Call Waiter</a>
-    <a href="ViewOrder.html">Review Basket</a>
+    <a href="ViewOrder.html">Basket</a>
 </div>
 </html>
 <!--
     AJAX call function to send a notification to the waiter that a table has requested him, still working on the connection itself to the server.
-    so code is still not fully complete, thus added it as a comment.
+    so code is still not fully complete, thus added it as a comment. 
     
     <meta name="viewport" content="width=device-width" />
 	<script type="text/javascript" 
@@ -53,10 +72,8 @@
 	<input type="button" id="ajaxBtn" value="Send POST request" />
 	<p>
 	</p>
-</body>
-</html>
-<td>--><!--<button type="button" id="Waiter_Button" onclick="location.href='Waiter.html'">Call Waiter</button>-->
-<!--
+
+<td><button type="button" id="Waiter_Button" onclick="location.href='Waiter.html'">Call Waiter</button>
     <script>
         let jQuery = $(document).ready(function() {
             $("Waiter_Button").click(function (e) {
@@ -78,9 +95,9 @@
             });
         });
     </script>
-    
 -->
 
+<br><br>
 <div class="body">
     <div class="align">
         <form>
@@ -102,40 +119,45 @@
         </form>
     </div>
 </div>
-    
+  
 <body>
-<body onload="showAlert()">
+<script type="text/javascript">
+    function change(id, item){
+        var image = document.getElementById(id);
+        image.src = item;
+    }
+</script>
 <div class="body">
     <div class="frontpage">
-        <h2>Menu:</h2>
+        <h1>Chef's Recommendations</h1>
         <table>
             <tr>
-                <td><img src="resources/burrito.jpg" alt="burrito" width="375" height="250"></td>
+                <td><img src="resources/burrito.jpg" alt="burrito" id="burrito" width="375" height="250"></td>
                 <td><h3>Burrtios</h3>
-                    burrito option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>burrito option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>burrito option: £11.99<br>Ingredient, Ingredient, Ingredient</td>
+                    <a onclick="change('burrito','resources/burrito.jpg')">burrito option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('burrito','resources/chimi.jpg')">burrito option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('burrito','resources/taco.jfif')">burrito option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
             </tr>
             <tr>
                 <td><h3>Chimichangas</h3>
-                    Chimichanga option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Chimichanga option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Chimichanga option: £11.99<br>Ingredient, Ingredient, Ingredient</td>
-                <td><img src="resources/chimi.jpg" alt="chimi" width="375" height="250"></td>
+                    <a onclick="change('chimi','resources/chimi.jpg')">Chimichanga option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('chimi','resources/burrito.jpg')">Chimichanga option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('chimi','resources/burrito.jpg')">Chimichanga option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
+                <td><img src="resources/chimi.jpg" alt="chimi" id="chimi" width="375" height="250"></td>
             </tr>
             <tr>
-                <td><img src="resources/taco.jfif" alt="taco" width="375" height="250"></td>
+                <td><img src="resources/taco.jfif" alt="taco" id="taco" width="375" height="250"></td>
                 <td><h3>Tacos</h3>
-                    Taco option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Taco option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Taco option: £11.99<br>Ingredient, Ingredient, Ingredient</td>
+                    <a onclick="change('taco','resources/taco.jfif')">Taco option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('taco','resources/burrito.jpg')">Taco option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('taco','resources/burrito.jpg')">Taco option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
             </tr>
             <tr>
                 <td><h3>Enchiladas</h3>
-                    Enchilada option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Enchilada option: £11.99<br>Ingredient, Ingredient, Ingredient
-                    <br><br>Enchilada option: £11.99<br>Ingredient, Ingredient, Ingredient</td>
-                <td><img src="resources/enchiladas.jpg" alt="enchiladas" width="375" height="250"></td>
+                    <a onclick="change('enchiladas','resources/enchiladas.jpg')">Enchilada option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('enchiladas','resources/burrito.jpg')">Enchilada option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
+                    <br><br><a onclick="change('enchiladas','resources/burrito.jpg')">Enchilada option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
+                <td><img src="resources/enchiladas.jpg" alt="enchiladas" id="enchiladas" width="375" height="250"></td>
             </tr>
         </table>
     </div>
@@ -147,4 +169,3 @@
 </body>
 
 </html>
-

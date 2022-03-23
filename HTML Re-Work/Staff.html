@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html>
-    <style>
-        table,
-        th,
-        td {
-            border: 1px solid rgb(255, 255, 255);
-        }
-    </style>
+
+    <link href="StyleSheet.css" rel="stylesheet">
+
     <head>
-        <link href="StyleSheet.css" rel="stylesheet">
         <script src="Database/Validation.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Staff</title>
     </head>
 
     
-    <a href="MainMenu.html">
-        <img src="resources/header.png" />
-    </a>
+<a href="MainMenu.html">
+    <img src="resources/header4.png" />
+</a>
 
     <div class="header"> 
         <p>Staff Access.</p>
     </div>
 
     <div class="staff">
-        <form name="addItem" onsubmit="checkData()">
+        <!-- Form for adding menu items to the database -->
+        <form name="addItem">
             <button id="getButton" type="button">Get Menu</button>
 
             <p>
@@ -41,7 +37,6 @@
             </p>
             <button type="submit" id="addFood">Add Food</button>
             <!-- <input type="submit" id="addFood" onclick="addFood"> -->
-            </div>
         </form>
 
         <p>
@@ -57,7 +52,8 @@
   
         //this makes sure the document is loaded before any code is run
         jQuery(document).ready(function () {
-  
+        
+        // Gets the full menu from the database and shows it on the webpage
         jQuery("#getButton").click(function () {
             //"http://localhost:3000/menu" is the path/document to be found    data is the data returned from the server and status is the success or fail of this attempt
             //  /menu address is call to return all items in the menu
@@ -81,7 +77,8 @@
             });
         });
         });
-  
+        
+        // Deletes the menu item that is chosen through the checkboxes shown on the menu
         jQuery("#deleteButton").click(function () {
             jQuery.get("http://localhost:3000/menu", function (data, status) {
                 for (let i = 0; i < data.length; i++){
@@ -95,6 +92,7 @@
             });
         });
 
+        // Sets the menu items as out of stock by checking if the menu items checkbox has been checked
         jQuery("#outOfStockButton").click(function () {
             jQuery.get("http://localhost:3000/menu", function (data, status) {
                 for (let i = 0; i < data.length; i++){
@@ -108,6 +106,7 @@
             });
         });
 
+        // Sets the menu items to be put as in stock, setting Available to Yes
         jQuery("#inStockButton").click(function () {
             jQuery.get("http://localhost:3000/menu", function (data, status) {
                 for (let i = 0; i < data.length; i++){
@@ -121,10 +120,14 @@
             });
         });
 
+        // Takes the data from the three input boxes for a new menu item and stores it in a variable
+        // Then it posts it to the URL which it then runs what is in the post and adds the menu item to the database
         jQuery("#addFood").click(function(){
             var addedFood = document.getElementById("foodtest").value + " ," + document.getElementById("pricetest").value + ", " + document.getElementById("Available").value ; 
             console.log(addedFood)
-            jQuery.post("http://localhost:3000/menu/added", addedFood);
+            if (checkData() != false){
+                jQuery.post("http://localhost:3000/menu/addedDishes", addedFood);
+            }
         });
 
 

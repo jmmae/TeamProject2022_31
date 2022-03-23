@@ -9,25 +9,25 @@
 
 
 <a href="MainMenu.html">
-    <img src="resources/header.png" />
+    <img src="resources/header4.png" />
 </a>
 
 <!--<div id="headerImg"> <a href="MainMenu.html"></a> </div> -->
 
 <div class="header">
-    <p>Oaxaca</p>
+    <p>Serving the UK for the past 10 years.</p>
 </div>
 
 <div class="navbar">
-    <a href="CustomerMenu.html">Make Order</a>
+    <a href="CustomerMenu.html">Menu</a>
     <a href="Waiter.html">Call Waiter</a>
-    <a href="ViewOrder.html">Review Basket</a>
+    <a href="ViewOrder.html">Basket</a>
 </div>
 
 <br>
 <div class="align">
     <div class="button">
-        <p>A waiter has been alerted!</p>
+        <h2>A waiter has been alerted!</h2>
         <button onclick="location.href='MainMenu.html'">Go Back</button>
     </div>
 </div>
@@ -50,24 +50,5 @@ $(document).ready(function () {
 });
     
     -->
-
-<p id="p1">Show Order</p>
-
-<button id="getButton" type="button">Get Orders</button>
-
-<script>
-    jQuery("#getButton").click(function () {
-        jQuery.get("http://localhost:3000/order/getDishes",
-
-            function (data, status) {
-                alert("Data: " + data + "\nStatus: " + status);
-                for (let i = 0; i < data.length; i++) {
-                    document.getElementById("p1").innerHTML = data;
-                    alert(dishRequests[i]);
-                    jQuery.post("http://localhost:3000/order/getDishes", data);
-                }
-            });
-    });
-</script>
 
 </html>
