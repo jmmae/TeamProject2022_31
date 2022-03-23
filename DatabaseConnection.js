@@ -146,7 +146,7 @@ app.post('/order/unconfirmed', urlencodedParser, function (req, res) {
     nextOrderID = result[0].OID;
     nextOrderID = nextOrderID + 1;
 
-    updateinquery("INSERT INTO orders (OrderID,TimeEntered, TableNumber, Confirmed) VALUES (" + nextOrderID + ", '12:00:00'," + req.body.table + ", 'No' );")
+    sqlQuery("INSERT INTO orders (OrderID,TimeEntered, TableNumber, Confirmed) VALUES (" + nextOrderID + ", (SELECT NOW()) ," + req.body.table + ", 'No' );")
     con.query("SELECT MAX(OrderedDishID) AS ODID FROM OrderedDish", function (err, result, fields) {
       if (err) throw err;
       OrderedDishID = result[0].ODID;
@@ -155,7 +155,7 @@ app.post('/order/unconfirmed', urlencodedParser, function (req, res) {
         OrderedDishID = OrderedDishID + 1;
         var entries = req.body.dishes[i].split("+")
         console.log(OrderedDishID);
-        updateinquery("INSERT INTO OrderedDish (OrderedDishID, OrderID, DishID, Comments, Delivered) VALUES (" + OrderedDishID + "," + nextOrderID + "," + entries[0] + ",'" + entries[1] + "',0);")
+        sqlQuery("INSERT INTO OrderedDish (OrderedDishID, OrderID, DishID, Comments, Delivered) VALUES (" + OrderedDishID + "," + nextOrderID + "," + entries[0] + ",'" + entries[1] + "',0);")
       }
     });
   });

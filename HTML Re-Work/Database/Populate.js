@@ -39,6 +39,14 @@ function createDB(con) {
 
 // Drop Table if existed previously
 function dropTable(con) {
+    con.query("DROP TABLE IF EXISTS OrderedDish", function(err, result) {
+        if (err) throw err;
+        console.log("Table not present");
+    });
+    con.query("DROP TABLE IF EXISTS orders", function(err, result) {
+        if (err) throw err;
+        console.log("Table not present");
+    });
     con.query("DROP TABLE IF EXISTS menu", function(err, result) {
         if (err) throw err;
         console.log("Table not present");
@@ -54,7 +62,7 @@ function createTable(con) {
 }
 
 function createOrdersTable(con) {
-    con.query("CREATE TABLE IF NOT EXISTS orders (OrderID int NOT NULL, TimeEntered time, TableNumber int, Confirmed VARCHAR(3), PRIMARY KEY (OrderID))",  function(err, result){
+    con.query("CREATE TABLE IF NOT EXISTS orders (OrderID int NOT NULL, TimeEntered DATETIME, TableNumber int, Confirmed VARCHAR(3), PRIMARY KEY (OrderID))",  function(err, result){
         if(err) throw err;
         console.log("Table not present ");
 
@@ -110,6 +118,7 @@ function deleteItem(con, food){
 connectToServer(con);
 createDB(con);
 dropTable(con);
+
 createTable(con);
 createOrdersTable(con);
 createOrderedDishTable(con);

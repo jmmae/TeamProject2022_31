@@ -106,7 +106,9 @@
               alert(data);
           });
 
-        
+          jQuery.get("http://localhost:3000/order/getDishes", function (data, status) {
+              alert(data.body);
+          });
       });
 
       
