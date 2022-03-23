@@ -2,7 +2,7 @@
 <html>
 
 <link href="StyleSheet.css" rel="stylesheet">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <head>
     <title>Oaxaca</title>
 </head>
@@ -16,14 +16,32 @@
 <div class="header"> 
     <p>Serving the UK for the past 10 years.</p>
 </div>
+<button id="callWaiter" type="button">Call Waiter</button>
+<meta name="viewport" content="width=device-width" />
+<script type="text/javascript">
+</script>
+<script type="text/javascript">
+    $(document).ready(function () {
 
+        $('#callWaiter').click(function(){
+
+            $.post('http://localhost:3000/order/requestWaiter/add',
+                {table: "TableNumber" },
+                function(data, status, jqXHR) {
+                    $('p').append('status: ' + status + ', data: ' + data);
+                }).done(function() { alert('A waiter is coming straight away!'); })
+                .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
+
+
+        });
+    });
+</script>
 <div class="navbar">
     <a href="CustomerMenu.html">Menu</a>
     <a href="Waiter.html">Call Waiter</a>
     <a href="ViewOrder.html">Basket</a>
 </div>
 </html>
-
 <!--
     AJAX call function to send a notification to the waiter that a table has requested him, still working on the connection itself to the server.
     so code is still not fully complete, thus added it as a comment. 
