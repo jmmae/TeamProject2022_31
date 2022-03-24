@@ -47,6 +47,16 @@
     </form>
 
     <fieldset>
+        <br>
+        <form>
+            <label for="Sort">Sort by: </label>
+            <select name="Sort" id="Sort">
+                <option value="null">Select</option>
+                <option value="alphabetical">Alphabetical</option>
+                <option value="calories">Calories</option>
+                <option value="price">Price</option>
+            </select>
+        <br>
         <p>Filter by dietary requirements:</p>
         <input type="checkbox" value="vegan" id="vegan"><label for="vegan">Vegan</label>
         <input type="checkbox" value="vegetarian" id="vegetarian"><label for="vegetarian">Vegetarian</label>
@@ -54,6 +64,7 @@
         <input type="checkbox" value="gluten-free" id="gluten-free"><label for="gluten-free">Gluten-Free</label>
         <input type="checkbox" value="nuts" id="nuts"><label for="nuts">Nuts</label>
         <input type="submit" value="Submit">
+    </form>
     </fieldset>
     <br>
     <p>List of dishes currently available on our Menu.</p>
