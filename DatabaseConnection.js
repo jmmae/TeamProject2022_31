@@ -55,8 +55,8 @@ app.post('/menu', urlencodedParser, function (req, res) {
   console.log(req.body);
   let text = JSON.stringify(req.body);
   let food = text.substring(2, text.length - 5);
-  // console.log(text.substring(2, text.length - 5));
-  sqlQuery("DELETE FROM menu where foodtest='" + food + "'");
+  console.log(text.substring(2, text.length - 5));
+  sqlQuery("DELETE FROM menu where DishName='" + food + "'");
 });
 
 //updates menu, changes 'Available' field in SQL database to 'No' for input food
@@ -67,7 +67,7 @@ app.post('/menu/outofstock', urlencodedParser, function (req, res) {
   let text = JSON.stringify(req.body);
   let food = text.substring(2, text.length - 5);
   console.log(text.substring(2, text.length - 5));
-  sqlQuery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
+  sqlQuery("UPDATE menu SET Available = 'No' WHERE DishName='" + food + "'");
 });
 
 //updates menu, changes 'Available' field in SQL database to 'Yes' for input food
@@ -77,8 +77,8 @@ app.post('/menu/instock', urlencodedParser, function (req, res) {
   console.log(req.body);
   let text = JSON.stringify(req.body);
   let food = text.substring(2, text.length - 5);
-  console.log(text.substring(2, text.length - 5));
-  sqlQuery("UPDATE menu SET Available = 'Yes' WHERE foodtest='" + food + "'");
+  console.log(food);
+  sqlQuery("UPDATE menu SET Available = 'Yes' WHERE DishName='" + food + "'");
 });
 
 //updates menu, creates new record in menu database, with name of food, price and availability
@@ -91,7 +91,9 @@ app.post('/menu/addedDishes', urlencodedParser, function (req, res) {
   let item = text.substring(2, text.length - 5);
   food = item.split(",");
   console.log(food[0]);
-  sqlQuery("INSERT INTO menu (foodtest, pricetest, Available) VALUES ('" + food[0] + "','" + food[1] + "','" + food[2] + "');");
+  sqlQuery("INSERT INTO menu (DishID, DishName , GroupTags , Description , Calories , DietaryReq , Allergies, Price, Available) VALUES ('"
+   + food[0] + "','" + food[1] + "','" + food[2] + "','" + food[3] + "','" + food[4] + "','" + food[5] + "','" 
+   + food[6] + "','" + food[7] + "','" + food[8] + "')");
 });
 
 //gets full menu from database
@@ -170,7 +172,7 @@ app.post('/order/unconfirmed', urlencodedParser, function (req, res) {
 //   let text = JSON.stringify(req.body);
 //   let food = text.substring(2, text.length - 5);
 //   console.log(text.substring(2, text.length - 5));
-//   // sqlQuery("UPDATE menu SET Available = 'No' WHERE foodtest='" + food + "'");
+//   // sqlQuery("UPDATE menu SET Available = 'No' WHERE DishName='" + food + "'");
 // })
 
 //sends order to waiter
@@ -226,7 +228,6 @@ function selectquery(sql, res, columns) {
   con.query(sql, function (err, result, fields) {
     if (err) throw err;
 
-    console.log(result);
     res.send(result)
   });
 

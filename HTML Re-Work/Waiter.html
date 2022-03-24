@@ -51,4 +51,49 @@ $(document).ready(function () {
     
     -->
 
+    <script>
+        //https://www.w3schools.com/jquery/jquery_get_started.asp
+
+        //this makes sure the document is loaded before any code is run
+        jQuery(document).ready(function () {
+
+            //window.onload = function(){ //needs to be uncommented, closed and tested.
+
+                //"http://localhost:3000/menu" is the path/document to be found    data is the data returned from the server and status is the success or fail of this attempt
+                //  /menu address is call to return all items in the menu
+                jQuery.get("http://localhost:3000/order/getDishes", function (data, status) {
+                    //data is a JSON object array   https://www.w3schools.com/js/js_json_objects.asp
+                    //to access the info  data[i].name-of-field-in-database
+                    //eg below gereates an alert with the info about the first item in the menu
+                    var table = "<table>";
+                    table += "<th>Dish ID</th>"
+                    table += "<th>Food</th>";
+                    table += "<th>Description</th>";
+                    table += "<th>Calories</th>";
+                    table += "<th>Allergies</th>";
+                    table += "<th>Price</th>";
+                    table += "<th>Available</th>";
+                    table += "<th>Select</th>";
+                    document.getElementById("menu").innerHTML = "";
+                    for (let i = 0; i < data.length; i++) { 
+                        if (data[i].Available != " No" && data[i].Available != "No") {
+                            table += ("<tr><td>" + data[i].DishID + 
+                                "</td><td>" + data[i].DishName +
+                                "</td><td>" + data[i].Description + 
+                                "</td><td>" + data[i].Calories +
+                                "</td><td>" + data[i].Allergies +
+                                "</td><td>£" + data[i].Price +
+                                "</td><td>" + data[i].Available + 
+                                "</td> <td><input type='checkbox' name='favorite3' value=' " + data[i].DishName + 
+                                "' /> </td></tr>");
+                        }
+                    }
+                    table += "<table>";
+                    document.getElementById("Ordered").innerHTML = table;
+
+                });
+        });
+    </script>
+<p id="Ordered"></p>
+
 </html>
