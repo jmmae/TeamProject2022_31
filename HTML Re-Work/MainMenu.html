@@ -16,6 +16,13 @@
 <div class="header"> 
     <p>Serving the UK for the past 10 years.</p>
 </div>
+
+<div class="navbar">
+    <a id="callWaiter" href="CustomerMenu.html">Menu</a>
+    <a href="Waiter.html">Call Waiter</a>
+    <a href="ViewOrder.html">Basket</a>
+</div>
+
 <button id="callWaiter" type="button">Call Waiter</button>
 <meta name="viewport" content="width=device-width" />
 <script type="text/javascript">
@@ -29,16 +36,10 @@
                     $('p').append('status: ' + status + ', data: ' + data);
                 }).done(function() { alert('A waiter is coming straight away!'); })
                 .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
-
-
         });
     });
 </script>
-<div class="navbar">
-    <a href="CustomerMenu.html">Menu</a>
-    <a href="Waiter.html">Call Waiter</a>
-    <a href="ViewOrder.html">Basket</a>
-</div>
+
 </html>
 <!--
     AJAX call function to send a notification to the waiter that a table has requested him, still working on the connection itself to the server.
