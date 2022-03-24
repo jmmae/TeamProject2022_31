@@ -52,11 +52,8 @@ app.get('/CustomerMenu', function (req, res) {
 //res is what is returned
 //urlencodedParser is used to be able to read the incoming data when encoded in url format
 app.post('/menu', urlencodedParser, function (req, res) {
-  console.log(req.body);
-  let text = JSON.stringify(req.body);
-  let food = text.substring(2, text.length - 5);
-  console.log(text.substring(2, text.length - 5));
-  sqlQuery("DELETE FROM menu where DishName='" + food + "'");
+  console.log(req.body.menuFood);
+  sqlQuery("DELETE FROM menu where DishID='" + req.body.menuFood + "'");
 });
 
 //updates menu, changes 'Available' field in SQL database to 'No' for input food
@@ -64,10 +61,7 @@ app.post('/menu', urlencodedParser, function (req, res) {
 //returns the food being marked unavailable, as a string to the console
 app.post('/menu/outofstock', urlencodedParser, function (req, res) {
   console.log(req.body);
-  let text = JSON.stringify(req.body);
-  let food = text.substring(2, text.length - 5);
-  console.log(text.substring(2, text.length - 5));
-  sqlQuery("UPDATE menu SET Available = 'No' WHERE DishName='" + food + "'");
+  sqlQuery("UPDATE menu SET Available = 'No' WHERE DishID='" + req.body.menuFood + "'");
 });
 
 //updates menu, changes 'Available' field in SQL database to 'Yes' for input food
@@ -78,7 +72,7 @@ app.post('/menu/instock', urlencodedParser, function (req, res) {
   let text = JSON.stringify(req.body);
   let food = text.substring(2, text.length - 5);
   console.log(food);
-  sqlQuery("UPDATE menu SET Available = 'Yes' WHERE DishName='" + food + "'");
+  sqlQuery("UPDATE menu SET Available = 'Yes' WHERE DishID='" + req.body.menuFood + "'");
 });
 
 //updates menu, creates new record in menu database, with name of food, price and availability

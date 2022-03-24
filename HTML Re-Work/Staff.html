@@ -17,7 +17,6 @@
     <div class="header"> 
         <p>Staff Access.</p>
     </div>
-    
     <div class="popup">
         <div class="payment">
             <form name="pay" onsubmit="checkData()">
@@ -41,28 +40,38 @@
         <button id="AddFood" type="button">Add Menu item</button>
         
         <p>
+            <button id="getButton" type="button">Get menu</button> <br />
             <button id="deleteButton" type="button">Delete Set</button> <br />
             <button id="outOfStockButton" type="button">Sets Not Available</button> <br />
             <button id="inStockButton" type="button">Sets Available</button> <br />
         </p>
     </div>
-    
+
+
+
+<div class="align">
+    <p id="menu"></p>
+        <div class="button">
+            <button onclick="location.href='Waiter.html'">Waiter Page</button>
+        </div>
+        <div class="button">
+            <button onclick="location.href='MainMenu.html'">Go Back</button>
+        </div>
+    </div>
     <script type="text/javascript">
-        {var menuFood}
-        //https://www.w3schools.com/jquery/jquery_get_started.asp
-        
+        var menuFood
         //this makes sure the document is loaded before any code is run
         jQuery(document).ready(function () {
             
             // Gets the full menu from the database and shows it on the webpage
             //"http://localhost:3000/menu" is the path/document to be found    data is the data returned from the server and status is the success or fail of this attempt
             //  /menu address is call to return all items in the menu
+            // jQuery("#getButton").click(function () {
             jQuery.get("http://localhost:3000/menu", function (data, status) {
-                menuFood = data;
                 //data is a JSON object array   https://www.w3schools.com/js/js_json_objects.asp
                 //to access the info  data[i].name-of-field-in-database
                 //eg below gereates an alert with the info about the first item in the menu
-                var table = "<table>";
+                var table = "<table id = 'foodMenu'>";
                     table += "<th>Dish ID</th>"
                     table += "<th>Food</th>";
                     table += "<th>Description</th>";
@@ -73,51 +82,51 @@
                     table += "<th>Select</th>";
                     document.getElementById("menu").innerHTML = "";
                     for (let i = 0; i < data.length; i++) { 
-                        if (data[i].Available != " No" && data[i].Available != "No") {
                             table += ("<tr><td>" + data[i].DishID + 
-                                "</td><td>" + data[i].DishName +
-                                    "</td><td>" + data[i].Description + 
-                                        "</td><td>" + data[i].Calories +
-                                            "</td><td>" + data[i].Allergies +
-                                                "</td><td>£" + data[i].Price +
-                                                    "</td><td>" + data[i].Available + 
-                                                        "</td> <td><input type='checkbox' name='favorite3' value='" + data[i].DishName + 
-                                                            "' /> </td></tr>");
-                                                        }
-                                                    }
-                                                    table += "<table>";
-                                                        document.getElementById("menu").innerHTML = table;
-                                                        
-                                                    });
-                                                });
-                                                
-                                                // Deletes the menu item that is chosen through the checkboxes shown on the menu
-                                                jQuery("#deleteButton").click(function () {
-            jQuery.get("http://localhost:3000/menu", function (data, status) {
-                for (let i = 0; i < data.length; i++){
-                    var food = data[i].DishName
-                    // food = food.replace('# ', '#')
-                    if (document.getElementById(food).checked){
-                        menuFood = data[i].DishName;
-                        
-                        document.getElementById(data[i].DishName).remove();
+                            "</td><td>" + data[i].DishName +
+                            "</td><td>" + data[i].Description + 
+                            "</td><td>" + data[i].Calories +
+                            "</td><td>" + data[i].Allergies +
+                            "</td><td>£" + data[i].Price +
+                            "</td><td>" + data[i].Available + 
+                            "</td> <td><input type='checkbox' name='favorite3' id='" + data[i].DishID + 
+                            "' /> </td></tr>");
                     }
-                }
-                jQuery.post("http://localhost:3000/menu", menuFood);
-            });
+                    table += "<table>";
+                    document.getElementById("menu").innerHTML = table;
+                });
+            // });
         });
         
+        // Deletes the menu item that is chosen through the checkboxes shown on the menu
+        jQuery("#deleteButton").click(function () {
+            jQuery.get("http://localhost:3000/menu", function (data, status) {
+                if (document.readyState =="complete"){
+                for (let i = 0; i < data.length; i++){
+                    if (document.readyState =="complete" || document.readyState =="interactive"){
+                        if (document.getElementById(data[i].DishID).checked){
+                            menuFood = data[i].DishID;
+                            document.getElementById('foodMenu').deleteRow(i+1);
+                            jQuery.post("http://localhost:3000/menu", {menuFood});
+                        }
+                    }
+                }
+                }
+                });
+        });
+            
         // Sets the menu items as out of stock by checking if the menu items checkbox has been checked
         jQuery("#outOfStockButton").click(function () {
             jQuery.get("http://localhost:3000/menu", function (data, status) {
                 for (let i = 0; i < data.length; i++){
-                    if (document.getElementById(data[i].DishName).checked){
-                        menuFood = data[i].DishName;
-                        
-                        document.getElementById(data[i].DishName).remove();
+                    if (document.readyState =="complete" || document.readyState =="interactive"){
+                        if (document.getElementById(data[i].DishID).checked){
+                            menuFood = data[i].DishID;
+                            document.getElementById('foodMenu').deleteRow(i+1);
+                            jQuery.post("http://localhost:3000/menu/outofstock", {menuFood});
+                        }
                     }
                 }
-                jQuery.post("http://localhost:3000/menu/outofstock", menuFood);
             });
         });
         
@@ -125,13 +134,14 @@
         jQuery("#inStockButton").click(function () {
             jQuery.get("http://localhost:3000/menu", function (data, status) {
                 for (let i = 0; i < data.length; i++){
-                    if (document.getElementById(data[i].DishName).checked){
-                        menuFood = data[i].DishName;
-                        
-                        document.getElementById(data[i].DishName).remove();
+                    if (document.readyState =="complete" || document.readyState =="interactive"){
+                        if (document.getElementById(data[i].DishID).checked){
+                            menuFood = data[i].DishID;
+                            document.getElementById('foodMenu').deleteRow(i+1);
+                            jQuery.post("http://localhost:3000/menu/instock", {menuFood});
+                        }
                     }
                 }
-                jQuery.post("http://localhost:3000/menu/instock", menuFood);
             });
         });
         
@@ -148,7 +158,7 @@
             document.getElementById("Price").value + ", " + 
             document.getElementById("Available").value;
             console.log(addedFood)
-            jQuery.post("http://localhost:3000/menu/addedDishes", addedFood);
+            jQuery.post("http://localhost:3000/menu/addedDishes", {addedFood});
         });
         
     document.querySelector('.close').addEventListener('click', function(){
@@ -158,6 +168,7 @@
     document.getElementById('AddFood').addEventListener('click', function(){
         document.querySelector('.popup').style.display = 'flex';
     });
+    
 
     function checkInfo() {
             if (document.getElementById('shortInfo').value == "")  {
@@ -165,16 +176,4 @@
             }
         }
     </script>
-
-
-
-<div class="align">
-    <p id="menu"></p>
-        <div class="button">
-            <button onclick="location.href='Waiter.html'">Waiter Page</button>
-        </div>
-        <div class="button">
-            <button onclick="location.href='MainMenu.html'">Go Back</button>
-        </div>
-    </div>
 </html>
