@@ -18,6 +18,13 @@ td {
   border: 1px groove rgb(0, 0, 0);
 }
 
+table.frontpage,
+th,
+td {
+  border: none;
+  width:50%;
+}
+
 img {
   width: 100%;
   height: auto;
@@ -62,11 +69,6 @@ img {
   text-align: center;
   border-collapse: collapse;
   background-color: #ffffff;
-}
-
-table {
-  margin: 0 auto;
-  color: #000000;
 }
 
 .popup{
