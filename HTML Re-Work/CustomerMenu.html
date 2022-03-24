@@ -43,7 +43,7 @@
             <option value="9">Table 9</option>
             <option value="10">Table 10</option>
         </select>
-        <input type="submit" value="Sumbit">
+        <input type="submit" value="Submit">
     </form>
 
     <fieldset>
@@ -53,7 +53,7 @@
         <input type="checkbox" value="pescatarian" id="pescatarian"><label for="pescatarian">Pescatarian</label>
         <input type="checkbox" value="gluten-free" id="gluten-free"><label for="gluten-free">Gluten-Free</label>
         <input type="checkbox" value="nuts" id="nuts"><label for="nuts">Nuts</label>
-        <input type="submit" value="Sumbit">
+        <input type="submit" value="Submit">
     </fieldset>
     <br>
     <p>List of dishes currently available on our Menu.</p>
@@ -138,7 +138,6 @@
                 $.post('http://localhost:3000/order/requestWaiter/add',
                     {table: "TableNumber" },
                     function(data, status, jqXHR) {
-                        $('p').append('status: ' + status + ', data: ' + data);
                     }).done(function() { alert('A waiter is coming straight away!'); })
                     .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
 
