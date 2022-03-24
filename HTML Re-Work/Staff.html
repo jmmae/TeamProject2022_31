@@ -35,6 +35,7 @@
             </form>
         </div>
     </div>
+    <br>
     <div class="staff">
         <!-- Form for adding menu items to the database -->
         <button id="AddFood" type="button">Add Menu item</button>
@@ -150,9 +151,6 @@
             jQuery.post("http://localhost:3000/menu/addedDishes", addedFood);
         });
         
-        
-        </script>
-<script type = "text/javascript">
     document.querySelector('.close').addEventListener('click', function(){
         document.querySelector('.popup').style.display = 'none';
     });
