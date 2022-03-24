@@ -18,7 +18,7 @@
 </div>
 
 <div class="navbar">
-    <a href="CustomerMenu.html">Menu</a>
+    <a id="callWaiter" href="CustomerMenu.html">Menu</a>
     <a href="Waiter.html">Call Waiter</a>
     <a href="ViewOrder.html">Basket</a>
 </div>
@@ -36,8 +36,6 @@
                     $('p').append('status: ' + status + ', data: ' + data);
                 }).done(function() { alert('A waiter is coming straight away!'); })
                 .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
-
-
         });
     });
 </script>
