@@ -26,18 +26,17 @@
 <br>
 <div class="align">
     <div class="button">
-        <h2>A waiter has been alerted!</h2>
         <button onclick="location.href='Staff.html'">Staff Login</button>
     </div>
 </div>
-    <!-- 
+<script>
 $(document).ready(function () {
 
     function load() {
         $.ajax({ //create an ajax request to load_page.php
             type: "GET",
             url: "http://localhost:3000/order/waiter/waiterRequests",
-            dataType: "html", //expect html to be returned                
+            dataType: "table",
             success: function (response) {
                 $("#responsecontainer").html(response);
                 setTimeout(load, 1000)
@@ -45,10 +44,8 @@ $(document).ready(function () {
         });
     }
 
-    load(); 
-});
-    
-    -->
+    load();
+</script>
 
     <script>
         //https://www.w3schools.com/jquery/jquery_get_started.asp
