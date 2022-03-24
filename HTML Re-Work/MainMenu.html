@@ -39,82 +39,10 @@
     });
 </script>
 
-</html>
-<!--
-    AJAX call function to send a notification to the waiter that a table has requested him, still working on the connection itself to the server.
-    so code is still not fully complete, thus added it as a comment. 
-    
-    <meta name="viewport" content="width=device-width" />
-	<script type="text/javascript" 
-            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
-    </script>
-	<script type="text/javascript">
-        $(document).ready(function () {
-			
-		 $('#ajaxBtn').click(function(){
-			
-			$.post('/jquery/submitData',   // url
-			   { myData: 'This is my data.' }, // data to be submit
-			   function(data, status, jqXHR) {// success callback
-						$('p').append('status: ' + status + ', data: ' + data);
-				}).done(function() { alert('Request done!'); })
-				  .fail(function(jqxhr, settings, ex) { alert('failed, ' + ex); });
-
-
-			});
-    });
-    </script>
-
-	<h1> jQuery post() method demo 
-	</h1>
-	<input type="button" id="ajaxBtn" value="Send POST request" />
-	<p>
-	</p>
-
-<td><button type="button" id="Waiter_Button" onclick="location.href='Waiter.html'">Call Waiter</button>
-    <script>
-        let jQuery = $(document).ready(function() {
-            $("Waiter_Button").click(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "waiter.html",
-                    data: {
-                        id: $(this).val(), // < note use of 'this' here
-                        access_token: $("#access_token").val()
-                    },
-                    success: function (result) {
-                        alert('Waiter has been notified');
-                    },
-                    error: function (result) {
-                        alert('error, please try again');
-                    }
-                });
-            });
-        });
-    </script>
--->
-
 <br><br>
 <div class="body">
     <div class="align">
-        <form>
-            <label for="TableNumber">Select Table Number: </label>
-            <select name="TableNumber" id="TableNumber">
-                <option value="null">Select</option>
-                <option value="1">Table 1</option>
-                <option value="2">Table 2</option>
-                <option value="3">Table 3</option>
-                <option value="4">Table 4</option>
-                <option value="5">Table 5</option>
-                <option value="6">Table 6</option>
-                <option value="7">Table 7</option>
-                <option value="8">Table 8</option>
-                <option value="9">Table 9</option>
-                <option value="10">Table 10</option>
-            </select>
-            <input type="submit" value="Sumbit">
-        </form>
+        
     </div>
 </div>
   
