@@ -29,7 +29,7 @@
                 <input type="text" id="Allergens" placeholder="Allergens:">
                 <input type="text" id="Price" placeholder="Price:">
                 <input type="text" id="Available" placeholder="Available:">
-                <input type="submit" value="Add Food" id = "addFood" onclick="checkData()">
+                <button id="addFood" type="button">Add Food</button>
                 <div class="close" >+</div>
             </form>
         </div>
@@ -148,17 +148,19 @@
         // Takes the data from the three input boxes for a new menu item and stores it in a variable
         // Then it posts it to the URL which it then runs what is in the post and adds the menu item to the database
         jQuery("#addFood").click(function(){
-            var addedFood = document.getElementById("DishID").value + " ," +
-            document.getElementById("DishName").value + ", " + 
-            document.getElementById("GroupTags").value + ", " + 
-            document.getElementById("Description").value + ", " + 
-            document.getElementById("Calories").value + ", " + 
-            document.getElementById("DietryRequirement").value + ", " + 
-            document.getElementById("Allergies").value + ", " + 
-            document.getElementById("Price").value + ", " + 
-            document.getElementById("Available").value;
-            console.log(addedFood)
-            jQuery.post("http://localhost:3000/menu/addedDishes", {addedFood});
+            if (document.readyState =="complete" || document.readyState =="interactive"){
+                var addedFood
+                addedFood = document.getElementById("DishID").value + "," +
+                document.getElementById("DishName").value + "," + 
+                document.getElementById("GroupTags").value + "," + 
+                document.getElementById("Description").value + "," + 
+                document.getElementById("Calories").value + "," + 
+                document.getElementById("DietaryRequirements").value + "," + 
+                document.getElementById("Allergens").value + "," + 
+                document.getElementById("Price").value + "," + 
+                document.getElementById("Available").value;
+                jQuery.post("http://localhost:3000/menu/addedDishes", {addedFood});
+            }
         });
         
     document.querySelector('.close').addEventListener('click', function(){

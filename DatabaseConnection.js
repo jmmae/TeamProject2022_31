@@ -79,12 +79,10 @@ app.post('/menu/instock', urlencodedParser, function (req, res) {
 //takes 'req.body' as a parameter, containing the food, price and availability
 //returns the food being added to the database, as a string to the console
 app.post('/menu/addedDishes', urlencodedParser, function (req, res) {
-  console.log(req.body);
-  res.send(req.body);
   let text = JSON.stringify(req.body);
-  let item = text.substring(2, text.length - 5);
+  let item = text.substring(14, text.length - 3);
   food = item.split(",");
-  console.log(food[0]);
+  console.log(food[8]);
   sqlQuery("INSERT INTO menu (DishID, DishName , GroupTags , Description , Calories , DietaryReq , Allergies, Price, Available) VALUES ('"
    + food[0] + "','" + food[1] + "','" + food[2] + "','" + food[3] + "','" + food[4] + "','" + food[5] + "','" 
    + food[6] + "','" + food[7] + "','" + food[8] + "')");
