@@ -180,6 +180,17 @@ app.get('/order/getDishes', function (req, res) {
   selectquery("SELECT * FROM OrderedDish INNER JOIN orders ON OrderedDish.OrderID = orders.OrderID INNER JOIN menu ON OrderedDish.DishID = menu.dishID;", res)
 })
 
+app.post('/order/getDishes/table', urlencodedParser, function (req, res) {
+
+  // console.log("Waiter add request recieved");
+  // console.log(dishRequests);
+  // res.send(dishRequests);
+  // add a selectquery which returns the orders table and the associated dishes which have not been confirmed delivered.
+  //selectquery("SELECT * FROM OrderedDish INNER JOIN orders ON OrderedDish.OrderID = orders.OrderID INNER JOIN menu ON OrderedDish.DishID = menu.dishID;", res)
+  console.log(req.body);
+  selectquery("SELECT * FROM OrderedDish INNER JOIN orders ON OrderedDish.OrderID = orders.OrderID INNER JOIN menu ON OrderedDish.DishID = menu.dishID WHERE TableNumber = "+req.body.table+ " GROUP BY orders.OrderID LIMIT 1;", res)
+})
+
 //tells kitchen which dishes need to be prepared
 app.get('/kitchen/getDishes', function (req, res) {
   selectquery("SELECT DishID, OrderID FROM orderDish WHERE Delivered == 0;", res)

@@ -88,6 +88,8 @@
 <button id="testButton" type="button">test</button>
 <button id="ordersetButton" type="button">order set test</button>
 <button id="ordergetButton" type="button">order get test</button>
+<button id="getorderbytable" type="button">getorderbytable</button>
+
 <script>
   //https://www.w3schools.com/jquery/jquery_get_started.asp
 
@@ -102,11 +104,11 @@
           var dish = new Array();
           dish.push("2+NoComment");
           dish.push("2+NoComment");
-          jQuery.post("http://localhost:3000/order/unconfirmed", {table: 11, dishes: dish}, function (data, status) {
+          jQuery.post("http://localhost:3000/order/unconfirmed", {table: 1, dishes: dish}, function (data, status) {
               alert(data);
           });
 
-          jQuery.get("http://localhost:3000/order/getDishes", function (data, status) {
+          jQuery.get("http://localhost:3000/order/getDishes",function (data, status) {
               alert(data.body);
           });
       });
@@ -127,6 +129,26 @@
 
           jQuery.get("http://localhost:3000/order/getDishes", function (data, status) {
               alert(data.body);
+          });
+      });
+
+      
+  });
+</script>
+
+<script>
+  //https://www.w3schools.com/jquery/jquery_get_started.asp
+
+  //this makes sure the document is loaded before any code is run
+  jQuery(document).ready(function () {
+
+      //window.onload = function(){ //needs to be uncommented, closed and tested.
+
+      jQuery("#getorderbytable").click(function () {
+
+          jQuery.post("http://localhost:3000/order/getDishes/table",{table: 1}, function (data, status) {
+              alert(data.body);
+              console.log(data);
           });
       });
 
