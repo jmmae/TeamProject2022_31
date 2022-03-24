@@ -9,37 +9,17 @@
     <a href="MainMenu.html">
         <img src="resources/header4.png" />
     </a>
-    
-    <!--<div id="headerImg"> <a href="MainMenu.html"></a> </div> -->
 
     <div class="header"> 
         <p>Serving the UK for the past 10 years.</p>
     </div>
 
+    <div class="navbar">
+        <a href="CustomerMenu.html">Menu</a>
+        <a href="ViewOrder.html">Basket</a>
+    </div>
+
 </script>
-<div class="navbar">
-    <a href="CustomerMenu.html">Menu</a>
-    <a href="ViewOrder.html">Basket</a>
-</div>
-
-    <button id="callWaiter" type="button">Call Waiter</button>
-    <meta name="viewport" content="width=device-width" />
-    <script type="text/javascript">
-        $(document).ready(function () {
-
-            $('#callWaiter').click(function(){
-
-                $.post('http://localhost:3000/order/requestWaiter/add',
-                    {table: "TableNumber" },
-                    function(data, status, jqXHR) {
-                        $('p').append('status: ' + status + ', data: ' + data);
-                    }).done(function() { alert('A waiter is coming straight away!'); })
-                    .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
-
-
-            });
-        });
-    </script>
 
     <br>
     <div class="align">
@@ -64,6 +44,25 @@
     </div>
 
     <div class="align">
+        <button id="callWaiter" type="button">Call Waiter</button>
+        <meta name="viewport" content="width=device-width" />
+        <script type="text/javascript">
+            $(document).ready(function () {
+    
+                $('#callWaiter').click(function(){
+    
+                    $.post('http://localhost:3000/order/requestWaiter/add',
+                        {table: "TableNumber" },
+                        function(data, status, jqXHR) {
+                            $('p').append('status: ' + status + ', data: ' + data);
+                        }).done(function() { alert('A waiter is coming straight away!'); })
+                        .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
+    
+    
+                });
+            });
+        </script>
+        <br>
         <button id="payment" type="button" >Pay</button> 
     </div>
 
