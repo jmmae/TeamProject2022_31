@@ -27,7 +27,19 @@
     <br>
 <div class="align">
     <h1>Menu</h1>
-
+    <form>
+        <label for="Allergens">Filter by allergens: </label>
+        <select name="Allergens" id="Allergens">
+            <option value="null">Select</option>
+            <option value="vegan">Vegan</option>
+            <option value="vegetarian">Vegetarian</option>
+            <option value="pescatarian">Pescatarian</option>
+            <option value="gluten-free">Gluten-Free</option>
+            <option value="nuts">Nuts</option>
+        </select>
+        <input type="submit" value="Sumbit">
+    </form>
+    <br>
     <p>List of dishes currently available on our Menu.</p>
 
     <button id="callWaiter" type="button">Call Waiter</button>
