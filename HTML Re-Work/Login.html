@@ -1,31 +1,63 @@
 <!DOCTYPE html>
 <html>
+
+<link href="StyleSheet.css" rel="stylesheet">
+
 <head>
-  
-  <link href="StyleSheet.css" rel="stylesheet">
-  <title>Login</title>
+    <title>Login</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
-  <div id="headerImg"> </div>
-
-  <div class="header"> 
-    <p>Serving the UK for the past 10 years.</p>
-  </div>
-
 <body>
-  <h2 id="loginHeading"><b>Login</b></h2>
-  <div class="login">
-    <form name="login" onsubmit="checkData()">
-    Username:
-    <input type="text" id="username" name="username" placeholder="Username"><br><br>
-    Password:
-    <input type="password" id="password" name="password" placeholder="Password"><br><br>
-    <button type="submit" name="submit" id="submit" onclick="location.href='Staff.html'">Login</button>
-  </div>
-</form>
-<button onclick="location.href='Staff.html'">Staff page</button>
-  <br>
-  <button onclick="location.href='MainMenu.html'">Go Back</button>
+    <a href="MainMenu.html">
+        <img src="resources/header4.png" />
+    </a>
+
+    <div class="header">
+        <p>Serving the UK for the past 10 years.</p>
+    </div>
 
 </body>
+
+<div class="align">
+  <br><br>
+  <fieldset>
+    <h2 id="loginHeading"><b>Staff Login</b></h2>
+    <div class="login">
+      <form name="login"  action="Staff.html">
+      Username:
+      <input type="text" id="username" name="username" placeholder="Username" required><br>
+      Password:
+      <input type="password" id="password" name="password" placeholder="Password" required><br>
+      <button type="submit" name="submit" id="Submit" onclick="checkDetails()">Login</button>
+    </fieldset>
+    </form>
+
+    <br>
+    <button onclick="location.href='MainMenu.html'">Go Back</button>
+  </div>
+
+  <script>
+    function checkDetails() {
+      if ((document.getElementById('username').value == "waiter") && (document.getElementById('password').value == "Staff123")) {
+        document.getElementByName("submit").action="Staff.html";
+        document.location.href = "Staff.html";
+        window.location.href("Staff.html") /*Different ways to display the Staff.html page (Not working)*/
+      } else {
+        alert("Invalid. Please try again.");
+        location.href = "Login.html";
+      }
+
+      /*
+      if ((document.getElementById('username').value != "waiter") && (document.getElementById('password').value != "Staff123")) {
+        do {
+        alert("Incorrect details. Please try again.");
+        break;
+      } while (document.getElementById('username').value == "waiter") && (document.getElementById('password').value == "Staff123")
+      }*/
+    }
+
+  </script>
+
+</div>
 </html>

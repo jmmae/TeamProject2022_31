@@ -2,7 +2,7 @@
 <html>
 
 <link href="StyleSheet.css" rel="stylesheet">
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <head>
     <title>Oaxaca</title>
 </head>
@@ -18,89 +18,27 @@
 </div>
 
 <div class="navbar">
+    <a href="MainMenu.html">Home</a>
     <a href="CustomerMenu.html">Menu</a>
-    <a href="Waiter.html">Call Waiter</a>
     <a href="ViewOrder.html">Basket</a>
 </div>
-</html>
 
-<!--
-    AJAX call function to send a notification to the waiter that a table has requested him, still working on the connection itself to the server.
-    so code is still not fully complete, thus added it as a comment. 
-    
-    <meta name="viewport" content="width=device-width" />
-	<script type="text/javascript" 
-            src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js">
-    </script>
-	<script type="text/javascript">
-        $(document).ready(function () {
-			
-		 $('#ajaxBtn').click(function(){
-			
-			$.post('/jquery/submitData',   // url
-			   { myData: 'This is my data.' }, // data to be submit
-			   function(data, status, jqXHR) {// success callback
-						$('p').append('status: ' + status + ', data: ' + data);
-				}).done(function() { alert('Request done!'); })
-				  .fail(function(jqxhr, settings, ex) { alert('failed, ' + ex); });
+<!--<button id="callWaiter" type="button">Call Waiter</button>-->
+<meta name="viewport" content="width=device-width" />
+<script type="text/javascript">
+    $(document).ready(function () {
 
+        $('#callWaiter').click(function(){
 
-			});
-    });
-    </script>
-
-	<h1> jQuery post() method demo 
-	</h1>
-	<input type="button" id="ajaxBtn" value="Send POST request" />
-	<p>
-	</p>
-
-<td><button type="button" id="Waiter_Button" onclick="location.href='Waiter.html'">Call Waiter</button>
-    <script>
-        let jQuery = $(document).ready(function() {
-            $("Waiter_Button").click(function (e) {
-                e.preventDefault();
-                $.ajax({
-                    type: "POST",
-                    url: "waiter.html",
-                    data: {
-                        id: $(this).val(), // < note use of 'this' here
-                        access_token: $("#access_token").val()
-                    },
-                    success: function (result) {
-                        alert('Waiter has been notified');
-                    },
-                    error: function (result) {
-                        alert('error, please try again');
-                    }
-                });
-            });
+            $.post('http://localhost:3000/order/requestWaiter/add',
+                {table: "TableNumber" },
+                function(data, status, jqXHR) {
+                    $('p').append('status: ' + status + ', data: ' + data);
+                }).done(function() { alert('A waiter is coming straight away!'); })
+                .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
         });
-    </script>
--->
-
-<br><br>
-<div class="body">
-    <div class="align">
-        <form>
-            <label for="TableNumber">Select Table Number: </label>
-            <select name="TableNumber" id="TableNumber">
-                <option value="null">Select</option>
-                <option value="1">Table 1</option>
-                <option value="2">Table 2</option>
-                <option value="3">Table 3</option>
-                <option value="4">Table 4</option>
-                <option value="5">Table 5</option>
-                <option value="6">Table 6</option>
-                <option value="7">Table 7</option>
-                <option value="8">Table 8</option>
-                <option value="9">Table 9</option>
-                <option value="10">Table 10</option>
-            </select>
-            <input type="submit" value="Sumbit">
-        </form>
-    </div>
-</div>
+    });
+</script>
   
 <body>
 <script type="text/javascript">
@@ -111,34 +49,37 @@
 </script>
 <div class="body">
     <div class="frontpage">
+        <br><br>
         <h1>Chef's Recommendations</h1>
+        Click on an item for a little look into our finest cuisine!
+        <br><br>
         <table>
             <tr>
                 <td><img src="resources/burrito.jpg" alt="burrito" id="burrito" width="375" height="250"></td>
                 <td><h3>Burrtios</h3>
-                    <a onclick="change('burrito','resources/burrito.jpg')">burrito option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
-                    <br><br><a onclick="change('burrito','resources/chimi.jpg')">burrito option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
-                    <br><br><a onclick="change('burrito','resources/taco.jfif')">burrito option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
+                    <a onclick="change('burrito','resources/burrito.jpg')"><b>Chicken Burrito</b>: £8.99<br></a>
+                    <br><br><a onclick="change('burrito','resources/b2.png')"><b>Vegan Burrito</b>: £8.99<br>(VG)</a>
+                    <br><br><a onclick="change('burrito','resources/b3.png')"><b>Breakfast Burrito</b>: £9.45<br></a></td>
             </tr>
             <tr>
                 <td><h3>Chimichangas</h3>
-                    <a onclick="change('chimi','resources/chimi.jpg')">Chimichanga option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
-                    <br><br><a onclick="change('chimi','resources/burrito.jpg')">Chimichanga option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
-                    <br><br><a onclick="change('chimi','resources/burrito.jpg')">Chimichanga option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
+                    <a onclick="change('chimi','resources/chimi.jpg')"><b>Beef Chimichanga</b>: £11.99<br></a>
+                    <br><br><a onclick="change('chimi','resources/c2.jpg')"><b>Vegetarian Chimichanga</b>: £9.45<br>(V)</a>
+                    <br><br><a onclick="change('chimi','resources/c3.jpg')"><b>Chicken Chimichanga</b>: £10.99<br></a></td>
                 <td><img src="resources/chimi.jpg" alt="chimi" id="chimi" width="375" height="250"></td>
             </tr>
             <tr>
-                <td><img src="resources/taco.jfif" alt="taco" id="taco" width="375" height="250"></td>
+                <td><img src="resources/tacos.jpg" alt="taco" id="taco" width="375" height="250"></td>
                 <td><h3>Tacos</h3>
-                    <a onclick="change('taco','resources/taco.jfif')">Taco option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
-                    <br><br><a onclick="change('taco','resources/burrito.jpg')">Taco option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
-                    <br><br><a onclick="change('taco','resources/burrito.jpg')">Taco option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
+                    <a onclick="change('taco','resources/tacos.jpg')"><b>Beef Taco</b>: £7.99<br>(GF)</a>
+                    <br><br><a onclick="change('taco','resources/t2.jpg')"><b>Fish Taco</b>: £9.45<br>(GF, P)</a>
+                    <br><br><a onclick="change('taco','resources/t3.png')"><b>Vegan Taco</b>: £8.99<br>(GF, VG)</a></td>
             </tr>
             <tr>
                 <td><h3>Enchiladas</h3>
-                    <a onclick="change('enchiladas','resources/enchiladas.jpg')">Enchilada option 1: £11.99<br>Ingredient, Ingredient, Ingredient</a>
-                    <br><br><a onclick="change('enchiladas','resources/burrito.jpg')">Enchilada option 2: £11.99<br>Ingredient, Ingredient, Ingredient</a>
-                    <br><br><a onclick="change('enchiladas','resources/burrito.jpg')">Enchilada option 3: £11.99<br>Ingredient, Ingredient, Ingredient</a></td>
+                    <a onclick="change('enchiladas','resources/enchiladas.jpg')"><b>Spicy Beef Enchilada</b>: £12.99<br></a>
+                    <br><br><a onclick="change('enchiladas','resources/e2.jpg')"><b>Beef Enchilada</b>: £11.99<br>(N)</a>
+                    <br><br><a onclick="change('enchiladas','resources/e3.png')"><b>Vegetarian Enchilada</b>: £12.45<br>(V)</a></td>
                 <td><img src="resources/enchiladas.jpg" alt="enchiladas" id="enchiladas" width="375" height="250"></td>
             </tr>
         </table>
@@ -146,7 +87,7 @@
 </div>
 <br><br>
 <div class="footer">
-    <a href="Staff.html">Staff Login</a>
+    <a href="Login.html">Staff Login</a>
 </div>
 </body>
 

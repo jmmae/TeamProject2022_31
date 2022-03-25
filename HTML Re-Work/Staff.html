@@ -1,144 +1,178 @@
 <!DOCTYPE html>
 <html>
-
+    
     <link href="StyleSheet.css" rel="stylesheet">
-
+    
     <head>
         <script src="Database/Validation.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <title>Staff</title>
     </head>
-
     
-<a href="MainMenu.html">
-    <img src="resources/header4.png" />
-</a>
-
+    
+    <a href="MainMenu.html">
+        <img src="resources/header4.png" />
+    </a>
+    
     <div class="header"> 
         <p>Staff Access.</p>
     </div>
-
+    <div class="popup">
+        <div class="payment">
+            <form name="addItem" onsubmit="checkData()">
+                <input type="text" id="DishName" placeholder="Dish Name:">
+                <input type="text" id="GroupTags" placeholder="GroupTags:">
+                <input type="text" id="Description" placeholder="Description:">
+                <input type="text" id="Calories" placeholder="Calories:">
+                <input type="text" id="DietaryRequirements" placeholder="Dietary Requirements:">
+                <input type="text" id="Allergens" placeholder="Allergens:">
+                <input type="text" id="Price" placeholder="Price:">
+                <input type="text" id="Available" placeholder="Available:">
+                <input type="submit" id="addFood" placeholder="Add Food" onsubmit="checkData()">
+                <div class="close" >+</div>
+            </form>
+        </div>
+    </div>
+    <br>
     <div class="staff">
         <!-- Form for adding menu items to the database -->
-        <form name="addItem">
-            <button id="getButton" type="button">Get Menu</button>
-
-            <p>
-            Item Name: <br />
-            <input type="text" id="foodtest" placeholder="ItemName"> <br /> 
-            </p>
-            <p>
-            Price: <br />
-            <input type="text" id="pricetest" placeholder="Price"> <br />
-            </p>
-            <p>
-            Available: <br />
-            <input type="text" id="Available" placeholder="Available"> <br />
-            </p>
-            <button type="submit" id="addFood">Add Food</button>
-            <!-- <input type="submit" id="addFood" onclick="addFood"> -->
-        </form>
-
+        <button id="AddFood" type="button">Add Menu item</button>
+        
         <p>
-        <button id="deleteButton" type="button">Delete</button> <br />
-        <button id="outOfStockButton" type="button">Set Not Available</button> <br />
-        <button id="inStockButton" type="button">Set Available</button> <br />
+            <button id="deleteButton" type="button">Delete Set</button> <br />
+            <button id="outOfStockButton" type="button">Sets Not Available</button> <br />
+            <button id="inStockButton" type="button">Sets Available</button> <br />
         </p>
     </div>
-
+    
+    
+    
+<div class="align">
+    <p id="menu"></p>
+        <div class="button">
+            <button onclick="location.href='Waiter.html'">Waiter Page</button>
+        </div>
+        <div class="button">
+            <button onclick="location.href='Login.html'">Staff Login</button>
+        </div>
+    </div>
     <script type="text/javascript">
-        {var menuFood}
-        //https://www.w3schools.com/jquery/jquery_get_started.asp
-  
+        var menuFood
         //this makes sure the document is loaded before any code is run
         jQuery(document).ready(function () {
-        
-        // Gets the full menu from the database and shows it on the webpage
-        jQuery("#getButton").click(function () {
+            
+            // Gets the full menu from the database and shows it on the webpage
             //"http://localhost:3000/menu" is the path/document to be found    data is the data returned from the server and status is the success or fail of this attempt
             //  /menu address is call to return all items in the menu
+            // jQuery("#getButton").click(function () {
             jQuery.get("http://localhost:3000/menu", function (data, status) {
-                menuFood = data;
                 //data is a JSON object array   https://www.w3schools.com/js/js_json_objects.asp
                 //to access the info  data[i].name-of-field-in-database
                 //eg below gereates an alert with the info about the first item in the menu
-                var table = "<table>";
+                var table = "<table id = 'foodMenu'>";
+                    table += "<th>Dish ID</th>"
                     table += "<th>Food</th>";
+                    table += "<th>Description</th>";
+                    table += "<th>Calories</th>";
+                    table += "<th>Allergies</th>";
                     table += "<th>Price</th>";
                     table += "<th>Available</th>";
                     table += "<th>Select</th>";
-                document.getElementById("menu").innerHTML = "";
-                for (let i = 0; i < data.length; i++){
-                    table += ("<tr id ='" + data[i].foodtest +"1'><td>" + data[i].foodtest + "</td><td>£" + data[i].pricetest + "</td><td>" + data[i].Available + "</td> <td><input type='checkbox' name='favorite3' id='" + data[i].foodtest + "' /> </td></tr>");
-                }
+                    document.getElementById("menu").innerHTML = "";
+                    for (let i = 0; i < data.length; i++) { 
+                            table += ("<tr><td>" + data[i].DishID + 
+                            "</td><td>" + data[i].DishName +
+                            "</td><td>" + data[i].Description + 
+                            "</td><td>" + data[i].Calories +
+                            "</td><td>" + data[i].Allergies +
+                            "</td><td>£" + data[i].Price +
+                            "</td><td>" + data[i].Available + 
+                            "</td> <td><input type='checkbox' name='favorite3' id='" + data[i].DishID + 
+                            "' /> </td></tr>");
+                    }
                     table += "<table>";
-                        document.getElementById("menu").innerHTML = table;
-                
-            });
-        });
+                    document.getElementById("menu").innerHTML = table;
+                });
+            // });
         });
         
         // Deletes the menu item that is chosen through the checkboxes shown on the menu
         jQuery("#deleteButton").click(function () {
             jQuery.get("http://localhost:3000/menu", function (data, status) {
+                if (document.readyState =="complete"){
                 for (let i = 0; i < data.length; i++){
-                    if (document.getElementById(data[i].foodtest).checked){
-                        menuFood = data[i].foodtest;
-
-                        document.getElementById(data[i].foodtest + "1").remove();
+                    if (document.readyState =="complete" || document.readyState =="interactive"){
+                        if (document.getElementById(data[i].DishID).checked){
+                            menuFood = data[i].DishID;
+                            document.getElementById('foodMenu').deleteRow(i+1);
+                            jQuery.post("http://localhost:3000/menu", {menuFood});
+                        }
                     }
                 }
-                jQuery.post("http://localhost:3000/menu", menuFood);
-            });
+                }
+                });
         });
-
+            
         // Sets the menu items as out of stock by checking if the menu items checkbox has been checked
         jQuery("#outOfStockButton").click(function () {
             jQuery.get("http://localhost:3000/menu", function (data, status) {
                 for (let i = 0; i < data.length; i++){
-                    if (document.getElementById(data[i].foodtest).checked){
-                        menuFood = data[i].foodtest;
-
-                        document.getElementById(data[i].foodtest + "1").remove();
+                    if (document.readyState =="complete" || document.readyState =="interactive"){
+                        if (document.getElementById(data[i].DishID).checked){
+                            menuFood = data[i].DishID;
+                            document.getElementById('foodMenu').deleteRow(i+1);
+                            jQuery.post("http://localhost:3000/menu/outofstock", {menuFood});
+                        }
                     }
                 }
-                jQuery.post("http://localhost:3000/menu/outofstock", menuFood);
             });
         });
-
+        
         // Sets the menu items to be put as in stock, setting Available to Yes
         jQuery("#inStockButton").click(function () {
             jQuery.get("http://localhost:3000/menu", function (data, status) {
                 for (let i = 0; i < data.length; i++){
-                    if (document.getElementById(data[i].foodtest).checked){
-                        menuFood = data[i].foodtest;
-
-                        document.getElementById(data[i].foodtest + "1").remove();
+                    if (document.readyState =="complete" || document.readyState =="interactive"){
+                        if (document.getElementById(data[i].DishID).checked){
+                            menuFood = data[i].DishID;
+                            document.getElementById('foodMenu').deleteRow(i+1);
+                            jQuery.post("http://localhost:3000/menu/instock", {menuFood});
+                        }
                     }
                 }
-                jQuery.post("http://localhost:3000/menu/instock", menuFood);
             });
         });
-
+        
         // Takes the data from the three input boxes for a new menu item and stores it in a variable
         // Then it posts it to the URL which it then runs what is in the post and adds the menu item to the database
         jQuery("#addFood").click(function(){
-            var addedFood = document.getElementById("foodtest").value + " ," + document.getElementById("pricetest").value + ", " + document.getElementById("Available").value ; 
-            console.log(addedFood)
-            if (checkData() != false){
-                jQuery.post("http://localhost:3000/menu/addedDishes", addedFood);
+            if (document.readyState =="complete" || document.readyState =="interactive"){
+                var addedFood
+                addedFood = document.getElementById("DishName").value + "," + 
+                document.getElementById("GroupTags").value + "," + 
+                document.getElementById("Description").value + "," + 
+                document.getElementById("Calories").value + "," + 
+                document.getElementById("DietaryRequirements").value + "," + 
+                document.getElementById("Allergens").value + "," + 
+                document.getElementById("Price").value + "," + 
+                document.getElementById("Available").value;
+                jQuery.post("http://localhost:3000/menu/addedDishes", {addedFood});
             }
         });
+        
+    document.querySelector('.close').addEventListener('click', function(){
+        document.querySelector('.popup').style.display = 'none';
+    });
+    
+    document.getElementById('AddFood').addEventListener('click', function(){
+        document.querySelector('.popup').style.display = 'flex';
+    });
+    
 
-
-      </script>
-
-<div class="menu">
-<p id="menu"></p>
-</div>
-<div class="align">
-        <div class="button">
-            <button onclick="location.href='MainMenu.html'">Go Back</button>
-        </div>
-    </div>
+    function checkInfo() {
+            if (document.getElementById('shortInfo').value == "")  {
+                alert("Please re-enter details.") //Find a way to not submit the form if details aren't completed!
+            }
+        }
+    </script>
 </html>
