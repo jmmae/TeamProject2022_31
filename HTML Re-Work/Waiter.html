@@ -69,18 +69,15 @@ $(document).ready(function () {
                     table += "<th>Table Number</th>";
                     table += "<th>Confirmed</th>";
                     table += "<th>Ordered Dish ID</th>";
-                    table += "<th>Dish ID</th>";
                     table += "<th>Comments</th>";
                     document.getElementById("Ordered").innerHTML = "";
                     for (let i = 0; i < data.length; i++) { 
                         if (data[i].Available != " No" && data[i].Available != "No") {
-                            table += ("<tr><td>" + data[i].DishID + 
-                                "</td><td>" + data[i].OrderID +
+                            table += ("<tr><td>" + data[i].OrderID +
                                 "</td><td>" + data[i].TimeEntered + 
                                 "</td><td>" + data[i].TableNumber +
                                 "</td><td>" + data[i].Confirmed +
                                 "</td><td>" + data[i].OrderedDishID +
-                                "</td><td>" + data[i].DishID +
                                 "</td><td>" + data[i].Comments +
                                 "</td></tr>");
                         }
@@ -91,6 +88,8 @@ $(document).ready(function () {
                 });
             });
     </script>
+    <div class="align">
 <p id="Ordered"></p>
+</div>
 
 </html>

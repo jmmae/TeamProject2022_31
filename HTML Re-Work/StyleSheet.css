@@ -12,17 +12,9 @@ div#headerImg {
   text-align: center;
 }
 
-table,
-th,
-td {
-  border: 1px groove rgb(0, 0, 0);
-}
-
-table.frontpage,
-th,
-td {
-  border: none;
-  width:50%;
+table, th, td, tr {
+  border: 1px solid rgb(0, 0, 0);
+  border-collapse: collapse;
 }
 
 img {
