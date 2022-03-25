@@ -30,16 +30,16 @@ function checkData(){
 		document.addItem.Calories.focus()
 		return false;
 	}
-	if (document.addItem.DietryRequirement.value=="")
+	if (document.addItem.DietaryRequirements.value=="")
 	{
 		alert("Please fill in DietryRequirement")
-		document.addItem.DietryRequirement.focus()
+		document.addItem.DietaryRequirements.focus()
 		return false;
 	}
-	if (document.addItem.Allergies.value=="")
+	if (document.addItem.Allergens.value=="")
 	{
 		alert("Please fill in Allergies")
-		document.addItem.Allergies.focus()
+		document.addItem.Allergens.focus()
 		return false;
 	}
 	if (document.addItem.Price.value=="")

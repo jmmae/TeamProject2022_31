@@ -19,7 +19,7 @@
     </div>
     <div class="popup">
         <div class="payment">
-            <form name="pay" onsubmit="checkData()">
+            <form name="addItem" onsubmit="checkData()">
                 <input type="text" id="DishName" placeholder="Dish Name:">
                 <input type="text" id="GroupTags" placeholder="GroupTags:">
                 <input type="text" id="Description" placeholder="Description:">
@@ -28,7 +28,7 @@
                 <input type="text" id="Allergens" placeholder="Allergens:">
                 <input type="text" id="Price" placeholder="Price:">
                 <input type="text" id="Available" placeholder="Available:">
-                <button id="addFood" type="button">Add Food</button>
+                <input type="submit" id="addFood" placeholder="Add Food" onsubmit="checkData()">
                 <div class="close" >+</div>
             </form>
         </div>
@@ -44,9 +44,9 @@
             <button id="inStockButton" type="button">Sets Available</button> <br />
         </p>
     </div>
-
-
-
+    
+    
+    
 <div class="align">
     <p id="menu"></p>
         <div class="button">

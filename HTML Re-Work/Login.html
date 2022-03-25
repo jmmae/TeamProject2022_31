@@ -47,10 +47,11 @@
     function checkDetails() {
       if ((document.getElementById('username').value == "waiter") && (document.getElementById('password').value == "Staff123")) {
         document.getElementById("Submit").onclick = function () {
-          location.href = "location.href='Staff.html";
+          location.href = "Staff.html";
         };
       } else {
         alert("Incorrect details. Please try again.");
+        location.href = "Login.html";
       }
 
       /*
