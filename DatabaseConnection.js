@@ -207,10 +207,10 @@ app.post('/order/requestWaiter/remove', urlencodedParser, function (req, res) {
 
   } else {
 
-    waiterRequests.splice(waiterRequests.indexOf(req.body.table), 1)
+    waiterRequests.splice(waiterRequests.indexOf(req.body.table), req.body.table.length)
   }
   console.log("Waiter remove request recieved");
-  //console.log(waiterRequests);
+  console.log(waiterRequests);
   res.send("Waiter remove request recived")
 })
 
