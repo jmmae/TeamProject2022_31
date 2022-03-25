@@ -29,7 +29,7 @@
   <fieldset>
     <h2 id="loginHeading"><b>Staff Login</b></h2>
     <div class="login">
-      <form name="login" onsubmit="checkData()">
+      <form name="login" onsubmit="checkDetails()" action="Staff.html">
       Username:
       <input type="text" id="username" name="username" placeholder="Username" required><br>
       Password:
@@ -45,13 +45,21 @@
 
   <script>
     function checkDetails() {
-      if (document.getElementById('Submit').value == "waiter@oaxaca.co.uk" && document.getElementById('Submit').value == "Staff123") {
+      if ((document.getElementById('username').value == "waiter") && (document.getElementById('password').value == "Staff123")) {
         document.getElementById("Submit").onclick = function () {
           location.href = "location.href='Staff.html";
         };
       } else {
-        alert("Incorrect details. Please try again.")
+        alert("Incorrect details. Please try again.");
       }
+
+      /*
+      if ((document.getElementById('username').value != "waiter") && (document.getElementById('password').value != "Staff123")) {
+        do {
+        alert("Incorrect details. Please try again.");
+        break;
+      } while (document.getElementById('username').value == "waiter") && (document.getElementById('password').value == "Staff123")
+      }*/
     }
   </script>
 
