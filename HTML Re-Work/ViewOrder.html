@@ -1,100 +1,174 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <link href="StyleSheet.css" rel="stylesheet">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <title>Basket</title>
-    </head>
 
-    <a href="MainMenu.html">
-        <img src="resources/header4.png" />
-    </a>
+<head>
+    <link href="StyleSheet.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Basket</title>
+</head>
 
-    <div class="header"> 
-        <p>Serving the UK for the past 10 years.</p>
+<a href="MainMenu.html">
+    <img src="resources/header4.png" />
+</a>
+
+<div class="header">
+    <p>Serving the UK for the past 10 years.</p>
+</div>
+
+<div class="navbar">
+    <a href="CustomerMenu.html">Menu</a>
+    <a href="ViewOrder.html">Basket</a>
+</div>
+
+
+<label for="TableNumber">Select Table Number: </label>
+<select name="TableNumber" id="TableNumber">
+    <option value="null">Select</option>
+    <option value="1">Table 1</option>
+    <option value="2">Table 2</option>
+    <option value="3">Table 3</option>
+    <option value="4">Table 4</option>
+    <option value="5">Table 5</option>
+    <option value="6">Table 6</option>
+    <option value="7">Table 7</option>
+    <option value="8">Table 8</option>
+    <option value="9">Table 9</option>
+    <option value="10">Table 10</option>
+</select>
+
+<p id="tableOrder"></p>
+<!-- <script>
+        //https://www.w3schools.com/jquery/jquery_get_started.asp
+    
+        //this makes sure the document is loaded before any code is run
+        jQuery(document).ready(function () {
+    
+            //window.onload = function(){ //needs to be uncommented, closed and tested.
+    
+            //"http://localhost:3000/menu" is the path/document to be found    data is the data returned from the server and status is the success or fail of this attempt
+            //  /menu address is call to return all items in the menu
+            jQuery.post("http://localhost:3000/order/getDishes/table",{table: document.getElementById("TableNumber").value } ,function (data, status) {
+                //data is a JSON object array   https://www.w3schools.com/js/js_json_objects.asp
+                //to access the info  data[i].name-of-field-in-database
+                //eg below gereates an alert with the info about the first item in the menu
+                var table = "<table>";
+                table += "<th>Order ID</th>"
+                table += "<th>Time Entered</th>";
+                table += "<th>Table Number</th>";
+                table += "<th>Confirmed</th>";
+                table += "<th>Ordered Dish ID</th>";
+                table += "<th>Comments</th>";
+                document.getElementById("tableOrder").innerHTML = "";
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].Available != " No" && data[i].Available != "No") {
+                        table += ("<tr><td>" + data[i].OrderID +
+                            "</td><td>" + data[i].TimeEntered +
+                            "</td><td>" + data[i].TableNumber +
+                            "</td><td>" + data[i].Confirmed +
+                            "</td><td>" + data[i].OrderedDishID +
+                            "</td><td>" + data[i].Comments +
+                            "</td></tr>");
+                    }
+                }
+                table += "<table>";
+                document.getElementById("tableOrder").innerHTML = table;
+    
+            });
+        });
+    </script> -->
+
+<br>
+<div class="align">
+    <p id="p1">Show Order</p>
+
+    <button id="getButton" type="button">Get Orders</button>
+
+    <script>
+        jQuery("#getButton").click(function () {
+            jQuery.post("http://localhost:3000/order/getDishes/table", { table: document.getElementById("TableNumber").value }, function (data, status) {
+                //data is a JSON object array   https://www.w3schools.com/js/js_json_objects.asp
+                //to access the info  data[i].name-of-field-in-database
+                //eg below gereates an alert with the info about the first item in the menu
+                var table = "<table>";
+                table += "<th>OrderID</th>"
+                table += "<th>Dish Name</th>"
+                table += "<th>Price</th>";
+                table += "<th>TimeOrdered</th>";
+                table += "<th>Table Number</th>";
+                table += "<th>Comments</th>";
+                document.getElementById("tableOrder").innerHTML = "";
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].Available != " No" && data[i].Available != "No") {
+                        table += ("<tr><td>" + data[i].OrderID +
+                            "</td><td>" + data[i].DishName +
+                            "</td><td>" + data[i].Price +
+                            "</td><td>" + data[i].TimeEntered +
+                            "</td><td>" + data[i].TableNumber +
+                            "</td><td>" + data[i].Comments +
+                            "</td></tr>");
+                    }
+                }
+                table += "<table>";
+                document.getElementById("tableOrder").innerHTML = table;
+
+            });
+        });
+    </script>
+</div>
+
+<div class="align">
+    <button id="callWaiter" type="button">Call Waiter</button>
+    <meta name="viewport" content="width=device-width" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            $('#callWaiter').click(function () {
+
+                $.post('http://localhost:3000/order/requestWaiter/add',
+                    { table: "TableNumber" },
+                    function (data, status, jqXHR) {
+                        $('p').append('status: ' + status + ', data: ' + data);
+                    }).done(function () { alert('A waiter is coming straight away!'); })
+                    .fail(function (jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
+
+
+            });
+        });
+    </script>
+    <br>
+    <button id="payment" type="button">Pay</button>
+</div>
+
+<div class="popup">
+    <div class="payment">
+        <form name="pay" action="">
+            <img src="resources/card.png" />
+            <input type="text" id="shortInfo" placeholder="Card Number:">
+            <input type="text" id="shortInfo" placeholder="Expiry date:">
+            <input type="text" id="shortInfo" placeholder="CVV:">
+            <input type="submit" value="Sumbit" id="submit" onclick="checkInfo()">
+            <div class="close">+</div>
+        </form>
     </div>
+</div>
 
-    <div class="navbar">
-        <a href="CustomerMenu.html">Menu</a>
-        <a href="ViewOrder.html">Basket</a>
-    </div>
+<script type="text/javascript">
+    document.querySelector('.close').addEventListener('click', function () {
+        document.querySelector('.popup').style.display = 'none';
+    });
 
+    document.getElementById('payment').addEventListener('click', function () {
+        document.querySelector('.popup').style.display = 'flex';
+    });
+
+    function checkInfo() {
+        if (document.getElementById('shortInfo').value == "") {
+            alert("Please re-enter details.") //Find a way to not submit the form if details aren't completed!
+        } else {
+            alert("Thanks for the payment. Hope you had a nice meal!")
+        }
+    }
 </script>
 
-    <br>
-    <div class="align">
-        <p id="p1">Show Order</p>
-        
-        <button id="getButton" type="button">Get Orders</button>
-        
-        <script>
-            jQuery("#getButton").click(function () {
-                jQuery.get("http://localhost:3000/order/getDishes",
-        
-                    function (data, status) {
-                        alert("Data: " + data + "\nStatus: " + status);
-                        for (let i = 0; i < data.length; i++) {
-                            document.getElementById("p1").innerHTML = data;
-                            alert(dishRequests[i]);
-                            jQuery.post("http://localhost:3000/order/getDishes", data);
-                        }
-                    });
-            });
-        </script>
-    </div>
-
-    <div class="align">
-        <button id="callWaiter" type="button">Call Waiter</button>
-        <meta name="viewport" content="width=device-width" />
-        <script type="text/javascript">
-            $(document).ready(function () {
-    
-                $('#callWaiter').click(function(){
-    
-                    $.post('http://localhost:3000/order/requestWaiter/add',
-                        {table: "TableNumber" },
-                        function(data, status, jqXHR) {
-                            $('p').append('status: ' + status + ', data: ' + data);
-                        }).done(function() { alert('A waiter is coming straight away!'); })
-                        .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
-    
-    
-                });
-            });
-        </script>
-        <br>
-        <button id="payment" type="button" >Pay</button> 
-    </div>
-
-    <div class="popup">
-        <div class="payment">
-            <form name="pay" action="">
-                <img src="resources/card.png" />
-                <input type="text" id="shortInfo" placeholder="Card Number:">
-                <input type="text" id="shortInfo" placeholder="Expiry date:">
-                <input type="text" id="shortInfo" placeholder="CVV:">
-                <input type="submit" value="Sumbit" id = "submit" onclick="checkInfo()">
-                <div class="close" >+</div>
-            </form>
-        </div>
-    </div>
-    
-    <script type = "text/javascript">
-        document.querySelector('.close').addEventListener('click', function(){
-            document.querySelector('.popup').style.display = 'none';
-        });
-
-        document.getElementById('payment').addEventListener('click', function(){
-            document.querySelector('.popup').style.display = 'flex';
-        });
-
-        function checkInfo() {
-            if (document.getElementById('shortInfo').value == "")  {
-                alert("Please re-enter details.") //Find a way to not submit the form if details aren't completed!
-            } else {
-                alert("Thanks for the payment. Hope you had a nice meal!")
-            }
-        }
-    </script>
 
 </html>
