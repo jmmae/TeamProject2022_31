@@ -17,11 +17,6 @@
         <p>Serving the UK for the past 10 years.</p>
     </div>
 
-    <div class="navbar">
-        <a href="CustomerMenu.html">Menu</a>
-        <a href="ViewOrder.html">Basket</a>
-    </div>
-
 </body>
 
 <div class="align">
@@ -29,7 +24,7 @@
   <fieldset>
     <h2 id="loginHeading"><b>Staff Login</b></h2>
     <div class="login">
-      <form name="login" onsubmit="checkDetails()" action="Staff.html">
+      <form name="login"  action="Staff.html">
       Username:
       <input type="text" id="username" name="username" placeholder="Username" required><br>
       Password:
@@ -40,17 +35,17 @@
 
     <br>
     <button onclick="location.href='MainMenu.html'">Go Back</button>
-    <button onclick="location.href='Staff.html'">Login</button>
   </div>
 
   <script>
     function checkDetails() {
       if ((document.getElementById('username').value == "waiter") && (document.getElementById('password').value == "Staff123")) {
-        document.getElementById("Submit").onclick = function () {
-          location.href = "location.href='Staff.html";
-        };
+        document.getElementByName("submit").action="Staff.html";
+        document.location.href = "Staff.html";
+        window.location.href("Staff.html") /*Different ways to display the Staff.html page (Not working)*/
       } else {
         alert("Incorrect details. Please try again.");
+        location.href = "Login.html";
       }
 
       /*
@@ -61,6 +56,7 @@
       } while (document.getElementById('username').value == "waiter") && (document.getElementById('password').value == "Staff123")
       }*/
     }
+
   </script>
 
 </div>
