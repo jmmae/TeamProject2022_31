@@ -31,10 +31,10 @@
     <div class="login">
       <form name="login" onsubmit="checkData()">
       Username:
-      <input type="text" id="username" name="username" placeholder="Username"><br>
+      <input type="text" id="username" name="username" placeholder="Username" required><br>
       Password:
-      <input type="password" id="password" name="password" placeholder="Password"><br>
-      <!--<button type="submit" name="submit" id="Submit" onclick="location.href='Staff.html'">Login</button>-->
+      <input type="password" id="password" name="password" placeholder="Password" required><br>
+      <button type="submit" name="submit" id="Submit" onclick="checkDetails()">Login</button>
     </fieldset>
     </form>
 
@@ -42,6 +42,18 @@
     <button onclick="location.href='MainMenu.html'">Go Back</button>
     <button onclick="location.href='Staff.html'">Login</button>
   </div>
+
+  <script>
+    function checkDetails() {
+      if (document.getElementById('Submit').value == "waiter@oaxaca.co.uk" && document.getElementById('Submit').value == "Staff123") {
+        document.getElementById("Submit").onclick = function () {
+          location.href = "location.href='Staff.html";
+        };
+      } else {
+        alert("Incorrect details. Please try again.")
+      }
+    }
+  </script>
 
 </div>
 </html>
