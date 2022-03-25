@@ -81,11 +81,15 @@ app.post('/menu/instock', urlencodedParser, function (req, res) {
 app.post('/menu/addedDishes', urlencodedParser, function (req, res) {
   let text = JSON.stringify(req.body);
   let item = text.substring(14, text.length - 3);
+  con.query("SELECT COUNT(*) AS num FROM menu;", function (err, result, fields){
+    if (err) throw err;
+    nextOrderID = result[0].num;
+    nextOrderID = nextOrderID + 1;
   food = item.split(",");
-  console.log(food[8]);
   sqlQuery("INSERT INTO menu (DishID, DishName , GroupTags , Description , Calories , DietaryReq , Allergies, Price, Available) VALUES ('"
-   + food[0] + "','" + food[1] + "','" + food[2] + "','" + food[3] + "','" + food[4] + "','" + food[5] + "','" 
-   + food[6] + "','" + food[7] + "','" + food[8] + "')");
+  + nextOrderID + "','" + food[0] + "','" + food[1] + "','" + food[2] + "','" + food[3] + "','" + food[4] + "','" + food[5] + "','" 
+   + food[6] + "','" + food[7] + "')");
+  })
 });
 
 //gets full menu from database

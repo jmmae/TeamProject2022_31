@@ -20,7 +20,6 @@
     <div class="popup">
         <div class="payment">
             <form name="pay" onsubmit="checkData()">
-                <input type="text" id="DishID" placeholder="DishID:">
                 <input type="text" id="DishName" placeholder="Dish Name:">
                 <input type="text" id="GroupTags" placeholder="GroupTags:">
                 <input type="text" id="Description" placeholder="Description:">
@@ -149,8 +148,7 @@
         jQuery("#addFood").click(function(){
             if (document.readyState =="complete" || document.readyState =="interactive"){
                 var addedFood
-                addedFood = document.getElementById("DishID").value + "," +
-                document.getElementById("DishName").value + "," + 
+                addedFood = document.getElementById("DishName").value + "," + 
                 document.getElementById("GroupTags").value + "," + 
                 document.getElementById("Description").value + "," + 
                 document.getElementById("Calories").value + "," + 
