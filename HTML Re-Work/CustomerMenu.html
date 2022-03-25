@@ -150,7 +150,7 @@
             $('#callWaiter').click(function(){
 
                 $.post('http://localhost:3000/order/requestWaiter/add',
-                    {table: "TableNumber" },
+                    {table: document.getElementById("TableNumber").value },
                     function(data, status, jqXHR) {
                     }).done(function() { alert('A waiter is coming straight away!'); })
                     .fail(function(jqxhr, settings, ex) { alert('Error, please try again. ' + ex); });
